@@ -1,0 +1,864 @@
+; -*- emacs-lisp -*-
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Basic Environments
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Auto add emacs-goodies path as long as .emacs is symlinked to the file in
+;;; the same folder containing it.
+(if (eq system-type 'gnu/linux)
+    (setq emacs-goodies-path
+          (replace-regexp-in-string "\n$" ""
+                                    (shell-command-to-string
+                                     "readlink -f ~/.emacs | xargs dirname"))))
+(if (eq system-type 'darwin)
+    (setq emacs-goodies-path
+          (replace-regexp-in-string "\n$" ""
+                                    (shell-command-to-string
+                                     (concat "dirname '~/" (shell-command-to-string "readlink -n ~/.emacs") "'")))))
+
+(add-to-list 'load-path emacs-goodies-path)
+
+;;; Be compatible with old version of Emacs built in Mac OS X.
+(if window-system
+    (add-to-list 'custom-theme-load-path emacs-goodies-path))
+
+;;; Disable backup
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;;; Disable rebase mode
+(setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
+                              auto-mode-alist))
+
+;;; allow y/n instead of yes/no on prompts
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;;; only want to split vertically.
+(setq split-width-threshold nil)
+
+;;; Language environment
+(set-language-environment 'UTF-8)
+
+;;; Truncate lines
+(set-default 'truncate-lines t)
+
+;;; Outline mode
+;; Collapse subnodes when opening outline file
+(add-hook 'outline-mode-hook '(lambda ()
+                                (hide-sublevels 1)))
+
+;; better renaming of buffers viewing files with same name in different
+;; directories.
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward)
+
+;;; ange-ftp (obsoleted by SSH in most case)
+;; (require 'ange-ftp)
+;; (setq ange-ftp-auto-save 0)
+
+;;; TRAMP
+(require 'tramp)
+(setq tramp-default-method "ssh")
+
+;;; Recentf
+(require 'recentf)
+(recentf-mode t)
+(setq recentf-max-menu-items 200)  ; with ido mode, we can leverage more items.
+
+;;; SrSpeedbar
+(require 'sr-speedbar)
+(setq sr-speedbar-default-width 20)
+
+;;; Dired-X
+(require 'dired-x)
+
+(setq-default dired-omit-files-p t) ; this is buffer-local variable
+
+; Ignore some junk files on Mac.
+(setq dired-omit-files
+      (concat dired-omit-files "\\|^\\.\\|desktop.ini\\|Thumbs.db\\|Icon\015"))
+
+;;; Spaces
+
+(require 'whitespace)
+(setq-default whitespace-style
+              '(face
+                trailing lines-tail))
+(setq whitespace-line-column nil) ;; use fill-column instead
+(setq whitespace-display-mappings
+      '((space-mark   ?\    [?\xB7]     [?.])	; space
+        (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
+        ))
+;; (set-face-attribute 'whitespace-line nil
+;;                     :background "purple"
+;;                     :foreground "white"
+;;                     :weight 'bold)
+
+;;; Do not use global-whitespace-mode because it will impact dired.
+;; (global-whitespace-mode nil)
+
+;;; Occur Mode
+; Add p, n key in occur mode to be consistent.
+(add-hook 'occur-mode-hook
+          '(lambda ()
+             (define-key occur-mode-map "p" '(lambda () (interactive)
+                                               (occur-prev)
+                                               (occur-mode-goto-occurrence-other-window)
+                                               (other-window 1)))
+             (define-key occur-mode-map "n"  '(lambda () (interactive)
+                                                (occur-next)
+                                                (occur-mode-goto-occurrence-other-window)
+                                                (other-window 1)))))
+
+; Hexl Mode
+(setq hexl-bits 8)
+
+;;; Narrow-to-region C-x n n and C-x n w
+(put 'narrow-to-region 'disabled nil)
+
+
+;;; Outline minor mode (outline minor mode in programming mode)
+;; Use C-c C-c as prefix (like C-c in outline major mode)
+(add-hook 'outline-minor-mode-hook
+          (lambda () (local-set-key "\C-c\C-c"
+                                    outline-mode-prefix-map)))
+
+;;; Fly Spell
+;; (if (eq system-type 'gnu/linux)
+;;     (progn
+;;       ;; check (program source code only)
+;;       (setq ispell-dictionary "american")
+
+;;       ; I only do text editing in outline-mode
+;;        (dolist (hook '(outline-mode-hook))
+;;          (add-hook hook (lambda () (flyspell-mode 1))))
+
+;;       ; Checks spell only in comments
+;;       ;; (dolist (hook '(emacs-lisp-mode-hook
+;;       ;;                 c-mode-hook
+;;       ;;                 python-mode-hook
+;;       ;;                 php-mode-hook
+;;       ;;                 css-mode-hook
+;;       ;;                 nxml-mode-hook
+;;       ;;                 perl-mode-hook
+;;       ;;                 javascript-mode-hook
+;;       ;;                 LaTeX-mode-hook))
+;;       ;;   (add-hook hook 'flyspell-prog-mode))))
+;; ))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; ido mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; ido
+(require 'ido)
+(ido-mode 'both)
+(ido-everywhere 'both)
+;; disabled for being buggy
+; (setq ido-enable-flex-matching t)
+(setq ido-show-dot-for-dired t)
+;; Be consistent with standard Emacs convention
+;; (especially when Emacs has multiple frames in different workspaces).
+(setq ido-default-file-method 'selected-window)
+(setq ido-default-buffer-method 'selected-window)
+
+
+;; Display vertically
+(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+(add-hook 'ido-setup-hook
+          (lambda ()
+            (define-key ido-completion-map [up] 'ido-prev-match)
+            (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+            (define-key ido-completion-map [down] 'ido-next-match)
+            (define-key ido-completion-map (kbd "C-n") 'ido-next-match)))
+
+
+;;; idomenu.el --- imenu tag selection a la ido
+;;
+;; Copyright (C) 2010 Georg Brandl
+;;
+;; Author: Georg Brandl <georg@python.org>
+;; Version: 0.1
+;;
+;; This file is NOT part of GNU Emacs.
+;;
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 2
+;; of the License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;;
+;;; Commentary:
+;;
+;; This package provides the `idomenu' command for selecting an imenu tag using
+;; ido completion.  The buffer needs to have support for imenu already enabled.
+;;
+;; Add something like the following to your .emacs:
+;;
+;; (autoload 'idomenu "idomenu" nil t)
+;;
+;;; Code:
+
+(require 'ido)
+(require 'imenu)
+
+(defun idomenu--guess-default (index-alist symbol)
+  "Guess a default choice from the given symbol."
+  (catch 'found
+    (let ((regex (concat "\\_<" (regexp-quote symbol) "\\_>")))
+      (dolist (item index-alist)
+        (if (string-match regex (car item)) (throw 'found (car item)))))))
+
+(defun idomenu--read (index-alist &optional prompt guess)
+  "Read a choice from an Imenu alist via Ido."
+  (let* ((symatpt (thing-at-point 'symbol))
+         (default (and guess symatpt (idomenu--guess-default index-alist symatpt)))
+         (names (mapcar 'car index-alist))
+         (name (ido-completing-read (or prompt "imenu ") names
+                                    nil t nil nil default))
+         (choice (assoc name index-alist)))
+    (if (imenu--subalist-p choice)
+        (idomenu--read (cdr choice) prompt nil)
+      choice)))
+
+(defun idomenu--trim (str)
+  "Trim leading and tailing whitespace from STR."
+  (let ((s (if (symbolp str) (symbol-name str) str)))
+    (replace-regexp-in-string "\\(^[[:space:]\n]*\\|[[:space:]\n]*$\\)" "" s)))
+
+(defun idomenu--trim-alist (index-alist)
+  "There must be a better way to apply a function to all cars of an alist"
+  (mapcar (lambda (pair) (cons (idomenu--trim (car pair)) (cdr pair)))
+	  index-alist))
+
+(defun idomenu ()
+  "Switch to a buffer-local tag from Imenu via Ido."
+  (interactive)
+  ;; ido initialization
+  (ido-init-completion-maps)
+  (add-hook 'minibuffer-setup-hook 'ido-minibuffer-setup)
+  (add-hook 'choose-completion-string-functions 'ido-choose-completion-string)
+  (add-hook 'kill-emacs-hook 'ido-kill-emacs-hook)
+  ;; set up ido completion list
+  (let ((index-alist (cdr (imenu--make-index-alist))))
+    (if (equal index-alist '(nil))
+        (message "No imenu tags in buffer")
+      (imenu (idomenu--read (idomenu--trim-alist index-alist) nil t)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-ido-find-tag ()
+  "Find a tag using ido"
+  (interactive)
+  (tags-completion-table)
+  (let (tag-names)
+    (mapatoms (lambda (x)
+                (push (prin1-to-string x t) tag-names))
+              tags-completion-table)
+    (find-tag (ido-completing-read "Tag: " tag-names nil nil (thing-at-point 'filename)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'find-file)
+
+; TODO: use (thing-at-point 'word) since we want to extract file name in Python 'import dir1.dir2.filename'
+(defun my-ido-find-file-in-tag-files ()
+  (interactive)
+  (let ((initial-input (thing-at-point 'filename)))
+    (visit-tags-table-buffer)
+    (find-file
+     (expand-file-name
+      (ido-completing-read
+       "Project file: " (tags-table-files) nil nil initial-input)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-ido-recent-file ()
+  "Find a recent file using Ido."
+  (interactive)
+  (let ((file
+         (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Large Projects
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Detect files in linux kernel.
+(setq my-linux-style-pattern-list
+      (list "kernel"))
+
+(defvar-local my-is-linux-file-flag nil) ; for debugging only
+
+(defun my-is-linux-file-p ()
+  (let ((result nil))
+    (dolist (pattern my-linux-style-pattern-list)
+      (when (and buffer-file-name
+                 (string-match pattern buffer-file-name))
+        (setq result t)
+        (setq my-is-linux-file-flag t)))
+    result))
+
+(defun my-is-autotest-file-p ()
+  (let ((result nil))
+    (dolist (pattern (list "autotest"))
+      (when (and buffer-file-name
+                 (string-match pattern buffer-file-name))
+        (setq result t)))
+    result))
+
+(defun my-is-android-file-p ()
+  (let ((result nil))
+    (dolist (pattern (list "droid"))
+      (when (and buffer-file-name
+                 (string-match pattern buffer-file-name))
+        (setq result t)))
+    result))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Language-specific Hooks
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'find-things-fast)
+(require 'cc-mode)
+
+(setq default-tab-width 8)  ; be distinct with spaces
+(setq-default indent-tabs-mode nil)
+
+;; which-function-mode is global minor mode.
+;; It has performance penalty in Python. So enable it only in selected modes.
+(which-function-mode 1)
+(setq which-func-modes '(c-mode c++-mode js-mode))
+
+;;; CUDA
+(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+
+;;; Obj-C
+(add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
+
+;;; GYP
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.gyp$" . yaml-mode))
+
+;;; C Mode
+
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (outline-minor-mode)
+             (whitespace-mode t)
+             (c-toggle-auto-hungry-state -1)
+             (c-toggle-auto-newline -1)
+             (c-toggle-electric-state t)
+             ;; ff-find-other-file will read #include lines, use
+             ;; ff-get-other-file instead.
+             (local-set-key  (kbd "C-c h") 'ff-get-other-file)
+             (setq c-tab-always-indent t)
+             (subword-mode 1) ; commonly used in Chromium style
+             (imenu-add-to-menubar "imenu")
+             ;; C++ style
+             (setq comment-start "//" comment-end "")
+             (local-set-key [(return)] 'newline-and-indent)
+             ;; Android
+             (if (my-is-android-file-p)
+                 (progn
+                   (setq c-basic-offset 4)
+                   (setq fill-column 100)
+                   (setq whitespace-line-column 100)))
+             ;;; C-c. was set to c-set-style
+             ;; (local-set-key "\C-c." 'my-ido-find-tag)
+             (local-set-key "\C-c." 'ftf-grepsource)
+             (set (make-local-variable 'cc-other-file-alist)
+                  '(("\\.m\\'" (".h"))
+                    ("\\.mm\\'" (".h"))
+                    ("\\.h\\'" (".m" ".mm" ".c" ".cpp" ".cc"))
+                    ("\\.c\\'" (".h"))
+                    ("\\.cpp\\'" (".h" ".hxx"))
+                    ("\\.cc\\'" (".h" ".hxx"))
+                    ("\\.cxx\\'" (".h" ".hxx"))
+                    ("\\.hxx\\'" (".cc" ".cxx" ".cpp"))
+                    ))))
+
+;; Set style for linux kernel
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (if (my-is-linux-file-p)
+                 (progn
+                   (c-set-style "linux")
+                   (subword-mode 0)
+                   (setq comment-start "/*" comment-end "*/")
+                   (setq indent-tabs-mode t)))))
+
+;;; SGML
+(require 'sgml-mode)
+(define-key sgml-mode-map "\\r" 'newline-and-ident)
+
+;;; Python
+(add-hook 'python-mode-hook
+          (lambda ()
+             (outline-minor-mode)
+             (whitespace-mode t)
+             (subword-mode 1)
+             (if (my-is-autotest-file-p)
+                 (progn
+                   (setq python-indent-offset 4)))
+            ; (imenu-add-to-menubar "imenu") ; defined in C mode
+            ; (outline-minor-mode) ; defined in C mode
+            ; (subword-mode 1) ; defined in C mode
+            ; (set-default 'truncate-lines t) ; defined in C mode
+             ))
+
+;;; JavaScript
+(add-hook 'js-mode-hook
+          (lambda ()
+            ;; Scan the file for nested code blocks
+            (imenu-add-to-menubar "imenu")
+            ))
+
+;;; imenu
+(require 'imenu) ; TODO: add setting to hook (late initialization)
+(setq imenu-auto-rescan nil)
+
+;;; Version Control
+; Disable vc mode (which is unnecessarily complex)
+(require 'vc)
+(setq vc-handled-backends ())
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; my-chrome-code-search
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome"
+      browse-url-generic-args '("--disable-gpu"))
+
+(setq my-chrome-workspace-index 9) ;; Where the workspace Chrome lives
+
+;; 'filename' type is better than 'symbol' type in thing-at-point when
+;; extracting C++ symbol because it's easy to customize, and it includes colon
+;; char (:).
+
+;; Hacky way to override default behavior.
+(setq thing-at-point-file-name-chars "[:alnum:]_.:")
+
+(setq my-linux-code-search-pattern "http://lxr.free-electrons.com/ident?v=3.14&i=%s")
+
+(setq my-android-code-search-pattern
+      "https://www.google.com.tw/webhp?ion=1&espv=2&ie=UTF-8#q=aosp %s")
+
+(setq my-chromium-code-search-pattern
+      "https://code.google.com/p/chromium/codesearch#search/&q=%s&sq=package:chromium&type=cs")
+
+(defun my-switch-workspace-chrome ()
+  (interactive)
+  (shell-command (format "wmctrl -s %d" my-chrome-workspace-index)))
+
+(defun my-code-search (keyword)
+  "Search keyword in Chromium code search"
+  (interactive (list
+                (read-string "Search: " (thing-at-point 'filename) nil nil)))
+  (browse-url
+   (format
+    (cond ((my-is-linux-file-p) my-linux-code-search-pattern)
+          ((my-is-android-file-p) my-android-code-search-pattern)
+          (t my-chromium-code-search-pattern))
+    keyword))
+  (my-switch-workspace-chrome))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; my-stl-doc
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-stl-doc (stl)
+  (interactive (list
+                (read-string "STL: " "" nil nil)))
+  (browse-url (format 
+               "http://www.cplusplus.com/%s" stl))
+  (my-switch-workspace-chrome))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Other useful func
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Insert <a href>
+(defun my-insert-ahref-tag ()
+  (interactive)
+  (insert-string "<a href=\"\"></a>")
+  (backward-char 6))
+
+(defun my-kernel-style ()
+  "Use buffer-local linux kernel style"
+  (interactive)
+  (c-set-style "linux")
+  (setq indent-tabs-mode t))
+
+(defalias 'my-linux-style 'my-kernel-style)
+
+; Insert current date
+(defun my-insert-date ()
+  (interactive)
+  (insert-string (format-time-string "%Y-%m-%d")))
+
+; Insert current time
+(defun my-insert-time ()
+  (interactive)
+  (insert-string (format-time-string "%Y-%m-%d %H:%M")))
+
+(defun my-grep (command)
+  "look for string at point in files recursively starting from the work directory"
+  (interactive (list
+                (read-string "Run: "
+                             (format "find . -name '*' ! -name '*.pyc' ! -name '*.o' ! -name 'out' -type f -print0 | xargs -0 fgrep -inH -e %s"
+                                     (thing-at-point 'filename))
+                             nil
+                             nil)))
+    (grep command))
+
+(defun my-egrep (command)
+  "look for regexp at point in files recursively starting from the work directory"
+  (interactive (list
+                (read-string "Run: "
+                             (format "find . -name '*' ! -name '*.pyc' ! -name '*.o' -type f -print0 | xargs -0 egrep -inH -e %s"
+                                     (thing-at-point 'filename))
+                             nil
+                             nil)))
+    (grep command))
+
+(defun my-count-lines ()
+  "Count lines of C++ and Python code"
+  (interactive)
+  (shell-command "find . -name '*.cc' -or -name '*.[ch]' -or -name '*.cpp' -or -name '*.java' -or -name '*.py' -or -name '*.mm' | xargs cat | wc -l"))
+
+(defun my-occur (word)
+  "look for word at point in files ending by .cpp and .h
+   recursively starting from the work directory"
+  (interactive (list
+                (read-string (format "occur (%s): " (thing-at-point 'filename))
+                             (thing-at-point 'filename)
+                             nil
+                             (thing-at-point 'filename))))
+  (occur word))
+
+(defun kill-start-of-line ()
+  "kill from point to start of line"
+  (interactive)
+  (kill-line 0))
+
+(defun my-kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list))
+  (delete-other-windows))
+
+(defun my-indent ()
+  "indent to right 2 spaces"
+  (interactive)
+  (indent-rigidly (region-beginning) (region-end) 2))
+
+(defun my-unindent ()
+  "indent to left 2 spaces"
+  (interactive)
+  (indent-rigidly (region-beginning) (region-end) -2))
+
+;; Copied from
+;; http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
+(defun my-comment-or-uncomment-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+            (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)
+        (next-line)))
+
+;; Copied from https://code.google.com/p/chromium/wiki/Emacs
+(defun my-summarize-indentation-at-point ()
+  "Echo a summary of how one gets from the left-most column to
+   POINT in terms of indentation changes."
+  (interactive)
+  (save-excursion
+    (let ((cur-indent most-positive-fixnum)
+          (trace '()))
+      (while (not (bobp))
+        (let ((current-line (buffer-substring (line-beginning-position)
+                                              (line-end-position))))
+          (when (and (not (string-match "^\\s-*$" current-line))
+                     (< (current-indentation) cur-indent))
+            (setq cur-indent (current-indentation))
+            (setq trace (cons current-line trace))
+            (if (or (string-match "^\\s-*}" current-line)
+                    (string-match "^\\s-*else " current-line)
+                    (string-match "^\\s-*elif " current-line))
+                (setq cur-indent (1+ cur-indent)))))
+        (forward-line -1))
+      (message "%s" (mapconcat 'identity trace "\n")))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Global Keyboard Setting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
+(global-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
+
+;;; Key shortcuts only work in Window mode (Cocoa or X11)
+;; (Suggested to map physical Command (Apple) key to Super key)
+;; (Although it's not supported in Terminal, KeyRemap4MacBook can emulate similar functions)
+(if window-system
+    (progn
+      ;; XEmacs style
+      ;; Faster moving with C-up/down.
+      (global-set-key (quote [C-up]) '(lambda () (interactive) (previous-line 3)))
+      (global-set-key (quote [C-down]) '(lambda () (interactive) (next-line 3)))
+      ;; Mac style text editing
+      (global-set-key (quote [s-up]) 'beginning-of-buffer)
+      (global-set-key (quote [s-down]) 'end-of-buffer)
+      (global-set-key (quote [s-left]) 'move-beginning-of-line)
+      (global-set-key (quote [s-right]) 'move-end-of-line)
+      (global-set-key (quote [s-backspace]) 'kill-start-of-line)
+      (global-set-key (kbd "s-z") 'undo)
+      (global-set-key (kbd "s-x") 'kill-region)
+      (global-set-key (kbd "s-c") 'kill-ring-save)
+      (global-set-key (kbd "s-v") 'yank)
+      ;; Mac Emacs defaults
+      ;; TODO: s-h => Hide Emacs
+      ;; TODO: s-m => Iconify Emacs
+      ;; TODO: s-p => Print
+      ;; TODO: s-t => Font Dialog
+      (global-set-key (kbd "s-a") 'mark-whole-buffer)
+      (global-set-key (kbd "s-d") 'isearch-repeat-backward)
+      (global-set-key (kbd "s-e") 'isearch-yank-kill)
+      (global-set-key (kbd "s-f") 'isearch-forward)
+      (global-set-key (kbd "s-g") 'isearch-repeat-forward)
+      (global-set-key (kbd "s-j") 'exchange-point-and-mark)
+      (global-set-key (kbd "s-k") 'kill-this-buffer)
+      (global-set-key (kbd "s-l") 'goto-line)
+      (global-set-key (kbd "s-n") 'make-frame)
+      (global-set-key (kbd "s-o") 'ido-find-file)
+      (global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
+      (global-set-key (kbd "s-s") 'save-buffer)
+      (global-set-key (kbd "s-u") 'revert-buffer)
+      (global-set-key (kbd "s-y") 'yank)
+      (global-set-key (kbd "s-w") 'delete-frame)
+      ;; My customization for Super key
+      (global-set-key (kbd "s-W") 'delete-frame)
+      (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
+      (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
+      ;; Xcode style
+      (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
+      ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
+      (global-set-key (kbd "C-S-c") 'kill-ring-save)
+      (global-set-key (kbd "C-S-v") 'yank)
+      ;; Windows style
+      (global-set-key (kbd "<C-tab>") 'switch-to-buffer)
+      (global-set-key (kbd "<M-f4>") 'save-buffers-kill-emacs) ;; Alt+F4
+      ;; My favorite buffer keys
+      (global-set-key (kbd "s-0") 'delete-window)
+      (global-set-key (kbd "s-1") 'delete-other-windows)
+      (global-set-key (kbd "s-2") 'split-window-vertically)
+      (global-set-key (kbd "s-3") 'split-window-horizontally)
+      ))
+
+;;;
+;;; The following settings work both in Terminal and Window mode
+;;;
+
+; Override Ctrl-z setting (used as "minimize window" in Linux desktop)
+(global-set-key "\C-z" 'undo)
+
+; Insert tab character (C-c TAB)
+(global-set-key "\C-c\C-i"
+  '(lambda nil nil (interactive) (insert-tab)))
+
+; Goto line
+(global-set-key "\C-cl" 'goto-line)
+
+; Select all
+(global-set-key "\C-ca" 'mark-whole-buffer)
+
+; Comment
+(global-set-key "\C-c;" 'my-comment-or-uncomment-region-or-line)
+(global-set-key "\C-c/" 'my-comment-or-uncomment-region-or-line)
+
+; Summarize
+(global-set-key "\C-cb" 'my-summarize-indentation-at-point) ; back track
+
+; Indent region
+(global-set-key "\C-c>" 'my-indent)
+(global-set-key "\C-c<" 'my-unindent)
+
+; Shortcut
+(global-set-key "\C-cg" 'my-grep)
+(global-set-key "\C-ce" 'my-egrep)
+(global-set-key "\C-co" 'my-occur)
+(global-set-key "\C-cx" 'my-maximize-frame)
+(global-set-key "\C-cs" 'my-code-search)
+(global-set-key "\C-cS" 'my-stl-doc)
+(global-set-key "\C-cv" 'view-mode)
+
+;; xcscope & imenu
+(global-set-key  "\C-c/" 'cscope-find-this-symbol)
+; (global-set-key "\C-c." 'my-ido-find-tag)
+(global-set-key "\C-c." 'ftf-grepsource)
+(global-set-key "\C-c," 'pop-tag-mark)
+(global-set-key "\C-cf" 'ftf-find-file)
+(global-set-key "\C-cF" 'my-ido-find-file-in-tag-files)
+(global-set-key "\C-ci" 'idomenu) ; old: imenu
+;; (global-set-key "\C-cB" 'speedbar)
+(global-set-key "\C-cB" 'sr-speedbar-open)
+(global-set-key "\C-cr" 'my-ido-recent-file)
+
+;; Open the current folder. It's very commonly used. (Shortcut to C-x C-f .)
+(global-set-key "\C-x." '(lambda () (interactive) (find-file ".")))
+
+; Man page
+(global-set-key "\C-cm" 'manual-entry)
+
+; Simple Calculator
+(global-set-key "\C-cc" 'calculator)
+
+; Simple templates
+; (global-set-key "\C-ch" 'my-insert-ahref-tag)
+
+(global-set-key "\C-cd" 'calendar)
+
+; colored ANSI term inside Emacs (quite handy when running nontrivial shell commands at current folder)
+(global-set-key "\C-ct" '(lambda () (interactive) (ansi-term  "/bin/bash" "Term")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Custom Variables
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(fill-column 80)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t nil (paren))
+ '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
+ '(tool-bar-mode nil))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Platform-dependent settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(menu-bar-mode -1)
+
+(if window-system
+    (progn
+      (blink-cursor-mode -1)
+      ;; Maximize all frames by default.
+      (modify-all-frames-parameters '((fullscreen . maximized))))
+  (progn
+    ))
+
+(if (eq system-type 'gnu/linux)
+    (progn
+      (defun my-maximize-frame (&optional f)
+        (interactive)
+        ;; only work with GTK+ Emacs (Emacs must be configured with --with-x-toolkit=gtk)
+        (set-frame-parameter f 'fullscreen 'maximized))
+
+      ;; This doesn't work. Don't know why.
+      ;; (add-hook 'after-make-frame-functions
+      ;;           '(lambda ()
+      ;;             (shell-command "wmctrl -r :ACTIVE: -btoggle,fullscreen")))
+
+      ;; Set the best Linux programming font - DejaVu Sans Mono.
+      (defun my-set-font (font-height)
+	(custom-set-faces
+	 `(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height ,(* font-height 10) :width normal :family "DejaVu Sans Mono" :embolden t))))))
+
+      ;; Shell in dired mode.
+      (setq dired-guess-shell-alist-user
+            `(
+              (".rar" "unrar x")
+              (".pdf" "evince")
+              (".avi" "gxine")
+              (".jpg" "eog")
+              (".bmp" "eog")
+              (".csv" "xdg-open")
+              (".xlsx" "xdg-open")
+              (".xls" "xdg-open")
+              (".htm" "google-chrome")
+              (".html" "google-chrome")
+              ))
+      ))
+
+(if (eq system-type 'darwin)
+    (progn
+      ;; Set the best Mac programming font - Menlo.
+      (defun my-set-font (height)
+        (set-frame-font
+         (format "-apple-Menlo-medium-normal-normal-*-%d-*-*-*-m-0-*-1" height)
+         t))
+
+      ;; Use Option key as Meta key (consistent with Mac key bindings).
+      (setq mac-option-modifier 'meta)
+
+      ;; PC style handling of Home/End key.
+      (global-set-key (kbd "<home>") 'move-beginning-of-line)
+      (global-set-key (kbd "<end>") 'move-end-of-line)
+
+      ;; "Ctrl+F4" in Mac is similar to "Alt-Tab" within the same workspace.
+      (global-set-key (kbd "<C-f4>") 'other-frame)
+
+      ;; Shell in dired mode.
+      (setq dired-guess-shell-alist-user
+            `(
+              (".rar" "unrar x")
+              (".pdf" "open -a Preview")
+              (".jpg" "open -a Preview")
+              (".png" "open -a Preview")
+              (".xcodeproj" "open -a Xcode")
+              (".htm" "open -a 'Google Chrome'")
+              (".html" "open -a 'Google Chrome'")
+              ))
+
+      ;; when launching Emacs from external program such as XCode
+      (setq ns-pop-up-frames 'nil)
+
+      ))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Themes and Fonts
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Load customized version of zenburn theme
+(if window-system
+    (progn
+      (load-theme 'zenburn t)
+      ;; Remember to set font size here or ~/.emacs.d/local-setting.el.
+      ;; For example:
+      ; (my-set-font 20)
+      ))
+
+;; Disable background color of color theme in Terminal mode.
+;; This is especially useful after (server-start) in emacs on X11,
+;; and connect from tty like 'emacsclient -t'.
+(defun my-setup-frame-color (frame)
+  (select-frame frame)
+  (unless (window-system frame)
+    (set-face-background 'default "unspecified-bg" frame)))
+
+(add-hook 'after-make-frame-functions 'my-setup-frame-color t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Final Steps - Load local-setting.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(let ((local-init-file "~/.emacs.d/local-setting.el"))
+  (if (file-readable-p local-init-file)
+      (load-file local-init-file)))

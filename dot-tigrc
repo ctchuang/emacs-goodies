@@ -1,0 +1,9 @@
+# Emacs key binding for tig (the best text mode git history viewer)
+
+bind generic ^[v move-page-up
+bind generic ^v move-page-down
+bind generic ^[< move-first-line
+bind generic ^[> move-last-line
+bind main v enter
+bind main n next
+bind main p previous

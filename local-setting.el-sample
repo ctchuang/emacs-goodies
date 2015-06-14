@@ -1,0 +1,91 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Users
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq user-mail-address "xxx@yyy")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Misc
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; We can start xterm-mouse-mode regardless of window-system.  Even if Emacs is
+;; started in X11, we can still connect to it from tty.
+(xterm-mouse-mode)
+
+;; Try to keep only one Emacs instance.  So can connect Emacs running in X11
+;; from tty with 'emacsclient -t'
+(if window-system
+    (server-start))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Predefined font sizes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-gigantic-font-Dell-U3011 ()
+  (my-set-font 32)
+  (set-face-attribute 'mode-line nil :font "DejaVu Sans Mono-20"))
+
+(defun my-huge-font-Dell-U3011 ()
+  (my-set-font 26))
+
+(defun my-large-font-Dell-U3011 ()
+  (my-set-font 22))
+
+(defun my-medium-font-Dell-U3011 ()
+  (my-set-font 19))
+
+(defun my-small-font-Dell-U3011 ()
+  (my-set-font 16))
+
+(defun my-medium-font-MBP ()
+  (my-set-font 32))
+
+;; Auto detect screen resolution.
+(defun my-medium-font ()
+  (interactive)
+  (let ((dimensions (shell-command-to-string "xdpyinfo | grep dimensions")))
+    (cond
+     ((string-match-p "2880" dimensions) (my-medium-font-MBP))
+     ((string-match-p "2560" dimensions) (my-medium-font-Dell-U3011))
+     (t nil))))
+
+(if window-system
+    (progn
+      (my-medium-font)
+      (my-maximize-frame)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Hotkeys for font levels (Command - +/-)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq my-font-level 5)
+(setq my-font-level-min 1)
+(setq my-font-level-max 5)
+(setq my-font-level-default 5)
+(setq my-font-level-map 
+      '((5 . my-gigantic-font)
+        (4 . my-huge-font)
+        (3 . my-large-font)
+        (2 . my-medium-font)
+        (1 . my-small-font)))
+
+(defun my-apply-font-level ()
+  (funcall (cdr (assoc my-font-level my-font-level-map))))
+
+(global-set-key (kbd "s-+")
+                '(lambda () (interactive)
+                  (if (< my-font-level my-font-level-max)
+                      (setq my-font-level (+ my-font-level 1))
+                    (setq my-font-level my-font-level-max))
+                  (my-apply-font-level)))
+
+(global-set-key (kbd "s--") 
+                '(lambda () (interactive)
+                  (if (> my-font-level my-font-level-min)
+                      (setq my-font-level (- my-font-level 1))
+                    (setq my-font-level my-font-level-min))
+                  (my-apply-font-level)))
+
+(global-set-key (kbd "s-=")
+                '(lambda () (interactive)
+                   (setq my-font-level my-font-level-default)
+                   (my-apply-font-level)))

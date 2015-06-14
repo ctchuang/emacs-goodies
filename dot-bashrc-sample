@@ -1,0 +1,33 @@
+export EDITOR="emacsclient -t"
+
+function my-screen-title
+{
+  local TITLE="$1"
+  if [ "$TERM" = "screen" ] || [ ! -z "$WINDOW" ]; then
+    screen -X title "${TITLE}"
+  fi
+}
+
+function my-xterm-title
+{
+  local TITLE="$1"
+  echo -en "\033]0;${TITLE}\a"
+}
+
+# Emacs in terminal mode
+e() {
+  my-screen-title e
+  emacs --eval "(server-start)" -nw $1
+  my-screen-title -
+}
+
+# emacsclient in terminal mode
+ec() {
+  my-screen-title e
+  emacsclient -t $1
+  my-screen-title -
+}
+
+# Fix Ctrl+S in screen (Ctrl+S is used in Emacs)
+stty ixany
+stty ixoff -ixon

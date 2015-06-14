@@ -1,0 +1,59 @@
+/* -*- C -*- */
+
+{
+  /*
+   * Mac OS X default keybindings for Emacs.
+   *
+   * WARNING! After OS X 10.8, you cannot create symblic link for this file.
+   * Please put this file in ~/Library/KeyBindings/DefaultKeyBinding.dict directly.
+   *
+   * Reference:
+   *  - http://www.hcs.harvard.edu/~jrus/site/cocoa-text.html
+   *  - http://www.deepsky.com/~misaka/MacOSX/DefaultKeyBinding.dict
+   *  - http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html#//apple_ref/doc/uid/20000468-SW1
+   *  - System default settings:
+   *    - cp /System/Library/Frameworks/AppKit.framework/Resources/StandardKeyBinding.dict /tmp
+   *    - plutil -convert xml1 /tmp/StandardKeyBinding.dict
+   *
+   * Remarks:
+   *  - ^/ undo is not implmented due to conflictions with Xcode
+   *  - "^y" maps to "yank:" and "^w" maps "deleteToMark:", but the kill-ring is independent with Mac
+   *    clipboard may cause confusions.
+   */
+
+  /* Remap Home / End to work like Windows and Linux. */
+  /* http://soodev.wordpress.com/2011/07/04/mac-os-x-remapping-home-and-end-keys/ */
+  "\UF729" = "moveToBeginningOfLine:";  /* Home */
+  "\UF72B" = "moveToEndOfLine:";  /* End */
+  "$\UF729" = "moveToBeginningOfLineAndModifySelection:";  /* Shift + Home */
+  "$\UF72B" = "moveToEndOfLineAndModifySelection:";  /* Shift + End */
+  "^\UF729" = "moveToBeginningOfDocument:";  /* Ctrl + Home */
+  "^\UF72B" = "moveToEndOfDocument:";  /* Ctrl + End */
+  "$^\UF729" = "moveToBeginningOfDocumentAndModifySelection:";  /* Shift + Ctrl + Home */
+  "$^\UF72B" = "moveToEndOfDocumentAndModifySelection:";  /* Shift + Ctrl + End */
+
+  /* Emacs Ctrl Key Bindings (Ctrl + a/e/l/n/p/b/f/d/k/t already defined in OS X) */
+  "^_" = "undo:";
+  "^/" = "undo:";
+  "^w" = "cut:";
+  "^y" = "paste:";
+  "^j" = "insertNewline:";
+
+  /* Emacs Meta Key Bindings. */
+  "~f" = "moveWordForward:";
+  "~b" = "moveWordBackward:";
+  "~<" = "moveToBeginningOfDocument:";
+  "~>" = "moveToEndOfDocument:";
+  "~w" = "copy:";
+  "~$2" = "selectWord:";  /* TODO: M-@: it doesn't really work. By default, it inputs Euro symbol. */
+  "~d" = "deleteWordForward:";
+  "~\U007F" = "deleteWordBackward:";  /* M-DEL */
+
+  /* Emacs PageUp/Down. */
+  "^v" = "pageDown:";
+  "~v" = "pageUp:";
+
+  "~c" = "capitalizeWord:";
+  "~l" = "lowercaseWord:";
+  "~/" = "complete:";  /* M-/ Complete (Same as ESC) */
+}
