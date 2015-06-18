@@ -516,7 +516,7 @@
   "look for string at point in files recursively starting from the work directory"
   (interactive (list
                 (read-string "Run: "
-                             (format "find . -name '*' ! -name '*.pyc' ! -name '*.o' ! -name 'out' -type f -print0 | xargs -0 fgrep -inH -e %s"
+                             (format "find . -name '*' ! -name '*.pyc' ! -name '*.o' ! -name 'out' ! -name 'TAGS' -type f -print0 | xargs -0 fgrep -inH -e %s"
                                      (thing-at-point 'filename))
                              nil
                              nil)))
