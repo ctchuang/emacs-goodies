@@ -89,10 +89,6 @@
     <appendix> (Assume C-Backslash is configured as control key in .screenrc or .tmux-conf) </appendix>
     <identifier>private.app_terminal_vmware_map_special_keys_for_screen</identifier>
     <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,TERMINAL</only>
-    <autogen>--KeyToKey-- KeyCode::BRACKET_RIGHT, VK_COMMAND | VK_SHIFT,
-    KeyCode::BRACKET_RIGHT, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L </autogen>
-    <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_COMMAND | VK_SHIFT,
-    KeyCode::BRACKET_LEFT, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L </autogen>
     <autogen>--KeyToKey-- KeyCode::BRACKET_RIGHT, VK_COMMAND | ModifierFlag::NONE,
     KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::N</autogen>
     <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_COMMAND | ModifierFlag::NONE,
@@ -116,9 +112,6 @@
     <appendix>Illustrates how to emulate keys, in terminal mode, which are
     normally available in X11 only.</appendix>
     <identifier>private.app_emulate_x11_keys_in_terminal_emacs</identifier>
-    <!-- ========== Compatible with Mac Terminal ========== -->
-    <autogen>--KeyToKey-- KeyCode::SLASH, VK_CONTROL | ModifierFlag::NONE,
-    KeyCode::MINUS, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L </autogen>    
     <!-- ========== Buffer Control ========== -->
     <!-- s-0 => C-x 0 -->
     <autogen>--KeyToKey-- KeyCode::KEY_0, VK_COMMAND | ModifierFlag::NONE,
@@ -149,6 +142,9 @@
     KeyCode::X, ModifierFlag::CONTROL_L, KeyCode::K | ModifierFlag::NONE,
     KeyCode::RETURN</autogen>
     <!-- ========== Edit ========== -->
+    <!-- C-/ => C-_ -->
+    <autogen>--KeyToKey-- KeyCode::SLASH, VK_CONTROL | ModifierFlag::NONE,
+    KeyCode::MINUS, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L </autogen>    
     <!-- s-z => C-_ -->
     <autogen>--KeyToKey-- KeyCode::Z, VK_COMMAND | ModifierFlag::NONE,
     KeyCode::MINUS, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L </autogen>
