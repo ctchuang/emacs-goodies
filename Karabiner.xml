@@ -116,6 +116,9 @@
     <appendix>Illustrates how to emulate keys, in terminal mode, which are
     normally available in X11 only.</appendix>
     <identifier>private.app_emulate_x11_keys_in_terminal_emacs</identifier>
+    <!-- ========== Compatible with Mac Terminal ========== -->
+    <autogen>--KeyToKey-- KeyCode::SLASH, VK_CONTROL | ModifierFlag::NONE,
+    KeyCode::MINUS, ModifierFlag::CONTROL_L | ModifierFlag::SHIFT_L </autogen>    
     <!-- ========== Buffer Control ========== -->
     <!-- s-0 => C-x 0 -->
     <autogen>--KeyToKey-- KeyCode::KEY_0, VK_COMMAND | ModifierFlag::NONE,
