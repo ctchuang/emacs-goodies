@@ -1,4 +1,6 @@
-export EDITOR="emacsclient -t"
+###################################################
+# Utilities
+###################################################
 
 function my-screen-title
 {
@@ -14,20 +16,30 @@ function my-xterm-title
   echo -en "\033]0;${TITLE}\a"
 }
 
-# Emacs in terminal mode
+###################################################
+# Emacs-friendly settings in terminal mode
+###################################################
+
 e() {
+  my-screen-title e
+  emacs -nw $1
+  my-screen-title -
+}
+
+es() {
   my-screen-title e
   emacs --eval "(server-start)" -nw $1
   my-screen-title -
 }
 
-# emacsclient in terminal mode
 ec() {
   my-screen-title e
   emacsclient -t $1
   my-screen-title -
 }
 
-# Fix Ctrl+S in screen (Ctrl+S is used in Emacs)
+export EDITOR="emacs -nw"
+
+# Fix Ctrl+S in GNU Screen (Ctrl+S is used in Emacs)
 stty ixany
 stty ixoff -ixon
