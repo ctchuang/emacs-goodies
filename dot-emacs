@@ -331,6 +331,8 @@
 (require 'find-things-fast)
 (require 'cc-mode)
 
+(add-to-list 'ftf-filetypes "*.java")
+
 (setq default-tab-width 8)  ; be distinct with spaces
 (setq-default indent-tabs-mode nil)
 
