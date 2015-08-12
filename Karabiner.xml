@@ -84,7 +84,7 @@
   </item>
 
   <item>
-    <name>Map Command + [ ] and digit keys to special GNU screen shortcuts</name>
+    <name>Map Command + [ ] and singlequote to switch window in GNU screen</name>
     <appendix>Use Command + bracket to switch tab in screen/tmux</appendix>
     <appendix> (Assume C-Backslash is configured as control key in .screenrc or .tmux-conf) </appendix>
     <identifier>private.app_terminal_vmware_map_special_keys_for_screen</identifier>
@@ -93,6 +93,9 @@
     KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::N</autogen>
     <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_COMMAND | ModifierFlag::NONE,
     KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::P</autogen>
+    <autogen>--KeyToKey-- KeyCode::QUOTE, VK_COMMAND | ModifierFlag::NONE,
+    KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::QUOTE |
+    ModifierFlag::SHIFT_L </autogen>
   </item>
 
   <!-- Also suggested to use SharpKeys to map Command to Ctrl keys in Windows in -->
