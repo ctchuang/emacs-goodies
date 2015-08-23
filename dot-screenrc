@@ -29,3 +29,7 @@ defutf8 on
 # 100k), it will drag down system performance.
 defscrollback 5000
 
+screen -t ryu 10
+screen -t nexus9 20
+screen -t os 30
+screen -t htop 50 htop
