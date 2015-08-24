@@ -7,3 +7,5 @@ bind generic ^[> move-last-line
 bind main v enter
 bind main n next
 bind main p previous
+
+set author-width = 10
