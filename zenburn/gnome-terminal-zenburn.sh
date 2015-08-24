@@ -62,7 +62,7 @@ gconftool-2 -s -t string $profile_path/palette "#3F3F3F3F3F3F:#CCCC93939393:#7F7
 gconftool-2 -s -t bool $profile_path/bold_color_same_as_fg false
 
 # set foreground, background and highlight color
-gconftool-2 -s -t string $profile_path/background_color "#101010101010"
+gconftool-2 -s -t string $profile_path/background_color "#202020202020"
 gconftool-2 -s -t string $profile_path/foreground_color "#DCDCDCDCCCCC"
 gconftool-2 -s -t string $profile_path/bold_color       "#E3E3CECEABAB"
 
