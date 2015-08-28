@@ -31,6 +31,6 @@ defscrollback 5000
 
 screen -t ryu 10
 screen -t nexus9 20
-screen -t htop 50 htop
+screen -t htop 99 htop
 # This must be the last, or it will impact title of other sessions.
 screen -t os 30 cros-enter-chroot
