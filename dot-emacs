@@ -318,7 +318,7 @@
 
 (defun my-is-android-file-p ()
   (let ((result nil))
-    (dolist (pattern (list "droid"))
+    (dolist (pattern (list "droid" "master"))
       (when (and buffer-file-name
                  (string-match pattern buffer-file-name))
         (setq result t)))
