@@ -33,8 +33,8 @@ screen -t shark 10 cd ~/Code2/master.A
 screen -t ryu 20
 # screen -t nexus9 20
 screen -t dut 50
-screen -t cpu 70
-screen -t ec 71
+screen -t ec 70
+screen -t cpu 71
 screen -t htop 99 htop
 # This must be the last, or it will impact title of other sessions.
 screen -t os 30 cros-enter-chroot
