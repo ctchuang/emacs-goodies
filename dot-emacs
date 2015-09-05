@@ -809,6 +809,10 @@
 
 (if (eq system-type 'darwin)
     (progn
+      (defun my-maximize-frame (&optional f)
+        (interactive)
+        (toggle-frame-fullscreen)) ;; This method is only available after Emacs 24.4
+
       ;; Set the best Mac programming font - Menlo.
       (defun my-set-font (height)
         (set-frame-font
