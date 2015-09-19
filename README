@@ -73,3 +73,9 @@
 
    In your ~/.muttrc, add
    source <path>/emacs-goodies/dot-muttrc
+
+10. Misc tools
+
+   a. Prettify Emacs outline mode text:
+
+      $ tools/prettify-outline.py < outline.txt

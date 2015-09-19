@@ -1,2 +1,3 @@
+For word processing:
 
 -*- mode: outline; eval: (auto-fill-mode 0) ; eval: (visual-line-mode) -*-

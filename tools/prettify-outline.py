@@ -1,5 +1,19 @@
 #!/usr/bin/env python
 
+"""
+Converts from
+* A
+** B
+** C
+* D
+
+to the follows
+1. A
+1.1 B
+1.2 C
+2. D
+"""
+
 import fileinput
 import re
 
