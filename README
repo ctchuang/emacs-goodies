@@ -60,14 +60,14 @@
 
 7. Sample .bashrc
 
-   Check doc-bashrc-sample for some tricks like fixing Ctrl+S in terminal.
+   Check samples/doc-bashrc-sample for some tricks like fixing Ctrl+S in terminal.
 
 8. Sample ~/.emacs.d/local-setting.el  (machine-local settings)
 
    We can put machine-local settings in this file separately while keeping
    common .emacs shared between machines.
 
-   Check local-setting.el-sample
+   Check samples/local-setting.el-sample
 
 9. Sample .muttrc setting
 
