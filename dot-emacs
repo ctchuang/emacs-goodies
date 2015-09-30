@@ -562,7 +562,7 @@
 (defun my-indent ()
   "indent to right 2 spaces"
   (interactive)
-  (indent-rigidly (region-beginning) (region-end) 2))
+  (indent-rigidly (region-beginning) (region-end) c-basic-offset))
 
 (defun my-unindent ()
   "indent to left 2 spaces"
