@@ -29,9 +29,8 @@ defutf8 on
 # 100k), it will drag down system performance.
 defscrollback 5000
 
-screen -t shark 10 cd ~/Code2/master.A
-screen -t ryu 20
-# screen -t nexus9 20
+screen -t shark 20
+screen -t ryu 30
 screen -t dut 50
 screen -t ec 70
 screen -t cpu 71
