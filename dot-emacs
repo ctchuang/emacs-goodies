@@ -64,7 +64,7 @@
 ;;; Recentf
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-menu-items 200)  ; with ido mode, we can leverage more items.
+(setq recentf-max-menu-items 500)  ; with ido mode, we can leverage more items.
 
 ;;; SrSpeedbar
 (require 'sr-speedbar)
