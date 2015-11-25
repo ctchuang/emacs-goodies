@@ -373,8 +373,8 @@
              (if (my-is-android-file-p)
                  (progn
                    (setq c-basic-offset 4)
-                   (setq fill-column 100)
-                   (setq whitespace-line-column 100)))
+                   (setq fill-column 99)
+                   (setq whitespace-line-column 99)))
              ;;; C-c. was set to c-set-style
              ;; (local-set-key "\C-c." 'my-ido-find-tag)
              (local-set-key "\C-c." 'ftf-grepsource)
