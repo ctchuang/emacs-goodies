@@ -31,9 +31,9 @@ defscrollback 5000
 
 screen -t shark 20
 screen -t ryu 30
-screen -t dut 50
+# screen -t dut 50
 screen -t ec 70
-screen -t cpu 71
+# screen -t cpu 71
 screen -t htop 99 htop
 # This must be the last, or it will impact title of other sessions.
 screen -t os 40 cros-enter-chroot
