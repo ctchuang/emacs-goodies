@@ -1,4 +1,4 @@
-B# Reference: http://archerworks.blogspot.com/2010/05/linuxscreenbindkey.html
+# Reference: http://archerworks.blogspot.com/2010/05/linuxscreenbindkey.html
 
 term screen
 
@@ -6,6 +6,9 @@ startup_message off
 
 # Replace ctrl-A by ctrl-\ (All of the other keys are used by Emacs
 escape ^\\
+
+bindkey -k k4 prev
+bindkey -k k6 next
 
 # Default title
 shelltitle "-"
@@ -30,6 +33,7 @@ defutf8 on
 defscrollback 5000
 
 screen -t shark 20
+screen -t arc 25
 screen -t ryu 30
 screen -t ec 70
 screen -t htop 99 htop
