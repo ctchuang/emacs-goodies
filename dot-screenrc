@@ -7,8 +7,9 @@ startup_message off
 # Replace ctrl-A by ctrl-\ (All of the other keys are used by Emacs
 escape ^\\
 
-bindkey -k k4 prev
-bindkey -k k6 next
+# Use F3 and F4 to switch screen tab
+bindkey -k k3 prev
+bindkey -k k4 next
 
 # Default title
 shelltitle "-"
