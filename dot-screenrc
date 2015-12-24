@@ -8,8 +8,8 @@ startup_message off
 escape ^\\
 
 # Use F3 and F4 to switch screen tab
-bindkey -k k3 prev
-bindkey -k k4 next
+bindkey -k k5 prev
+bindkey -k k6 next
 
 # Default title
 shelltitle "-"
@@ -34,9 +34,9 @@ defutf8 on
 defscrollback 5000
 
 screen -t shark 20
-screen -t arc 25
-screen -t ryu 30
-screen -t ec 70
+screen -t arc 30
+screen -t ryu 40
+# screen -t ec 70
 screen -t htop 99 htop
 # This must be the last, or it will impact title of other sessions.
-screen -t os 40 cros-enter-chroot
+screen -t os 50 cros-enter-chroot
