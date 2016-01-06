@@ -76,6 +76,10 @@
 
 10. Misc tools
 
-   a. Prettify Emacs outline mode text:
+   a. Prettify Emacs outline mode to contain numbered labels:
 
       $ tools/prettify-outline.py < outline.txt
+
+   b. Use Mac OS keyboard convention of Option(Meta)/Command(Super) keys in XQuartz:
+
+      $ xmodmap dot-Xmodmap-XQuartz
