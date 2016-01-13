@@ -66,6 +66,11 @@
 (recentf-mode t)
 (setq recentf-max-menu-items 500)  ; with ido mode, we can leverage more items.
 
+
+;;; Disable git-rebase mode.
+(setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
+                              auto-mode-alist))
+
 ;;; SrSpeedbar
 (require 'sr-speedbar)
 (setq sr-speedbar-default-width 20)
