@@ -64,7 +64,12 @@
 ;;; Recentf
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-menu-items 200)  ; with ido mode, we can leverage more items.
+(setq recentf-max-menu-items 500)  ; with ido mode, we can leverage more items.
+
+
+;;; Disable git-rebase mode.
+(setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
+                              auto-mode-alist))
 
 ;;; SrSpeedbar
 (require 'sr-speedbar)
@@ -315,7 +320,7 @@
 
 (defun my-is-android-file-p ()
   (let ((result nil))
-    (dolist (pattern (list "droid" "master"))
+    (dolist (pattern (list "droid" "master" "mnc"))
       (when (and buffer-file-name
                  (string-match pattern buffer-file-name))
         (setq result t)))
@@ -370,8 +375,8 @@
              (if (my-is-android-file-p)
                  (progn
                    (setq c-basic-offset 4)
-                   (setq fill-column 100)
-                   (setq whitespace-line-column 100)))
+                   (setq fill-column 99)
+                   (setq whitespace-line-column 99)))
              ;;; C-c. was set to c-set-style
              ;; (local-set-key "\C-c." 'my-ido-find-tag)
              (local-set-key "\C-c." 'ftf-grepsource)
@@ -531,6 +536,11 @@
                              nil)))
     (grep command))
 
+(defun my-etags ()
+  "Build etags for the current folder"
+  (interactive)
+  (shell-command "find . -name '*.cc' -or -name '*.[ch]' -or -name '*.cpp' -or -name '*.java' -or -name '*.py' -or -name '*.mm' | xargs etags"))
+
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
@@ -559,7 +569,7 @@
 (defun my-indent ()
   "indent to right 2 spaces"
   (interactive)
-  (indent-rigidly (region-beginning) (region-end) 2))
+  (indent-rigidly (region-beginning) (region-end) c-basic-offset))
 
 (defun my-unindent ()
   "indent to left 2 spaces"
