@@ -27,8 +27,8 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;;; Disable rebase mode
-(setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
+;;; Disable git rebase mode
+(setq auto-mode-alist (delete '("/git-rebase-todo\\'" . git-rebase-mode)
                               auto-mode-alist))
 
 ;;; allow y/n instead of yes/no on prompts
