@@ -341,7 +341,7 @@
 ;; which-function-mode is global minor mode.
 ;; It has performance penalty in Python. So enable it only in selected modes.
 (which-function-mode 1)
-(setq which-func-modes '(c-mode c++-mode js-mode))
+(setq which-func-modes '(python-mode c-mode c++-mode js-mode))
 
 ;;; CUDA
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
