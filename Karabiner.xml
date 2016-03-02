@@ -64,7 +64,7 @@
   <item>
     <name>Map Meta+V/Ctrl+V to page up/down in Mac apps (Emacs style)</name>
     <identifier>private.app_ctrl_and_meta_v</identifier>
-    <not>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL</not>
+    <not>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11</not>
     <autogen>--KeyToKey-- KeyCode::V, VK_CONTROL, KeyCode::PAGEDOWN</autogen>
     <autogen>--KeyToKey-- KeyCode::V, VK_OPTION, KeyCode::PAGEUP</autogen>
   </item>
@@ -86,7 +86,7 @@
   <item>
     <name>Map Ctrl+p/n/f/b to emulate arrow key globally</name>
     <identifier>private.emacs_style_ctrl_p_n</identifier>
-    <not>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL</not>
+    <not>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11</not>
     <autogen>--KeyToKey-- KeyCode::P, VK_CONTROL | ModifierFlag::NONE,
     KeyCode::CURSOR_UP </autogen>
     <autogen>--KeyToKey-- KeyCode::N, VK_CONTROL | ModifierFlag::NONE,
@@ -102,7 +102,7 @@
     <appendix>Use Command + bracket to switch tab in screen/tmux</appendix>
     <appendix> (Assume C-Backslash is configured as control key in .screenrc or .tmux-conf) </appendix>
     <identifier>private.app_terminal_vmware_map_special_keys_for_screen</identifier>
-    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,TERMINAL</only>
+    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11</only>
     <autogen>--KeyToKey-- KeyCode::BRACKET_RIGHT, VK_COMMAND | ModifierFlag::NONE,
     KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::N</autogen>
     <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_COMMAND | ModifierFlag::NONE,
@@ -125,7 +125,7 @@
 
   <item>
     <name>Emulate X11 keys in Emacs terminal mode</name>
-    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,TERMINAL</only>
+    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11</only>
     <appendix>Illustrates how to emulate keys, in terminal mode, which are
     normally available in X11 only.</appendix>
     <identifier>private.app_emulate_x11_keys_in_terminal_emacs</identifier>
