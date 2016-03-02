@@ -84,6 +84,20 @@
   </item>
 
   <item>
+    <name>Map Ctrl+p/n/f/b to emulate arrow key globally</name>
+    <identifier>private.emacs_style_ctrl_p_n</identifier>
+    <not>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL</not>
+    <autogen>--KeyToKey-- KeyCode::P, VK_CONTROL | ModifierFlag::NONE,
+    KeyCode::CURSOR_UP </autogen>
+    <autogen>--KeyToKey-- KeyCode::N, VK_CONTROL | ModifierFlag::NONE,
+    KeyCode::CURSOR_DOWN</autogen>
+    <autogen>--KeyToKey-- KeyCode::F, VK_CONTROL | ModifierFlag::NONE,
+    KeyCode::CURSOR_RIGHT </autogen>
+    <autogen>--KeyToKey-- KeyCode::B, VK_CONTROL | ModifierFlag::NONE,
+    KeyCode::CURSOR_LEFT</autogen>
+  </item>
+
+  <item>
     <name>Map Command + [ ] and singlequote to switch window in GNU screen</name>
     <appendix>Use Command + bracket to switch tab in screen/tmux</appendix>
     <appendix> (Assume C-Backslash is configured as control key in .screenrc or .tmux-conf) </appendix>
