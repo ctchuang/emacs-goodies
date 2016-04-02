@@ -320,7 +320,7 @@
 
 (defun my-is-android-file-p ()
   (let ((result nil))
-    (dolist (pattern (list "droid" "master" "mnc"))
+    (dolist (pattern (list "droid" "master" "mnc" "cheets"))
       (when (and buffer-file-name
                  (string-match pattern buffer-file-name))
         (setq result t)))
@@ -337,11 +337,12 @@
 
 (setq default-tab-width 8)  ; be distinct with spaces
 (setq-default indent-tabs-mode nil)
+; (setq-default c-basic-offset 4)
 
 ;; which-function-mode is global minor mode.
 ;; It has performance penalty in Python. So enable it only in selected modes.
 (which-function-mode 1)
-(setq which-func-modes '(python-mode c-mode c++-mode js-mode))
+(setq which-func-modes '(python-mode c-mode c++-mode js-mode java-mode))
 
 ;;; CUDA
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
