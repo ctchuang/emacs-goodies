@@ -19,6 +19,11 @@
     <url type="shell">open -a iTunes</url>
   </vkopenurldef>
 
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_SHELL_switch_kkbox</name>
+    <url type="shell">open -a KKBOX</url>
+  </vkopenurldef>
+
   <item>
     <name>Map Ctrl+Cmd+0 to switch to VMWare</name>
     <appendix>The keyboard convention assumes that we use Ctrl+Alt+DigitKey to switch workspace, </appendix>
@@ -39,9 +44,18 @@
     <name>Map Ctrl+Cmd+i/Backquote to switch to iTunes</name>
     <appendix>The keyboard convention assumes that we use Ctrl+Alt+DigitKey to switch workspace. </appendix>
     <appendix>and put fullscreen iTunes left to the first workspace.</appendix>
-    <identifier>private.app_ctrl_cmd_i</identifier>
+    <identifier>private.app_ctrl_cmd_backquote_itunes</identifier>
     <autogen>--KeyToKey-- KeyCode::BACKQUOTE, VK_CONTROL | VK_COMMAND, KeyCode::VK_OPEN_URL_SHELL_switch_itunes</autogen>
     <autogen>--KeyToKey-- KeyCode::I, VK_CONTROL | VK_COMMAND, KeyCode::VK_OPEN_URL_SHELL_switch_itunes</autogen>
+  </item>
+
+  <item>
+    <name>Map Ctrl+Cmd+i/Backquote to switch to KKBOX</name>
+    <appendix>The keyboard convention assumes that we use Ctrl+Alt+DigitKey to switch workspace. </appendix>
+    <appendix>and put fullscreen iTunes left to the first workspace.</appendix>
+    <identifier>private.app_ctrl_cmd_backquote_kkbox</identifier>
+    <autogen>--KeyToKey-- KeyCode::BACKQUOTE, VK_CONTROL | VK_COMMAND, KeyCode::VK_OPEN_URL_SHELL_switch_kkbox</autogen>
+    <autogen>--KeyToKey-- KeyCode::K, VK_CONTROL | VK_COMMAND, KeyCode::VK_OPEN_URL_SHELL_switch_kkbox</autogen>
   </item>
 
   <item>
