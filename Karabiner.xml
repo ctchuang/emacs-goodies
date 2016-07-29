@@ -111,21 +111,6 @@
     KeyCode::CURSOR_LEFT</autogen>
   </item>
 
-  <item>
-    <name>Map Command + [ ] and singlequote to switch window in GNU screen</name>
-    <appendix>Use Command + bracket to switch tab in screen/tmux</appendix>
-    <appendix> (Assume C-Backslash is configured as control key in .screenrc or .tmux-conf) </appendix>
-    <identifier>private.app_terminal_vmware_map_special_keys_for_screen</identifier>
-    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11</only>
-    <autogen>--KeyToKey-- KeyCode::BRACKET_RIGHT, VK_COMMAND | ModifierFlag::NONE,
-    KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::N</autogen>
-    <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_COMMAND | ModifierFlag::NONE,
-    KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::P</autogen>
-    <autogen>--KeyToKey-- KeyCode::QUOTE, VK_COMMAND | ModifierFlag::NONE,
-    KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::QUOTE |
-    ModifierFlag::SHIFT_L </autogen>
-  </item>
-
   <!-- Also suggested to use SharpKeys to map Command to Ctrl keys in Windows in -->
   <!-- VMWare -->
   <item>
@@ -138,8 +123,23 @@
   </item>
 
   <item>
-    <name>Emulate X11 keys in Emacs terminal mode</name>
-    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11</only>
+    <name>Map Command + [ ] and singlequote to switch window in GNU screen</name>
+    <appendix>Use Command + bracket to switch tab in screen/tmux</appendix>
+    <appendix> (Assume C-Backslash is configured as control key in .screenrc or .tmux-conf) </appendix>
+    <identifier>private.app_terminal_vmware_map_special_keys_for_screen</identifier>
+    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11,GOOGLE_CHROME</only>
+    <autogen>--KeyToKey-- KeyCode::BRACKET_RIGHT, VK_COMMAND | ModifierFlag::NONE,
+    KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::N</autogen>
+    <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_COMMAND | ModifierFlag::NONE,
+    KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::P</autogen>
+    <autogen>--KeyToKey-- KeyCode::QUOTE, VK_COMMAND | ModifierFlag::NONE,
+    KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::QUOTE |
+    ModifierFlag::SHIFT_L </autogen>
+  </item>
+
+  <item>
+    <name>Emulate X11 keys in Emacs terminal </name>
+    <only>TERMINAL</only>
     <appendix>Illustrates how to emulate keys, in terminal mode, which are
     normally available in X11 only.</appendix>
     <identifier>private.app_emulate_x11_keys_in_terminal_emacs</identifier>
