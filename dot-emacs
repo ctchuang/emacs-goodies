@@ -376,9 +376,9 @@
              ;; Android
              (if (my-is-android-file-p)
                  (progn
-                   (setq c-basic-offset 4)
-                   (setq fill-column 99)
-                   (setq whitespace-line-column 99)))
+                   (setq c-basic-offset 2)
+                   (setq-local fill-column 80)
+                   (setq-local whitespace-line-column 80)))
              ;;; C-c. was set to c-set-style
              ;; (local-set-key "\C-c." 'my-ido-find-tag)
              (local-set-key "\C-c." 'ftf-grepsource)
@@ -392,6 +392,11 @@
                     ("\\.cxx\\'" (".h" ".hxx"))
                     ("\\.hxx\\'" (".cc" ".cxx" ".cpp"))
                     ))))
+
+(add-hook 'java-mode-hook (lambda ()
+                            (setq-local fill-column 100)
+                            ;; (setq-local whitespace-line-column 100)
+                            (whitespace-mode)))
 
 ;; Set style for linux kernel
 (add-hook 'c-mode-common-hook
@@ -460,7 +465,7 @@
 (setq my-android-code-search-pattern
       "https://www.google.com.tw/webhp?ion=1&espv=2&ie=UTF-8#q=aosp %s")
 
-(setq my-chromium-code-search-pattern
+(setq my-default-code-search-pattern
       "https://code.google.com/p/chromium/codesearch#search/&q=%s&sq=package:chromium&type=cs")
 
 (defun my-switch-workspace-chrome ()
@@ -475,7 +480,7 @@
    (format
     (cond ((my-is-linux-file-p) my-linux-code-search-pattern)
           ((my-is-android-file-p) my-android-code-search-pattern)
-          (t my-chromium-code-search-pattern))
+          (t my-default-code-search-pattern))
     keyword))
   (my-switch-workspace-chrome))
 
@@ -773,7 +778,8 @@
 ;;; Platform-dependent settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(menu-bar-mode -1)
+; (menu-bar-mode -1)
+(menu-bar-mode t)
 
 (if window-system
     (progn
