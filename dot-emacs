@@ -778,8 +778,9 @@
 ;;; Platform-dependent settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; (menu-bar-mode -1)
-(menu-bar-mode t)
+(if window-system
+    (menu-bar-mode t)
+  (menu-bar-mode -1))
 
 (if window-system
     (progn
