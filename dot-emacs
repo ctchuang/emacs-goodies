@@ -883,7 +883,10 @@
 ;;; Final Steps - Load local-setting.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(let ((local-init-file "~/.emacs.d/local-setting.el"))
+;; After Emacs 25, ~/.emacs.d is not recommended for default load-path.
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
+(let ((local-init-file "~/.emacs.d/lisp/local-setting.el"))
   (if (file-readable-p local-init-file)
       (load-file local-init-file)))
 (custom-set-faces
