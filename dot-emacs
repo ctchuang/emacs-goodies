@@ -66,6 +66,10 @@
 (recentf-mode t)
 (setq recentf-max-menu-items 500)  ; with ido mode, we can leverage more items.
 
+;;; Mini-buffer
+;; Makes C-p/n work like Up/Down.
+(define-key minibuffer-local-map (kbd "C-p") 'previous-line-or-history-element)
+(define-key minibuffer-local-map (kbd "C-n") 'next-line-or-history-element)
 
 ;;; Disable git-rebase mode.
 (setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
