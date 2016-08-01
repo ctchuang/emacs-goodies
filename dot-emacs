@@ -394,7 +394,10 @@
                     ))))
 
 (add-hook 'java-mode-hook (lambda ()
+                            ;; Disable whitespace mode before changing column width.
+                            (whitespace-mode 0)
                             (setq-local fill-column 100)
+                            (whitespace-mode 1)
                             ;; (setq-local whitespace-line-column 100)
                             (whitespace-mode)))
 
