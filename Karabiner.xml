@@ -126,7 +126,6 @@
     <appendix>Use Command + bracket to switch tab in screen/tmux</appendix>
     <appendix> (Assume C-Backslash is configured as control key in .screenrc or .tmux-conf) </appendix>
     <identifier>private.app_terminal_vmware_map_special_keys_for_screen</identifier>
-    <only>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,TERMINAL,X11,GOOGLE_CHROME</only>
     <autogen>--KeyToKey-- KeyCode::BRACKET_RIGHT, VK_COMMAND | ModifierFlag::NONE,
     KeyCode::BACKSLASH, ModifierFlag::CONTROL_L, KeyCode::N</autogen>
     <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_COMMAND | ModifierFlag::NONE,
