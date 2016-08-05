@@ -739,7 +739,7 @@
 ; (global-set-key "\C-c." 'my-ido-find-tag)
 (global-set-key "\C-c." 'ftf-grepsource)
 (global-set-key "\C-c," 'pop-tag-mark)
-(global-set-key "\C-cf" 'ftf-find-file)
+;(global-set-key "\C-cf" 'ftf-find-file)
 (global-set-key "\C-cF" 'my-ido-find-file-in-tag-files)
 (global-set-key "\C-ci" 'idomenu) ; old: imenu
 ;; (global-set-key "\C-cB" 'speedbar)
