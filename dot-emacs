@@ -477,7 +477,9 @@
 
 (defun my-switch-workspace-chrome ()
   (interactive)
-  (shell-command (format "wmctrl -s %d" my-chrome-workspace-index)))
+  ;; seems wmctrl is no longer needed.
+  ;;(shell-command (format "wmctrl -s %d" my-chrome-workspace-index)))
+  )
 
 (defun my-code-search (keyword)
   "Search keyword in Chromium code search"
@@ -558,7 +560,7 @@
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
-  (shell-command "find . -name '*.cc' -or -name '*.[ch]' -or -name '*.cpp' -or -name '*.java' -or -name '*.py' -or -name '*.mm' | xargs cat | wc -l"))
+  (shell-command "find . -name '*.cc' -or -name '*.[ch]' -or -name '*.cpp' -or -name '*.java' -or -name '*.py' -or -name '*.mm' -or -name '*.go' | xargs cat | wc -l"))
 
 (defun my-occur (word)
   "look for word at point in files ending by .cpp and .h
