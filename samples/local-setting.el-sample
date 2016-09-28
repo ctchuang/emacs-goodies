@@ -55,6 +55,33 @@
       (my-maximize-frame)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; X11 Key Mapping
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Workaround shitty XQuartz key mapping:
+;; - Disable key equivalent
+;; - Sent Alt for option keys
+
+(setq my-current-display nil)
+(if window-system
+    (cond
+     ((string= (getenv "DISPLAY") ":0")
+      (progn
+        (setq x-meta-keysym 'super) ;; Alt key on PC keyboard is x-meta-keysym.
+        (setq x-super-keysym 'meta)
+        (setq my-current-display 'local-x11)))
+     ((string= (getenv "DISPLAY") ":20")  ;; Chrome Remote Desktop
+      (progn
+        (setq x-meta-keysym 'meta)
+        (setq x-super-keysym 'super)
+        (setq my-current-display 'chrome-remote)))
+     (t
+      (progn
+        (setq x-alt-keysym 'meta)
+        (setq x-meta-keysym 'super)
+        (setq my-current-display 'xquartz)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Hotkeys for font levels (Command - +/-)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq my-font-level 5)
