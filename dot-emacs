@@ -415,6 +415,13 @@
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
 
+(add-hook 'go-mode-hook
+          '(lambda ()
+             ;; Go uses MixedCase.
+             (subword-mode 1)
+             ;; Somehow people don't wrap lines in Go files.
+             (setq truncate-lines nil)))
+
 ;;; SGML
 (require 'sgml-mode)
 (define-key sgml-mode-map "\\r" 'newline-and-ident)
