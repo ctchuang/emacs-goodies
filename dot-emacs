@@ -76,8 +76,9 @@
                               auto-mode-alist))
 
 ;;; SrSpeedbar
-(require 'sr-speedbar)
-(setq sr-speedbar-default-width 20)
+;; This triggers error: http://emacs.stackexchange.com/questions/23786/sr-speedbar-shows-compilation-warning-at-startup
+;; (require 'sr-speedbar)
+;; (setq sr-speedbar-default-width 20)
 
 ;;; Dired-X
 (require 'dired-x)
