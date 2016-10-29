@@ -4,6 +4,12 @@
 
   <!-- Symbolic linked to ~/Libray/Application Support/KeyRemap4Macbook/private.xml -->
 
+  <windownamedef>
+    <name>Chrome_Remote_Desktop</name>
+    <!-- Please adjust this regex for your environment. -->
+    <regex>^Chrome Remote Desktop$</regex>
+  </windownamedef>
+
   <vkopenurldef>
     <name>KeyCode::VK_OPEN_URL_SHELL_switch_vmware</name>
     <url type="shell">open -a 'VMware Fusion'</url>
@@ -78,6 +84,8 @@
   <item>
     <name>Map Meta+V/Ctrl+V to page up/down in Mac apps (Emacs style)</name>
     <identifier>private.app_ctrl_and_meta_v</identifier>
+    <not>REMOTEDESKTOPCONNECTION,VIRTUALMACHINE,EMACS,XCODE</not>
+    <windowname_not>Chrome_Remote_Desktop</windowname_not>
     <autogen>--KeyToKey-- KeyCode::V, VK_CONTROL, KeyCode::PAGEDOWN</autogen>
     <autogen>--KeyToKey-- KeyCode::V, VK_OPTION, KeyCode::PAGEUP</autogen>
   </item>
