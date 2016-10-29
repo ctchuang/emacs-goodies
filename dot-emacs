@@ -378,12 +378,13 @@
              ;; C++ style
              (setq comment-start "//" comment-end "")
              (local-set-key [(return)] 'newline-and-indent)
-             ;; Android
-             (if (my-is-android-file-p)
-                 (progn
-                   (setq c-basic-offset 2)
-                   (setq-local fill-column 80)
-                   (setq-local whitespace-line-column 80)))
+             ;; Android (interfere with Java code)
+             ;; (if (my-is-android-file-p)
+             ;;     (progn
+             ;;       (setq c-basic-offset 2)
+             ;;       (setq-local fill-column 80)
+             ;;       (setq-local whitespace-line-column 80)))
+
              ;;; C-c. was set to c-set-style
              ;; (local-set-key "\C-c." 'my-ido-find-tag)
              (local-set-key "\C-c." 'ftf-grepsource)
