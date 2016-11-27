@@ -21,9 +21,7 @@ function my-xterm-title
 ###################################################
 
 e() {
-  my-screen-title e
   emacs -nw $1
-  my-screen-title -
 }
 
 es() {
