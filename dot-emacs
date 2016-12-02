@@ -340,7 +340,7 @@
 
 (add-to-list 'ftf-filetypes "*.java")
 
-(setq default-tab-width 8)  ; be distinct with spaces
+(setq default-tab-width 4)  ; Smaller tab width for Golang.
 (setq-default indent-tabs-mode nil)
 ; (setq-default c-basic-offset 4)
 
@@ -421,6 +421,7 @@
           '(lambda ()
              ;; Go uses MixedCase.
              (subword-mode 1)
+             (auto-complete-mode)
              ;; Somehow people don't wrap lines in Go files.
              (setq truncate-lines nil)))
 
