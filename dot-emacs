@@ -6,6 +6,13 @@
 
 ;;; Auto add emacs-goodies path as long as .emacs is symlinked to the file in
 ;;; the same folder containing it.
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (if (eq system-type 'gnu/linux)
     (setq emacs-goodies-path
           (replace-regexp-in-string "\n$" ""
@@ -36,6 +43,8 @@
 
 ;;; only want to split vertically.
 (setq split-width-threshold nil)
+
+(setq visible-bell t)
 
 ;;; Language environment
 (set-language-environment 'UTF-8)
@@ -786,6 +795,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(fill-column 80)
+ '(package-selected-packages (quote (go-mode)))
  '(safe-local-variable-values (quote ((eval setq truncate-lines nil))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
