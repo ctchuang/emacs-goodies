@@ -8,7 +8,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+(if (> emacs-major-version 24) ;; Work with emacs built-in in Mac OS X
+    (package-initialize))
 
 ;;; Auto add emacs-goodies path as long as .emacs is symlinked to the file in
 ;;; the same folder containing it.
