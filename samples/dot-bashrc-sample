@@ -41,3 +41,6 @@ export EDITOR="emacs -nw"
 # Fix Ctrl+S in GNU Screen (Ctrl+S is used in Emacs)
 stty ixany
 stty ixoff -ixon
+
+
+PS1="\$(parse_git_branch)\$ "
