@@ -459,6 +459,7 @@
           (lambda ()
             ;; Scan the file for nested code blocks
             (imenu-add-to-menubar "imenu")
+            (setq js-indent-level 2)
             ))
 
 ;;; imenu
@@ -580,7 +581,7 @@
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
-  (shell-command "find . -name '*.proto' -or -name '*.cc' -or -name '*.[ch]' -or -name '*.cpp' -or -name '*.java' -or -name '*.py' -or -name '*.mm' -or -name '*.go' | xargs cat | wc -l"))
+  (shell-command "find . -name '*.proto' -or -name '*.cc' -or -name '*.[ch]' -or -name '*.cpp' -or -name '*.java' -or -name '*.py' -or -name '*.mm' -or -name '*.go' -or -name '*.js' | xargs cat | wc -l"))
 
 (defun my-occur (word)
   "look for word at point in files ending by .cpp and .h
