@@ -462,7 +462,7 @@
           (lambda ()
             ;; Scan the file for nested code blocks
             (imenu-add-to-menubar "imenu")
-            ;; (whitespace-mode t)
+            (whitespace-mode t)
             (setq js2-basic-offset 2)
             (subword-mode 1)
             ;; Somehow people don't wrap lines in Go files.
