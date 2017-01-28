@@ -739,6 +739,11 @@ Also bind `class' to ((class color) (min-colors 89))."
    `(ac-etags-selection-face ((t (:background ,zenburn-blue-4 :foreground ,zenburn-fg))))
 ;;;;; window fringe
    `(fringe                  ((t (:background ,zenburn-bg))))
+;;;;; js2-mode
+   `(js2-external-variable   ((t (:foreground ,zenburn-orange))))
+   `(js2-jsdoc-type          ((t (:foreground ,zenburn-blue-2))))
+   `(js2-jsdoc-html-tag-delimiter   ((t (:foreground ,zenburn-blue-2))))
+   `(js2-jsdoc-html-tag-name ((t (:foreground ,zenburn-blue-2))))
    ))
 
 ;;; TMP FIX ansi-term for Emacs 24.2: ansi-color-names-vector below only works on Emacs 24.3
