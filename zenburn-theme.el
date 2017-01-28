@@ -740,7 +740,7 @@ Also bind `class' to ((class color) (min-colors 89))."
 ;;;;; window fringe
    `(fringe                  ((t (:background ,zenburn-bg))))
 ;;;;; js2-mode (modified by justin)
-   `(js2-external-variable   ((t (:foreground ,zenburn-red-2))))
+   `(js2-external-variable   ((t (:foreground ,zenburn-red-1))))
    `(js2-jsdoc-type          ((t (:foreground ,zenburn-blue-2))))
    `(js2-jsdoc-html-tag-delimiter   ((t (:foreground ,zenburn-blue-2))))
    `(js2-jsdoc-html-tag-name ((t (:foreground ,zenburn-blue-2))))
