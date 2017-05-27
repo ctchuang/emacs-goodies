@@ -624,6 +624,11 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
+(defun my-reload-file ()
+  (interactive)
+  ;; Only prompt if buffer is modified.
+  (revert-buffer t (not (buffer-modified-p)) t))
+
 ;; Copied from
 ;; http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
 (defun my-comment-or-uncomment-region-or-line ()
@@ -774,6 +779,7 @@
 (global-set-key "\C-ci" 'idomenu) ; old: imenu
 ;; (global-set-key "\C-cB" 'speedbar)
 (global-set-key "\C-cB" 'sr-speedbar-open)
+(global-set-key "\C-c\C-r" 'my-reload-file)
 (global-set-key "\C-cr" 'my-ido-recent-file)
 
 ;; Open the current folder. It's very commonly used. (Shortcut to C-x C-f .)
