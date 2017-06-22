@@ -890,6 +890,7 @@
       (setq dired-guess-shell-alist-user
             `(
               (".rar" "unrar x")
+              (".jar" "jar xvf")
               (".pdf" "open -a Preview")
               (".jpg" "open -a Preview")
               (".png" "open -a Preview")
