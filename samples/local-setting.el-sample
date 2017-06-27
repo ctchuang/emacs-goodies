@@ -18,12 +18,61 @@
     (server-start))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; X11 Key Mapping
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Workaround shitty XQuartz key mapping:
+;; - Disable key equivalent
+;; - Sent Alt for option keys
+
+(setq my-current-display nil)
+(if window-system
+    (cond
+     ((or (string= (getenv "DISPLAY") ":0")
+          (string= (getenv "DISPLAY") ":20"))
+      (progn
+        (setq x-meta-keysym 'meta)
+        (setq x-super-keysym 'super)
+        (setq my-current-display 'non-xquartz)))
+     ;; ((string= (getenv "DISPLAY") ":0")
+     ;;  (progn
+     ;;    (setq x-meta-keysym 'super) ;; Alt key on PC keyboard is x-meta-keysym.
+     ;;    (setq x-super-keysym 'meta)
+     ;;    (setq my-current-display 'local-x11)))
+     ;; ((string= (getenv "DISPLAY") ":20")  ;; Chrome Remote Desktop
+     ;;  (progn
+     ;;    (setq x-meta-keysym 'meta)
+     ;;    (setq x-super-keysym 'super)
+     ;;    (setq my-current-display 'chrome-remote)))
+     (t
+      (progn
+        (setq x-alt-keysym 'meta)
+        (setq x-meta-keysym 'super)
+        (setq my-current-display 'xquartz)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Predefined font sizes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun my-gigantic-font-MBP13 ()
+  (my-set-font 30))
+
+(defun my-huge-font-MBP13 ()
+  (my-set-font 28))
+
+(defun my-large-font-MBP13 ()
+  (my-set-font 26))
+
+(defun my-medium-font-MBP13 ()
+  (my-set-font 24))
+
+(defun my-small-font-MBP13 ()
+  (my-set-font 22))
+
 (defun my-gigantic-font-Dell-U3011 ()
   (my-set-font 32)
-  (set-face-attribute 'mode-line nil :font "DejaVu Sans Mono-20"))
+  (set-face-attribute 'mode-line nil :font "DejaVu Sans Mono-20")
+  (set-face-attribute 'mode-line-inactive nil :font "DejaVu Sans Mono-20"))
 
 (defun my-huge-font-Dell-U3011 ()
   (my-set-font 26))
@@ -37,49 +86,40 @@
 (defun my-small-font-Dell-U3011 ()
   (my-set-font 16))
 
-(defun my-medium-font-MBP ()
-  (my-set-font 32))
+(defun my-gigantic-font ()
+  (interactive)
+  (if (my-is-MBP13)
+      (my-gigantic-font-MBP13)
+    (my-gigantic-font-Dell-U3011)))
 
-;; Auto detect screen resolution.
+(defun my-huge-font ()
+  (interactive)
+  (if (my-is-MBP13)
+      (my-huge-font-MBP13)
+    (my-huge-font-Dell-U3011)))
+
+(defun my-large-font ()
+  (interactive)
+  (if (my-is-MBP13)
+      (my-large-font-MBP13)
+    (my-large-font-Dell-U3011)))
+
 (defun my-medium-font ()
   (interactive)
-  (let ((dimensions (shell-command-to-string "xdpyinfo | grep dimensions")))
-    (cond
-     ((string-match-p "2880" dimensions) (my-medium-font-MBP))
-     ((string-match-p "2560" dimensions) (my-medium-font-Dell-U3011))
-     (t nil))))
+  (if (my-is-MBP13)
+      (my-medium-font-MBP13)
+    (my-medium-font-Dell-U3011)))
+
+(defun my-small-font ()
+  (interactive)
+  (if (my-is-MBP13)
+      (my-small-font-MBP13)
+    (my-small-font-Dell-U3011)))
 
 (if window-system
     (progn
-      (my-medium-font)
+      (my-gigantic-font)
       (my-maximize-frame)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; X11 Key Mapping
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Workaround shitty XQuartz key mapping:
-;; - Disable key equivalent
-;; - Sent Alt for option keys
-
-(setq my-current-display nil)
-(if window-system
-    (cond
-     ((string= (getenv "DISPLAY") ":0")
-      (progn
-        (setq x-meta-keysym 'super) ;; Alt key on PC keyboard is x-meta-keysym.
-        (setq x-super-keysym 'meta)
-        (setq my-current-display 'local-x11)))
-     ((string= (getenv "DISPLAY") ":20")  ;; Chrome Remote Desktop
-      (progn
-        (setq x-meta-keysym 'meta)
-        (setq x-super-keysym 'super)
-        (setq my-current-display 'chrome-remote)))
-     (t
-      (progn
-        (setq x-alt-keysym 'meta)
-        (setq x-meta-keysym 'super)
-        (setq my-current-display 'xquartz)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Hotkeys for font levels (Command - +/-)
@@ -116,3 +156,17 @@
                 '(lambda () (interactive)
                    (setq my-font-level my-font-level-default)
                    (my-apply-font-level)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Misc
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-read-lines (filePath)
+  "Return a list of lines of a file at FILEPATH."
+  (with-temp-buffer
+    (insert-file-contents filePath)
+    (split-string (buffer-string) "\n" t)))
+
+(defun my-load-file-if-readable (filePath)
+  (if (file-readable-p filePath)
+      (load-file filePath)))
