@@ -103,8 +103,7 @@
 
 (require 'whitespace)
 (setq-default whitespace-style
-              '(face
-                trailing lines-tail))
+              '(trailing lines-tail))
 (setq whitespace-line-column nil) ;; use fill-column instead
 (setq whitespace-display-mappings
       '((space-mark   ?\    [?\xB7]     [?.])	; space
@@ -430,12 +429,32 @@
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
 
+;;; Go
 (add-hook 'go-mode-hook
           '(lambda ()
              ;; Go uses MixedCase.
              (subword-mode 1)
              (auto-complete-mode)
-             ;; Somehow people don't wrap lines in Go files.
+             ;; People don't wrap lines in Go files.
+             (setq whitespace-style '(trailing)) ; no lines-tail
+             (setq truncate-lines nil)))
+
+;;; Obj-C
+(add-hook 'objc-mode-hook
+          '(lambda ()
+             (subword-mode 1)
+             ;; People don't wrap lines in Obj-C files.
+             (setq whitespace-style '(trailing)) ; no lines-tail
+             (setq truncate-lines nil)))
+
+;;; Swift
+(require 'swift3-mode)
+(add-hook 'swift3-mode-hook
+          '(lambda ()
+             ;; Swift uses MixedCase.
+             (subword-mode 1)
+             ;; People don't wrap lines in SWIFT files.
+             (setq whitespace-style '(trailing)) ; no lines-tail
              (setq truncate-lines nil)))
 
 ;;; SGML
