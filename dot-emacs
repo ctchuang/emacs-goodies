@@ -448,8 +448,8 @@
              (setq truncate-lines nil)))
 
 ;;; Swift
-(require 'swift3-mode)
-(add-hook 'swift3-mode-hook
+(require 'swift-mode)
+(add-hook 'swift-mode-hook
           '(lambda ()
              ;; Swift uses MixedCase.
              (subword-mode 1)
@@ -829,7 +829,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(fill-column 80)
- '(package-selected-packages (quote (swift3-mode go-mode)))
+ '(package-selected-packages (quote (swift-mode go-mode)))
  '(safe-local-variable-values (quote ((eval setq truncate-lines nil))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
