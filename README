@@ -27,15 +27,7 @@
 
      - Upstream version is at http://github.com/bbatsov/zenburn-emacs
 
-   - zenburn/Zenburn_Mac_Terminal.terminal
-
-     Import Zenburn theme profile setting in Mac Terminal.
-
-     (Tip: install DejaVu Mono fonts from http://dejavu-fonts.org/wiki/Download)
-
-   - zenburn/gnome-terminal-zenburn.sh
-
-     Install Zenburn theme for Gnome Terminal.
+   - Use https://github.com/ctchuang/zenburn-terminal to setup Zenburn color in terminal 
 
 4. Emacs Key Bindings in Mac OS X
 
