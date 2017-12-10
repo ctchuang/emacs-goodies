@@ -430,14 +430,15 @@
                    (setq indent-tabs-mode t)))))
 
 ;;; Go
-(add-hook 'go-mode-hook
-          '(lambda ()
-             ;; Go uses MixedCase.
-             (subword-mode 1)
-             (auto-complete-mode)
-             ;; People don't wrap lines in Go files.
-             (setq whitespace-style '(trailing)) ; no lines-tail
-             (setq truncate-lines nil)))
+(when (require 'go-mode nil 'noerror)
+    (add-hook 'go-mode-hook
+              '(lambda ()
+                 ;; Go uses MixedCase.
+                 (subword-mode 1)
+                 (auto-complete-mode)
+                 ;; People don't wrap lines in Go files.
+                 (setq whitespace-style '(trailing)) ; no lines-tail
+                 (setq truncate-lines nil))))
 
 ;;; Obj-C
 (add-hook 'objc-mode-hook
@@ -448,14 +449,14 @@
              (setq truncate-lines nil)))
 
 ;;; Swift
-(require 'swift-mode)
-(add-hook 'swift-mode-hook
-          '(lambda ()
-             ;; Swift uses MixedCase.
-             (subword-mode 1)
-             ;; People don't wrap lines in SWIFT files.
-             (setq whitespace-style '(trailing)) ; no lines-tail
-             (setq truncate-lines nil)))
+(when (require 'swift-mode nil 'noerror)
+  (add-hook 'swift-mode-hook
+            '(lambda ()
+               ;; Swift uses MixedCase.
+               (subword-mode 1)
+               ;; People don't wrap lines in SWIFT files.
+               (setq whitespace-style '(trailing)) ; no lines-tail
+               (setq truncate-lines nil))))
 
 ;;; SGML
 (require 'sgml-mode)
@@ -833,7 +834,6 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(fill-column 80)
- '(package-selected-packages (quote (markdown-mode swift-mode go-mode)))
  '(safe-local-variable-values (quote ((eval setq truncate-lines nil))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t nil (paren))
