@@ -611,7 +611,7 @@
   (shell-command (concat "find . -name '*.proto' -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
                          " -or -name '*.java' -or -name '*.py' "
-                         " -or -name '*.php' "
+                         " -or -name '*.php' -or -name '*.rb' "
                          " -or -name '*.mm' -or -name '*.m' -or -name '*.swift' "
                          " -or -name '*.go' -or -name '*.js' | xargs cat | wc -l")))
 
