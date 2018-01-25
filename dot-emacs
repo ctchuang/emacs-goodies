@@ -93,6 +93,7 @@
 ;;; Dired-X
 (require 'dired-x)
 
+;; Use C-x M-o to toggle.
 (setq-default dired-omit-files-p t) ; this is buffer-local variable
 
 ; Ignore some junk files on Mac.
