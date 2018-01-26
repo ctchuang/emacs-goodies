@@ -442,6 +442,9 @@
                  (setq whitespace-style '(trailing)) ; no lines-tail
                  (setq truncate-lines nil))))
 
+;; setup files ending in “.js” to open in javascript-mode
+(add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
+
 ;;; Obj-C
 (add-hook 'objc-mode-hook
           '(lambda ()
