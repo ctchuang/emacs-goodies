@@ -494,6 +494,13 @@
             (setq truncate-lines nil)
             ))
 
+;;; Markdown
+(require 'markdown-mode)
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (setq truncate-lines nil)
+            ))
+
 ;;; imenu
 (require 'imenu) ; TODO: add setting to hook (late initialization)
 (setq imenu-auto-rescan nil)
