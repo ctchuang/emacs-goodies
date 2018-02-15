@@ -473,9 +473,9 @@
              (outline-minor-mode)
              (whitespace-mode t)
              (subword-mode 1)
-             (if (my-is-autotest-file-p)
-                 (progn
-                   (setq python-indent-offset 4)))
+             (setq python-indent-offset 2)
+             (setq tab-width 2)
+             (setq indent-tabs-mode nil)
             ; (imenu-add-to-menubar "imenu") ; defined in C mode
             ; (outline-minor-mode) ; defined in C mode
             ; (subword-mode 1) ; defined in C mode
