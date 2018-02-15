@@ -632,12 +632,15 @@
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
-  (shell-command (concat "find . -name '*.proto' -or -name '*.cc' "
+  (shell-command (concat "find . -name '*.proto' "
+                         " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
                          " -or -name '*.java' -or -name '*.py' "
-                         " -or -name '*.php' -or -name '*.rb' -or -name '*.less' "
+                         " -or -name '*.php' -or -name '*.rb' "
+                         " -or -name '*.less' -or -name '*.html' -or -name '*.js' "
                          " -or -name '*.mm' -or -name '*.m' -or -name '*.swift' "
-                         " -or -name '*.go' -or -name '*.js' | xargs cat | wc -l")))
+                         " -or -name '*.go' "
+                         " | xargs cat | wc -l")))
 
 (defun my-occur (word)
   "look for word at point in files ending by .cpp and .h
