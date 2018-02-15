@@ -351,7 +351,7 @@
 
 (add-to-list 'ftf-filetypes "*.java")
 
-(setq default-tab-width 4)  ; Smaller tab width for Golang.
+(setq default-tab-width 2)  ; Smaller tab width for Golang.
 (setq-default indent-tabs-mode nil)
 ; (setq-default c-basic-offset 4)
 
@@ -501,10 +501,16 @@
             (setq truncate-lines nil)
             ))
 
-;;; Markdown
+;;; HTML
 (add-hook 'html-mode-hook
           (lambda ()
             (setq truncate-lines nil)
+            ))
+
+;;; CSS
+(add-hook 'css-mode-hook
+          (lambda ()
+            (setq css-indent-offset 2)
             ))
 
 ;;; imenu
