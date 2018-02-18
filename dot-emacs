@@ -351,7 +351,7 @@
 
 (add-to-list 'ftf-filetypes "*.java")
 
-(setq default-tab-width 2)  ; Smaller tab width for Golang.
+(setq default-tab-width 4)  ; Smaller tab width for Golang.
 (setq-default indent-tabs-mode nil)
 ; (setq-default c-basic-offset 4)
 
@@ -473,7 +473,8 @@
              (outline-minor-mode)
              (whitespace-mode t)
              (subword-mode 1)
-             (setq python-indent-offset 2)
+             (setq-local fill-column 80)
+             (setq python-indent-offset 4)
              (setq tab-width 2)
              (setq indent-tabs-mode nil)
             ; (imenu-add-to-menubar "imenu") ; defined in C mode
@@ -608,7 +609,7 @@
   "look for string at point in files recursively starting from the work directory"
   (interactive (list
                 (read-string "Run: "
-                             (format "find . -name '*' ! -name '*.pyc' ! -name '*.o' ! -name 'out' ! -name 'TAGS' -type f -print0 | xargs -0 fgrep -inH -e %s"
+                             (format "find . -name '*' ! -name '*.pyc' ! -name '*.o' ! -name '.git' ! -name 'TAGS' -type f -print0 | xargs -0 fgrep -inH -e %s"
                                      (thing-at-point 'filename))
                              nil
                              nil)))
