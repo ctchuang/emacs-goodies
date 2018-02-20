@@ -515,7 +515,7 @@
 ;;; CSS
 (add-hook 'css-mode-hook
           (lambda ()
-            (setq css-indent-offset 2)
+            (setq css-indent-offset 4)
             ))
 
 ;;; imenu
