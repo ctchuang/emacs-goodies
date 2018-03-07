@@ -954,6 +954,7 @@
               (".png" "open -a Preview")
               (".md" "open -a Markoff")
               (".xcodeproj" "open -a Xcode")
+              (".webloc" "open -a 'Google Chrome'")
               (".htm" "open -a 'Google Chrome'")
               (".html" "open -a 'Google Chrome'")
               ))
