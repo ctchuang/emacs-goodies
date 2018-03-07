@@ -952,6 +952,7 @@
               (".pdf" "open -a Preview")
               (".jpg" "open -a Preview")
               (".png" "open -a Preview")
+              (".md" "open -a Markoff")
               (".xcodeproj" "open -a Xcode")
               (".htm" "open -a 'Google Chrome'")
               (".html" "open -a 'Google Chrome'")
