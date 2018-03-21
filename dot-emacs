@@ -446,8 +446,17 @@
                  (setq whitespace-style '(trailing)) ; no lines-tail
                  (setq truncate-lines nil))))
 
+
+;;; Web mode
+
+(add-hook 'web-mode-hook
+          '(lambda ()
+             (setq web-mode-enable-auto-indentation nil)))
+
+
 ;; setup files ending in “.js” to open in javascript-mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 
 ;;; Obj-C
 (add-hook 'objc-mode-hook
