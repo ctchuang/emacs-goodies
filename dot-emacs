@@ -837,8 +837,8 @@
 
 ;; xcscope & imenu
 (global-set-key  "\C-c/" 'cscope-find-this-symbol)
-;; (global-set-key "\C-c." 'my-ido-find-tag)
-;; (global-set-key "\C-c." 'ftf-grepsource)
+;; (global-set-key "\C-c." 'my-ido-find-tag) ;; Broken
+(global-set-key "\C-c." 'find-tag)  ;; Also defined as M-.
 (global-set-key "\C-c," 'pop-tag-mark)
 ;(global-set-key "\C-cf" 'ftf-find-file)
 (global-set-key "\C-cf" 'my-ido-find-file-in-tag-files)
