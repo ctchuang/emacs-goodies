@@ -800,6 +800,11 @@ This requires library `rainbow-mode'.")
 
 (defvar zenburn-colors-font-lock-keywords nil)
 
+;; Fix markdown mode (modified by Justin)
+(custom-set-faces
+ '(markdown-code-face ((t (:inherit fixed-pitch :background "#202020")))))
+
+
 ;; (defadvice rainbow-turn-on (after zenburn activate)
 ;;   "Maybe also add font-lock keywords for zenburn colors."
 ;;   (when (and (derived-mode-p 'emacs-lisp-mode)
