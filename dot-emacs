@@ -646,7 +646,8 @@
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
-  (shell-command (concat "find . -name '*.proto' "
+  ;;; exclude 'static' folder because we usually collect static files there.
+  (shell-command (concat "find $(ls| egrep -v -e '^static$') -name '*.proto' "
                          " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
                          " -or -name '*.java' -or -name '*.py' "
