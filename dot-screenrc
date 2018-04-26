@@ -7,10 +7,6 @@ startup_message off
 # Replace ctrl-A by ctrl-\ (All of the other keys are used by Emacs
 escape ^\\
 
-# Use F3 and F4 to switch screen tab
-bindkey -k k5 prev
-bindkey -k k6 next
-
 # Default title
 shelltitle "-"
 
@@ -32,3 +28,12 @@ defutf8 on
 # define a bigger scrollback, default is 100 lines. If it's too large (like
 # 100k), it will drag down system performance.
 defscrollback 5000
+
+# Ctrl+Left/Right to switch windows
+bindkey "^[[1;5D" prev
+bindkey "^[[1;5C" next
+
+# Default windows:
+screen -t htop 99 htop
+screen -t - 0
+
