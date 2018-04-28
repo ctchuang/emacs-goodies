@@ -509,10 +509,14 @@
             ))
 
 ;;; Markdown
+;; Do not fail if markdown-mode is not installed.
 (when (require 'markdown-mode nil t)
   (add-hook 'markdown-mode-hook
             (lambda ()
               (setq truncate-lines nil)
+              ;; Markdown mode override these keys in undesired way.
+              (local-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
+              (local-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
               )))
 
 ;;; HTML
