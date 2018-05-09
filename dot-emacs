@@ -654,6 +654,7 @@
   (shell-command (concat "find $(ls| egrep -v -e '^static$') -name '*.proto' "
                          " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
+                         " -or -name '*.sh' "
                          " -or -name '*.java' -or -name '*.py' "
                          " -or -name '*.php' -or -name '*.rb' "
                          " -or -name '*.less' -or -name '*.html' -or -name '*.js' "
