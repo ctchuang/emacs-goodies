@@ -513,6 +513,7 @@
 (when (require 'markdown-mode nil t)
   (add-hook 'markdown-mode-hook
             (lambda ()
+              (outline-minor-mode)
               (setq truncate-lines nil)
               ;; Markdown mode override these keys in undesired way.
               (local-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
@@ -944,7 +945,7 @@
 
       ;; Set the best Mac programming font - Menlo.
       (defun my-set-font (height)
-        (let ((new-height (ffloor (* height 1.5))))  ;; Somehow the font level between Mac and Linux is different.
+        (let ((new-height (ffloor (* height 0.7))))  ;; Somehow the font level between Mac and Linux is different.
           (set-frame-font
            (format "-apple-Menlo-medium-normal-normal-*-%d-*-*-*-m-0-*-1" new-height)
            t)))
