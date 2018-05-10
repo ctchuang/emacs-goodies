@@ -373,9 +373,9 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.gyp$" . yaml-mode))
 
-;;; GYP
-(require 'css-mode)
-(add-to-list 'auto-mode-alist '("\\.less$" . css-mode))
+;;; CSS Mode
+(when (require 'markdown-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.less$" . css-mode)))
 
 ;;; C Mode
 
