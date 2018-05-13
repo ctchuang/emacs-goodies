@@ -21,8 +21,7 @@
 (if (eq system-type 'darwin)
     (setq emacs-goodies-path
           (replace-regexp-in-string "\n$" ""
-                                    (shell-command-to-string
-                                     (concat "dirname '~/" (shell-command-to-string "readlink -n ~/.emacs") "'")))))
+                                     (shell-command-to-string "readlink -n ~/.emacs | xargs dirname"))))
 
 (add-to-list 'load-path emacs-goodies-path)
 
