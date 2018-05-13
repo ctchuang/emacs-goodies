@@ -1,3 +1,5 @@
+# -*- shell-script -*-
+
 ###################################################
 # Utilities
 ###################################################
@@ -17,22 +19,31 @@ function my-xterm-title
 }
 
 ###################################################
+# Mac OS X Emacs
+###################################################
+
+# emacs, emacsclient, etags, etc.
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+export PATH=/Applications/Emacs.app/Contents/MacOS/bin/:$PATH
+
+
+###################################################
 # Emacs-friendly settings in terminal mode
 ###################################################
 
 e() {
-  emacs -nw $1
+  emacs -nw "$@"
 }
 
 es() {
   my-screen-title e
-  emacs --eval "(server-start)" -nw $1
+  emacs --eval "(server-start)" -nw "$@"
   my-screen-title -
 }
 
 ec() {
   my-screen-title e
-  emacsclient -t $1
+  emacsclient -t "$@"
   my-screen-title -
 }
 
@@ -41,18 +52,3 @@ export EDITOR="emacs -nw"
 # Fix Ctrl+S in GNU Screen (Ctrl+S is used in Emacs)
 stty ixany
 stty ixoff -ixon
-
-###################################################
-# Prompt
-###################################################
-
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-
-PS1="\$(parse_git_branch)\$ "
-
-# Or more sophisticated
-# Or s/${HOST_PROMPT}/\h/
-HOST_PROMPT=...
-PS1="\[\033[01;32m\]${HOST_PROMPT}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(parse_git_branch)\$ "
