@@ -369,8 +369,8 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;;; GYP
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.gyp$" . yaml-mode))
+;; (require 'yaml-mode)
+;; (add-to-list 'auto-mode-alist '("\\.gyp$" . yaml-mode))
 
 ;;; CSS Mode
 (when (require 'markdown-mode nil t)
