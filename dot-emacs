@@ -84,11 +84,6 @@
 (setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
                               auto-mode-alist))
 
-;;; SrSpeedbar
-;; This triggers error: http://emacs.stackexchange.com/questions/23786/sr-speedbar-shows-compilation-warning-at-startup
-;; (require 'sr-speedbar)
-;; (setq sr-speedbar-default-width 20)
-
 ;;; Dired-X
 (require 'dired-x)
 
@@ -849,8 +844,6 @@
 ;(global-set-key "\C-cf" 'ftf-find-file)
 (global-set-key "\C-cf" 'my-ido-find-file-in-tag-files)
 (global-set-key "\C-ci" 'idomenu) ; old: imenu
-;; (global-set-key "\C-cB" 'speedbar)
-(global-set-key "\C-cB" 'sr-speedbar-open)
 (global-set-key "\C-c\C-r" 'my-reload-file)
 (global-set-key "\C-cr" 'my-ido-recent-file)
 
