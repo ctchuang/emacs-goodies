@@ -18,10 +18,12 @@
           (replace-regexp-in-string "\n$" ""
                                     (shell-command-to-string
                                      "readlink -f ~/.emacs | xargs dirname"))))
+
+;; It's sad that OS X readlink doesn't suport -f flag.
 (if (eq system-type 'darwin)
     (setq emacs-goodies-path
           (replace-regexp-in-string "\n$" ""
-                                     (shell-command-to-string "readlink -n ~/.emacs | xargs dirname"))))
+                                    (shell-command-to-string "(cd $(readlink -n ~/.emacs | xargs dirname); pwd)"))))
 
 (add-to-list 'load-path emacs-goodies-path)
 
