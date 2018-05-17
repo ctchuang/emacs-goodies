@@ -625,18 +625,14 @@
   "look for string at point in files recursively starting from the work directory"
   (interactive (list
                 (read-string "Run: "
-                             (format "find $(ls -a -I . -I .. -I .git) -name '*' ! -name '*.pyc' ! -name '*.sqlite3' ! -name '*.o' ! -name 'TAGS' -type f -print0 | xargs -0 fgrep -inH -e %s"
-                                     (thing-at-point 'filename))
-                             nil
-                             nil)))
-    (grep command))
-
-(defun my-egrep (command)
-  "look for regexp at point in files recursively starting from the work directory"
-  (interactive (list
-                (read-string "Run: "
-                             (format "find . -name '*' ! -name '*.pyc' ! -name '*.o' -type f -print0 | xargs -0 egrep -inH -e %s"
-                                     (thing-at-point 'filename))
+                             (format
+                              ;; Manual modify -name '*' in minibuffer to narrow down file pattern.
+                              (concat "find . -name '*' ! -name '*.pyc' ! -name '.git' "
+                                      " ! -name '*.sqlite3' ! -name '*.o' "
+                                      " ! -name '.static' ! -name '*.sublime-*' ! -name 'TAGS' "
+                                      " -type f -print0 | "
+                                      "xargs -0 fgrep -inH -e %s")
+                              (thing-at-point 'filename))
                              nil
                              nil)))
     (grep command))
@@ -833,7 +829,6 @@
 
 ; Shortcut
 (global-set-key "\C-cg" 'my-grep)
-(global-set-key "\C-ce" 'my-egrep)
 (global-set-key "\C-co" 'my-occur)
 (global-set-key "\C-cx" 'my-maximize-frame)
 (global-set-key "\C-cs" 'my-code-search)
