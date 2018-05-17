@@ -626,12 +626,17 @@
   (interactive (list
                 (read-string "Run: "
                              (format
-                              ;; Manual modify -name '*' in minibuffer to narrow down file pattern.
-                              (concat "find . -name '*' ! -name '*.pyc' ! -name '.git' "
-                                      " ! -name '*.sqlite3' ! -name '*.o' "
-                                      " ! -name '.static' ! -name '*.sublime-*' ! -name 'TAGS' "
-                                      " -type f -print0 | "
-                                      "xargs -0 fgrep -inH -e %s")
+                              (concat
+                               ;; Manual modify from -name '*' to, for example, '*.py' in minibuffer
+                               ;; to narrow down file pattern.
+                               ;; Ignore hidden files (ex: .git, .static .vscode .env)
+                               "find . -name '*' ! -path '*/.*/*' "
+                               ;; Ignore program artifacts 
+                               " ! -name '*.sqlite3' ! -name '*.pyc' ! -name '*.o' "
+                               ;; Ignore editor output.
+                               " ! -name '*.sublime-*' ! -name 'TAGS' "
+                               " -type f -print0 | "
+                               "xargs -0 fgrep -inH -e %s")
                               (thing-at-point 'filename))
                              nil
                              nil)))
@@ -640,13 +645,21 @@
 (defun my-etags ()
   "Build etags for the current folder"
   (interactive)
-  (shell-command "find . -name '*.cc' -or -name '*.[ch]' -or -name '*.cpp' -or -name '*.java' -or -name '*.py' -or -name '*.mm' | xargs etags"))
+  (shell-command (concat
+                  "find . ! -path '*/.*/*' -and "
+                  " \\( -name '*.cc' "
+                  " -or -name '*.[ch]' "
+                  " -or -name '*.cpp' "
+                  " -or -name '*.java' "
+                  " -or -name '*.py' "
+                  " -or -name '*.mm' \\) -print0 | xargs -0 etags")))
 
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
   ;;; exclude 'static' folder because we usually collect static files there.
-  (shell-command (concat "find $(ls| egrep -v -e '^static$') -name '*.proto' "
+  (shell-command (concat "find . ! -path '*/.*/*' -and "
+                         " \\( -name '*.proto' "
                          " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
                          " -or -name '*.sh' "
@@ -655,7 +668,7 @@
                          " -or -name '*.less' -or -name '*.html' -or -name '*.js' "
                          " -or -name '*.mm' -or -name '*.m' -or -name '*.swift' "
                          " -or -name '*.go' "
-                         " | xargs cat | wc -l")))
+                         " \\) -print0 | xargs -0 cat | wc -l")))
 
 (defun my-occur (word)
   "look for word at point in files ending by .cpp and .h
