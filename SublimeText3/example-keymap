@@ -1,0 +1,15 @@
+[
+    // Personal favorite.
+    {"keys": ["alt+p"], "command": "minus_line", "args": {"lines": 3} },
+    {"keys": ["alt+n"], "command": "plus_line", "args": {"lines": 3} },
+
+    // Goto definition and reference.
+    {"keys": ["ctrl+."], "command": "goto_definition" },
+    {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
+
+    {"keys": ["ctrl+equals"], "command": "jump_forward" },  
+
+    // TODO: Extend Emacs Pro Essentials later.
+    {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
+    {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
+]
