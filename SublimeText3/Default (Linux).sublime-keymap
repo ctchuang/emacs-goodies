@@ -12,6 +12,8 @@
     // TODO: Extend Emacs Pro Essentials later.
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
     {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
+    // TODO: Cannot bind Ctrl+/ on Linux
+    {"keys": ["ctrl+/"], "command": "undo"},
 
     // OS X key bindings for Linux.
 	{ "keys": ["super+q"], "command": "exit" },
@@ -25,4 +27,5 @@
 	{ "keys": ["super+x"], "command": "cut" },
 	{ "keys": ["super+c"], "command": "copy" },
 	{ "keys": ["super+v"], "command": "paste" },
+	{ "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
 ]
