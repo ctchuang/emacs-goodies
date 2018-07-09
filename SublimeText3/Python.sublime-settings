@@ -1,0 +1,14 @@
+{
+	"detect_indentation": false,
+	"extensions":
+	[
+		"py"
+	],
+	"indent_to_bracket": true,
+	"rulers":
+	[
+		99
+	],
+	"tab_size": 4,
+	"translate_tabs_to_spaces": true
+}
