@@ -1,0 +1,28 @@
+[
+    // Personal favorite.
+    {"keys": ["alt+p"], "command": "minus_line", "args": {"lines": 3} },
+    {"keys": ["alt+n"], "command": "plus_line", "args": {"lines": 3} },
+
+    // Goto definition and reference.
+    {"keys": ["ctrl+."], "command": "goto_definition" },
+    {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
+
+    {"keys": ["ctrl+equals"], "command": "jump_forward" },  
+
+    // TODO: Extend Emacs Pro Essentials later.
+    {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
+    {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
+
+    // OS X key bindings for Linux.
+	{ "keys": ["super+q"], "command": "exit" },
+	{ "keys": ["super+shift+n"], "command": "new_window" },
+	{ "keys": ["super+shift+w"], "command": "close_window" },
+	{ "keys": ["super+o"], "command": "prompt_open_file" },
+	{ "keys": ["super+n"], "command": "new_file" },
+	{ "keys": ["super+s"], "command": "save" },
+	{ "keys": ["super+w"], "command": "close" },
+	{ "keys": ["super+z"], "command": "undo" },
+	{ "keys": ["super+x"], "command": "cut" },
+	{ "keys": ["super+c"], "command": "copy" },
+	{ "keys": ["super+v"], "command": "paste" },
+]
