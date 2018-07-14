@@ -1,5 +1,6 @@
 {
 	"color_scheme": "Packages/User/zenburn (Flake8Lint).tmTheme",
 	"theme": "Adaptive.sublime-theme",
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,
+	"dpi_scale": 2.0,  // For Linux Hi-DPI
 }
