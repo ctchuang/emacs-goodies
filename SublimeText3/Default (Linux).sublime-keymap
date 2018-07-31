@@ -12,7 +12,6 @@
     // TODO: Extend Emacs Pro Essentials later.
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
     {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
-    {"keys": ["ctrl+/"], "command": "undo"},
     // ctrl+k is taken over by ST3. Needs to type twice.
     {"keys": ["ctrl+k"], "command": "sbp_move_then_delete", "args": {"move_cmd": "sbp_move_for_kill_line"}},
 
