@@ -9,6 +9,11 @@
 
     {"keys": ["ctrl+equals"], "command": "jump_forward" },  
 
+    {"keys": ["super+0"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "self"}}, 
+    {"keys": ["super+1"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "others"}},
+    {"keys": ["super+2"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "h"}},
+    {"keys": ["super+3"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "v"}},
+
     // TODO: Extend Emacs Pro Essentials later.
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
     {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
