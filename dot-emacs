@@ -94,7 +94,7 @@
 
 ; Ignore some junk files on Mac.
 (setq dired-omit-files
-      (concat dired-omit-files "\\|^\\.\\$\\|^\\..\\$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|Thumbs.db\\|Icon\015"))
+      (concat dired-omit-files "\\|^\\.\\$\\|^\\..\\$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
 
 ;;; Spaces
 
@@ -792,8 +792,8 @@
       ;; My customization for Super key
       (global-set-key (kbd "s-W") 'delete-frame)
       ;; Conflicted with Sublime Text 3
-      ; (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
-      ; (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
+      (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
+      (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
       ;; Xcode style
       (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
