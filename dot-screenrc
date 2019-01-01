@@ -34,6 +34,6 @@ bindkey "^[[1;5D" prev
 bindkey "^[[1;5C" next
 
 # Default windows:
-screen -t htop 99 htop
+# screen -t htop 99 htop
 screen -t - 0
 
