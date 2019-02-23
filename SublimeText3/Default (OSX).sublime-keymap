@@ -7,12 +7,13 @@
     {"keys": ["ctrl+."], "command": "goto_definition" },
     {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
 
+    // By default ctrl+hyphen is jump backward.
     {"keys": ["ctrl+equals"], "command": "jump_forward" },  
 
-    {"keys": ["super+0"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "self"}}, 
-    {"keys": ["super+1"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "others"}},
-    {"keys": ["super+2"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "h"}},
-    {"keys": ["super+3"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "v"}},
+    // {"keys": ["super+0"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "self"}}, 
+    // {"keys": ["super+1"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "others"}},
+    // {"keys": ["super+2"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "h"}},
+    // {"keys": ["super+3"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "v"}},
 
     // TODO: Extend Emacs Pro Essentials later.
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
