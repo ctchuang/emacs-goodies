@@ -779,7 +779,7 @@
       (global-set-key (kbd "s-f") 'isearch-forward)
       (global-set-key (kbd "s-g") 'isearch-repeat-forward)
       (global-set-key (kbd "s-j") 'exchange-point-and-mark)
-      (global-set-key (kbd "s-k") 'kill-this-buffer)
+      ;; (global-set-key (kbd "s-k") 'kill-this-buffer)
       (global-set-key (kbd "s-l") 'goto-line)
       (global-set-key (kbd "s-n") 'make-frame)
       (global-set-key (kbd "s-o") 'ido-find-file)
@@ -792,21 +792,21 @@
       ;; My customization for Super key
       (global-set-key (kbd "s-W") 'delete-frame)
       ;; Conflicted with Sublime Text 3
-      (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
-      (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
+      ;; (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
+      ;; (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
       ;; Xcode style
       (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
       (global-set-key (kbd "C-S-c") 'kill-ring-save)
       (global-set-key (kbd "C-S-v") 'yank)
       ;; Windows style
-      (global-set-key (kbd "<C-tab>") 'switch-to-buffer)
+      ;; (global-set-key (kbd "<C-tab>") 'switch-to-buffer)
       (global-set-key (kbd "<M-f4>") 'save-buffers-kill-emacs) ;; Alt+F4
       ;; My favorite buffer keys
-      (global-set-key (kbd "s-0") 'delete-window)
-      (global-set-key (kbd "s-1") 'delete-other-windows)
-      (global-set-key (kbd "s-2") 'split-window-vertically)
-      (global-set-key (kbd "s-3") 'split-window-horizontally)
+      ;; (global-set-key (kbd "s-0") 'delete-window)
+      ;; (global-set-key (kbd "s-1") 'delete-other-windows)
+      ;; (global-set-key (kbd "s-2") 'split-window-vertically)
+      ;; (global-set-key (kbd "s-3") 'split-window-horizontally)
       )
   (progn 
      ;; Set Ctrl+Left and Ctrl+Right in terminal mode
