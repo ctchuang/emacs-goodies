@@ -621,6 +621,10 @@
   (interactive)
   (insert-string (format-time-string "%Y-%m-%d %H:%M")))
 
+(defun my-disable-paste-indent ()
+  (interactive)
+  (electric-indent-mode -1))
+
 (defun my-grep (command)
   "look for string at point in files recursively starting from the work directory"
   (interactive (list
