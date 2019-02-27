@@ -1,7 +1,0 @@
-# Emacs key binding for tig (the best text mode git history viewer)
-
-bind generic <Esc>v move-page-up
-bind generic <Ctrl-v> move-page-down
-bind main v enter
-bind main n next
-bind main p previous
