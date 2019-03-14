@@ -10,6 +10,10 @@
     {"keys": ["ctrl+equals"], "command": "jump_forward" },  
     {"keys": ["ctrl+-"], "command": "jump_backward" },  
 
+    //   =>  SourceInsight-like
+    { "keys": ["f7"], "command": "goto_symbol_in_project" },
+    { "keys": ["f8"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+
     // Other Emacs keys.
     // TODO: Add to Extend Emacs Pro Essentials.
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
@@ -24,12 +28,15 @@
     { "keys": ["super+a"], "command": "select_all" },
     { "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
 
+    //   =>  Zooming
     { "keys": ["super+shift+="], "command": "increase_font_size" },
     { "keys": ["super+-"], "command": "decrease_font_size" },
 
+    //   =>  Tab
     { "keys": ["super+w"], "command": "close" },
     { "keys": ["super+shift+]"], "command": "next_view" },
     { "keys": ["super+shift+["], "command": "prev_view" },
+
 
     // OS X key bindings (working but don't enable it).
     // { "keys": ["super+s"], "command": "save" },
