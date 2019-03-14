@@ -765,18 +765,17 @@
       ;; (global-set-key (quote [C-down]) '(lambda () (interactive) (next-line 3)))
 
       ;; Mac style text editing
-      ;; (We do not enable these keys on Linux, so don't do it to avoid confusions)
-      ;; (global-set-key (quote [s-up]) 'beginning-of-buffer)
-      ;; (global-set-key (quote [s-down]) 'end-of-buffer)
-      ;; (global-set-key (quote [s-left]) 'move-beginning-of-line)
-      ;; (global-set-key (quote [s-right]) 'move-end-of-line)
-      ;; (global-set-key (quote [s-backspace]) 'kill-start-of-line)
-
       (global-set-key (kbd "s-z") 'undo)
       (global-set-key (kbd "s-x") 'kill-region)
       (global-set-key (kbd "s-c") 'kill-ring-save)
       (global-set-key (kbd "s-v") 'yank)
       (global-set-key (kbd "s-a") 'mark-whole-buffer)
+
+      (global-set-key (quote [s-up]) 'beginning-of-buffer)
+      (global-set-key (quote [s-down]) 'end-of-buffer)
+      (global-set-key (quote [s-left]) 'move-beginning-of-line)
+      (global-set-key (quote [s-right]) 'move-end-of-line)
+      (global-set-key (quote [s-backspace]) 'kill-start-of-line)
 
       ;; Mac Emacs defaults
       ;; TODO: s-h => Hide Emacs
