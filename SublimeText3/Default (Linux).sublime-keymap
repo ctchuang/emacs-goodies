@@ -31,9 +31,6 @@
     { "keys": ["super+shift+]"], "command": "next_view" },
     { "keys": ["super+shift+["], "command": "prev_view" },
 
-    { "keys": ["super+q"], "command": "exit" },
-    { "keys": ["super+shift+w"], "command": "close_window" },
-
     // OS X key bindings (working but don't enable it).
     // { "keys": ["super+s"], "command": "save" },
     // OS X key bindings (not working).
