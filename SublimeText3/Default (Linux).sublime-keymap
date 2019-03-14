@@ -13,26 +13,31 @@
     // TODO: Extend Emacs Pro Essentials later.
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
     {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
-    // ctrl+k is taken over by ST3. Needs to type twice.
     {"keys": ["ctrl+k"], "command": "sbp_move_then_delete", "args": {"move_cmd": "sbp_move_for_kill_line"}},
 
-    // OS X key bindings for Linux.
-    { "keys": ["super+p"],  "command": "show_overlay", "args": {"overlay": "command_palette"} },
-    { "keys": ["super+shift+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
-	{ "keys": ["super+q"], "command": "exit" },
-	{ "keys": ["super+shift+n"], "command": "new_window" },
-	{ "keys": ["super+shift+w"], "command": "close_window" },
-	{ "keys": ["super+o"], "command": "prompt_open_file" },
-	{ "keys": ["super+n"], "command": "new_file" },
-	{ "keys": ["super+s"], "command": "save" },
-	{ "keys": ["super+w"], "command": "close" },
-	{ "keys": ["super+z"], "command": "undo" },
-	{ "keys": ["super+x"], "command": "cut" },
-	{ "keys": ["super+c"], "command": "copy" },
-	{ "keys": ["super+v"], "command": "paste" },
-	{ "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
-    { "keys": ["super+="], "command": "increase_font_size" },
+    // OS X key bindings (working).
+    { "keys": ["super+z"], "command": "undo" },
+    { "keys": ["super+x"], "command": "cut" },
+    { "keys": ["super+c"], "command": "copy" },
+    { "keys": ["super+v"], "command": "paste" },
+
+    { "keys": ["super+s"], "command": "save" },
+
+    { "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
+
+    { "keys": ["super+q"], "command": "exit" },
+    { "keys": ["super+w"], "command": "close" },
+    { "keys": ["super+shift+w"], "command": "close_window" },
+
+    { "keys": ["super+shift+="], "command": "increase_font_size" },
     { "keys": ["super+-"], "command": "decrease_font_size" },
-    { "keys": ["super+r"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
-    { "keys": ["super+shift+r"], "command": "goto_symbol_in_project" },
+
+    // OS X key bindings (not working).
+    // { "keys": ["super+o"], "command": "prompt_open_file" },
+    // { "keys": ["super+n"], "command": "new_file" },
+    // { "keys": ["super+shift+n"], "command": "new_window" },
+    // { "keys": ["super+p"],  "command": "show_overlay", "args": {"overlay": "command_palette"} },
+    // { "keys": ["super+shift+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+    // { "keys": ["super+r"], "command": "goto_symbol_in_project" },
+    // { "keys": ["super+shift+r"], "command": "goto_symbol_in_project" },
 ]
