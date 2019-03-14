@@ -763,21 +763,26 @@
       ;; Faster moving with C-up/down.
       ;; (global-set-key (quote [C-up]) '(lambda () (interactive) (previous-line 3)))
       ;; (global-set-key (quote [C-down]) '(lambda () (interactive) (next-line 3)))
+
       ;; Mac style text editing
-      (global-set-key (quote [s-up]) 'beginning-of-buffer)
-      (global-set-key (quote [s-down]) 'end-of-buffer)
-      (global-set-key (quote [s-left]) 'move-beginning-of-line)
-      (global-set-key (quote [s-right]) 'move-end-of-line)
-      (global-set-key (quote [s-backspace]) 'kill-start-of-line)
+      ;; (We do not enable these keys on Linux, so don't do it to avoid confusions)
+      ;; (global-set-key (quote [s-up]) 'beginning-of-buffer)
+      ;; (global-set-key (quote [s-down]) 'end-of-buffer)
+      ;; (global-set-key (quote [s-left]) 'move-beginning-of-line)
+      ;; (global-set-key (quote [s-right]) 'move-end-of-line)
+      ;; (global-set-key (quote [s-backspace]) 'kill-start-of-line)
+
       (global-set-key (kbd "s-z") 'undo)
       (global-set-key (kbd "s-x") 'kill-region)
       (global-set-key (kbd "s-c") 'kill-ring-save)
       (global-set-key (kbd "s-v") 'yank)
       (global-set-key (kbd "s-a") 'mark-whole-buffer)
+
       ;; Mac Emacs defaults
       ;; TODO: s-h => Hide Emacs
       ;; TODO: s-m => Iconify Emacs
       ;; TODO: s-t => Font Dialog
+
       ;; (global-set-key (kbd "s-d") 'isearch-repeat-backward)
       ;; (global-set-key (kbd "s-e") 'isearch-yank-kill)
       ;; (global-set-key (kbd "s-f") 'isearch-forward)
@@ -798,14 +803,18 @@
       ;; Conflicted with Sublime Text 3
       ;; (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
       ;; (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
+
       ;; Xcode style
       ;; (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
+
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
-      (global-set-key (kbd "C-S-c") 'kill-ring-save)
-      (global-set-key (kbd "C-S-v") 'yank)
+      ;; (global-set-key (kbd "C-S-c") 'kill-ring-save)
+      ;; (global-set-key (kbd "C-S-v") 'yank)
+
       ;; Windows style
       ;; (global-set-key (kbd "<C-tab>") 'switch-to-buffer)
-      (global-set-key (kbd "<M-f4>") 'save-buffers-kill-emacs) ;; Alt+F4
+      ;; (global-set-key (kbd "<M-f4>") 'save-buffers-kill-emacs) ;; Alt+F4
+
       ;; My favorite buffer keys
       ;; (global-set-key (kbd "s-0") 'delete-window)
       ;; (global-set-key (kbd "s-1") 'delete-other-windows)
@@ -813,16 +822,22 @@
       ;; (global-set-key (kbd "s-3") 'split-window-horizontally)
       )
   (progn 
-     ;; Set Ctrl+Left and Ctrl+Right in terminal mode
-     (global-set-key "\M-[1;5C"    'forward-word)
-     (global-set-key "\M-[1;5D"    'backward-word)))
+     ;; Ctrl+Left and Ctrl+Right (Windows-Style) - I uses these two keys in GNU Screen.
+
+     ;; (global-set-key "\M-[1;5C"    'forward-word)
+     ;; (global-set-key "\M-[1;5D"    'backward-word)
+
+     ;; Option+Left and Option+Right (Mac-Stye)
+     (global-set-key "\M-[1;3C"    'forward-word)
+     (global-set-key "\M-[1;3D"    'backward-word))
+  )
 
 ;;;
 ;;; The following settings work both in Terminal and Window mode
 ;;;
 
 ; Override Ctrl-z setting (used as "minimize window" in Linux desktop)
-(global-set-key "\C-z" 'undo)
+;; (global-set-key "\C-z" 'undo)
 
 ; Insert tab character (C-c TAB)
 (global-set-key "\C-c\C-i"

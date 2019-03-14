@@ -10,7 +10,8 @@
     {"keys": ["ctrl+equals"], "command": "jump_forward" },  
     {"keys": ["ctrl+-"], "command": "jump_backward" },  
 
-    // TODO: Extend Emacs Pro Essentials later.
+    // Other Emacs keys.
+    // TODO: Add to Extend Emacs Pro Essentials.
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
     {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
     {"keys": ["ctrl+k"], "command": "sbp_move_then_delete", "args": {"move_cmd": "sbp_move_for_kill_line"}},
@@ -20,18 +21,21 @@
     { "keys": ["super+x"], "command": "cut" },
     { "keys": ["super+c"], "command": "copy" },
     { "keys": ["super+v"], "command": "paste" },
-
-    { "keys": ["super+s"], "command": "save" },
-
+    { "keys": ["super+a"], "command": "select_all" },
     { "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
-
-    { "keys": ["super+q"], "command": "exit" },
-    { "keys": ["super+w"], "command": "close" },
-    { "keys": ["super+shift+w"], "command": "close_window" },
 
     { "keys": ["super+shift+="], "command": "increase_font_size" },
     { "keys": ["super+-"], "command": "decrease_font_size" },
 
+    { "keys": ["super+w"], "command": "close" },
+    { "keys": ["super+shift+]"], "command": "next_view" },
+    { "keys": ["super+shift+["], "command": "prev_view" },
+
+    { "keys": ["super+q"], "command": "exit" },
+    { "keys": ["super+shift+w"], "command": "close_window" },
+
+    // OS X key bindings (working but don't enable it).
+    // { "keys": ["super+s"], "command": "save" },
     // OS X key bindings (not working).
     // { "keys": ["super+o"], "command": "prompt_open_file" },
     // { "keys": ["super+n"], "command": "new_file" },
