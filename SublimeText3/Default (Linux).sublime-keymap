@@ -49,6 +49,11 @@
     { "keys": ["super+shift+]"], "command": "next_view" },
     { "keys": ["super+shift+["], "command": "prev_view" },
 
+    // Sublime Text 3 for Mac OS
+    { "keys": ["super+shift+f"], "command": "show_panel", "args": {"panel": "find_in_files"} },
+    { "keys": ["super+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
+    { "keys": ["super+alt+f"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
+
 
     // OS X key bindings (working but don't enable it).
     // { "keys": ["super+s"], "command": "save" },
