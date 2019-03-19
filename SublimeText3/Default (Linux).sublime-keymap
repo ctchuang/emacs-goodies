@@ -31,6 +31,8 @@
     { "keys": ["super+a"], "command": "select_all" },
     { "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
 
+    { "keys": ["ctrl+super+a"], "command": "sublime_linter_panel_toggle" },
+
     { "keys": ["home"], "command": "move_to", "args": {"to": "bol", "extend": false} },
     { "keys": ["end"], "command": "move_to", "args": {"to": "eol", "extend": false} },
     { "keys": ["super+left"], "command": "move_to", "args": {"to": "bol", "extend": false} },
