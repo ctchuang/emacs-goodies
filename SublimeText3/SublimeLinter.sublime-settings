@@ -4,5 +4,14 @@
         "osx": [
             "/usr/local/bin"
         ],
+    },
+    "linters": {
+        "cppcheck": {
+            "@disable": true,
+            "args": ["--language=c++"],
+            "enable": "style",
+            "excludes": [],
+            "std": ["c++11"]
+        }
     }
 }
