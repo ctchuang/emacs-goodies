@@ -1,12 +1,11 @@
 {
-    "color_scheme": "Packages/zenburn/zenburn.tmTheme",
-    "theme": "Adaptive.sublime-theme",
-    "dpi_scale": 2.0,  // For Linux Hi-DPI
-    "font_size": 20,
-    "ignored_packages":
-    [
-        "Vintage"
-    ],
-    "translate_tabs_to_spaces": true
+	"color_scheme": "Packages/zenburn/zenburn.tmTheme",
+	"dpi_scale": 2.0,
+	"font_size": 20,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true
 }
-
