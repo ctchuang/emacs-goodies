@@ -796,13 +796,16 @@
       ;; (global-set-key (kbd "s-u") 'revert-buffer)
       ;; (global-set-key (kbd "s-y") 'yank)
       ;; My customization for Super key
-      ;; (global-set-key (kbd "s-W") 'delete-frame)
       ;; Conflicted with Sublime Text 3
       ;; (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
       ;; (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
       (global-set-key (kbd "s-n") 'make-frame)
-      (global-set-key (kbd "s-w") 'delete-frame)
+      (global-set-key (kbd "s-W") 'delete-frame)
+      (global-set-key (kbd "s-w") 'kill-this-buffer)
 
+      ;; Emacs Pro in Sublime Text
+      (global-set-key "\C-xg" 'goto-line)
+      
       ;; Xcode style
       ;; (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
 
