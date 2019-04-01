@@ -369,6 +369,9 @@
 ;; (require 'yaml-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.gyp$" . yaml-mode))
 
+;;; GN
+(add-to-list 'auto-mode-alist '("\\.gn$" . python-mode))
+
 ;;; CSS Mode
 (when (require 'css-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.less$" . css-mode)))
