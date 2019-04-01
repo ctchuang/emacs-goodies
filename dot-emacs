@@ -789,19 +789,19 @@
       ;; (global-set-key (kbd "s-j") 'exchange-point-and-mark)
       ;; (global-set-key (kbd "s-k") 'kill-this-buffer)
       ;; (global-set-key (kbd "s-l") 'goto-line)
-      ;; (global-set-key (kbd "s-n") 'make-frame)
       ;; (global-set-key (kbd "s-o") 'ido-find-file)
       ;; (global-set-key (kbd "s-p") nil) ;; Avoid this key on Mac.
       ;; (global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
       ;; (global-set-key (kbd "s-s") 'save-buffer)
       ;; (global-set-key (kbd "s-u") 'revert-buffer)
       ;; (global-set-key (kbd "s-y") 'yank)
-      ;; (global-set-key (kbd "s-w") 'delete-frame)
       ;; My customization for Super key
       ;; (global-set-key (kbd "s-W") 'delete-frame)
       ;; Conflicted with Sublime Text 3
       ;; (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
       ;; (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
+      (global-set-key (kbd "s-n") 'make-frame)
+      (global-set-key (kbd "s-w") 'delete-frame)
 
       ;; Xcode style
       ;; (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
