@@ -347,7 +347,7 @@
 
 (add-to-list 'ftf-filetypes "*.java")
 
-(setq default-tab-width 4)  ; Smaller tab width for Golang.
+(setq default-tab-width 2)  ; Google C++ Style
 (setq-default indent-tabs-mode nil)
 ; (setq-default c-basic-offset 4)
 
@@ -805,10 +805,6 @@
       (global-set-key (kbd "s-n") 'make-frame)
       (global-set-key (kbd "s-W") 'delete-frame)
       (global-set-key (kbd "s-w") 'kill-this-buffer)
-
-      ;; Emacs Pro in Sublime Text
-      ;; Use default M-g g is good enough
-      ;; (global-set-key "\C-xg" 'goto-line)
       
       ;; Xcode style
       ;; (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
@@ -850,7 +846,12 @@
   '(lambda nil nil (interactive) (insert-tab)))
 
 ; Goto line
-(global-set-key "\C-xl" 'goto-line)
+;; Emacs Pro in Sublime Text
+;; Use default M-g g is good enough
+;; (global-set-key "\C-xl" 'goto-line)
+
+; shell-command (M-! doesn't work in Chromium ssh)
+(global-set-key "\C-c!" 'shell-command)
 
 ; Select all
 (global-set-key "\C-ca" 'mark-whole-buffer)
