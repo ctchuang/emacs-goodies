@@ -347,7 +347,7 @@
 
 (add-to-list 'ftf-filetypes "*.java")
 
-(setq default-tab-width 4)  ; Smaller tab width for Golang.
+(setq default-tab-width 2)  ; Google C++ Style
 (setq-default indent-tabs-mode nil)
 ; (setq-default c-basic-offset 4)
 
