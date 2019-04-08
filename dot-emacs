@@ -806,8 +806,8 @@
       (global-set-key (kbd "s-W") 'delete-frame)
       (global-set-key (kbd "s-w") 'kill-this-buffer)
       
-      ;; Xcode style
-      ;; (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
+      ;; Xcode style (working on Linux, too)
+      (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
 
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
       ;; (global-set-key (kbd "C-S-c") 'kill-ring-save)
