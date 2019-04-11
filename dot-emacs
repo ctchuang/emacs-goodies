@@ -388,7 +388,7 @@
              (c-toggle-electric-state t)
              ;; ff-find-other-file will read #include lines, use
              ;; ff-get-other-file instead.
-             (local-set-key  (kbd "C-c h") 'ff-get-other-file)
+             (local-set-key  (kbd "M-h") 'ff-get-other-file) ;; be compatible with ST3
              (setq c-tab-always-indent t)
              (subword-mode 1) ; commonly used in Chromium style
              (imenu-add-to-menubar "imenu")
