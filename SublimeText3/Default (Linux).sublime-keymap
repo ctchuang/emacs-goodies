@@ -26,6 +26,8 @@
     { "keys": ["super+z"], "command": "undo" },
     { "keys": ["super+x"], "command": "cut" },
     { "keys": ["super+c"], "command": "copy" },
+    { "keys": ["ctrl+shift+c"], "command": "copy" },
+    { "keys": ["ctrl+shift+v"], "command": "paste" },
     { "keys": ["super+v"], "command": "paste" },
     { "keys": ["super+a"], "command": "select_all" },
     { "keys": ["super+/"], "command": "toggle_comment", "args": { "block": false } },
