@@ -810,8 +810,8 @@
       (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
 
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
-      ;; (global-set-key (kbd "C-S-c") 'kill-ring-save)
-      ;; (global-set-key (kbd "C-S-v") 'yank)
+      (global-set-key (kbd "C-S-c") 'kill-ring-save)
+      (global-set-key (kbd "C-S-v") 'yank)
 
       ;; Windows style
       ;; (global-set-key (kbd "<C-tab>") 'switch-to-buffer)
