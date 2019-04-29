@@ -642,6 +642,7 @@
                                " ! -name '*.sqlite3' ! -name '*.pyc' ! -name '*.o' "
                                ;; Ignore editor output.
                                " ! -name '*.sublime-*' ! -name 'TAGS' "
+                               " ! -name 'out' ! -name 'build' "
                                " -type f -print0 | "
                                "xargs -0 fgrep -inH -e %s")
                               (thing-at-point 'filename))
@@ -670,6 +671,7 @@
                          " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
                          " -or -name '*.sh' "
+                         " -or -name '*.lua' "
                          " -or -name '*.java' -or -name '*.py' "
                          " -or -name '*.php' -or -name '*.rb' "
                          " -or -name '*.less' -or -name '*.html' -or -name '*.js' "
