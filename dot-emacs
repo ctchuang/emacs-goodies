@@ -637,12 +637,12 @@
                                ;; Manual modify from -name '*' to, for example, '*.py' in minibuffer
                                ;; to narrow down file pattern.
                                ;; Ignore hidden files (ex: .git, .static .vscode .env)
-                               "find . -name '*' ! -path '*/.*/*' "
+                               "find . -name '*' ! -path '*/.*/*' ! -path '*build*'  "
                                ;; Ignore program artifacts 
                                " ! -name '*.sqlite3' ! -name '*.pyc' ! -name '*.o' "
                                ;; Ignore editor output.
                                " ! -name '*.sublime-*' ! -name 'TAGS' "
-                               " ! -name 'out' ! -name 'build' "
+                               " ! -name '*.so*' ! -name '*.a' ! -name '*.mo' "
                                " -type f -print0 | "
                                "xargs -0 fgrep -inH -e %s")
                               (thing-at-point 'filename))
