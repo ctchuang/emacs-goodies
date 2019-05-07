@@ -628,6 +628,11 @@
   (interactive)
   (electric-indent-mode -1))
 
+(defun my-clear-recentf ()
+  (interactive)
+  (delete-file "~/.emacs.d/recentf")
+  (setq recentf-list ()))
+
 (defun my-grep (command)
   "look for string at point in files recursively starting from the work directory"
   (interactive (list
