@@ -21,6 +21,16 @@
     { "keys": ["ctrl+c", "g"], "command": "show_panel", "args": {"panel": "find_in_files"} },
     { "keys": ["ctrl+c", "o"], "command": "match" },
     { "keys": ["ctrl+c", "/"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["ctrl+c", "O"],
+        "command": "outline",
+        "args": {
+          "immediate": true,
+          "other_group": "right",
+          "single_pane": true,
+          "project": true,
+          "layout": 0
+        }
+    },
 
     // TODO: add to match package
     // {
