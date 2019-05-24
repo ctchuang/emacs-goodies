@@ -1,4 +1,7 @@
 [
+    // Required packages:
+    // - 'Chain of Commands'
+
     // Personal favorite.
     {"keys": ["alt+p"], "command": "minus_line", "args": {"lines": 3} },
     {"keys": ["alt+n"], "command": "plus_line", "args": {"lines": 3} },
@@ -14,7 +17,13 @@
     // My preference in Emacs
     { "keys": ["ctrl+c", "."], "command": "goto_symbol_in_project" },
     { "keys": ["ctrl+c", "i"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
-    { "keys": ["ctrl+c", "g"], "command": "show_panel", "args": {"panel": "find_in_files"} },
+    { "keys": ["ctrl+c", "g"], "command": "chain", "args": {
+            "commands": [
+                ["slurp_find_string"],
+                ["show_panel", {"panel": "find_in_files"}],
+            ]
+        }
+    },
     { "keys": ["ctrl+c", "o"], "command": "match" },
     { "keys": ["ctrl+c", "/"], "command": "toggle_comment", "args": { "block": false } },
     { "keys": ["ctrl+c", ";"], "command": "toggle_comment", "args": { "block": false } },
@@ -28,8 +37,10 @@
           "layout": 0
         }
     },
+    { "keys": ["ctrl+x", "b"], "command": "sbp_switch_to_view"},
+
     { "keys": ["ctrl+c", "]"], "command": "jump_forward" },  // Not working.
-    { "keys": ["ctrl+c", "["], "command": "jump_backward" },  // Not working.
+    { "keys": ["ctrl+c", "["], "command": "jump_back" },  // Not working.
 
     // TODO: add to match package
     // {
