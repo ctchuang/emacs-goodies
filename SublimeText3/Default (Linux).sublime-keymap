@@ -11,9 +11,13 @@
     {"keys": ["ctrl+]"], "command": "jump_forward" },
     {"keys": ["ctrl+["], "command": "jump_backward" },
 
-    //   =>  SourceInsight-like
+    // SourceInsight-like
     { "keys": ["f7"], "command": "goto_symbol_in_project" },
     { "keys": ["f8"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+
+    // My preference in Emacs
+    { "keys": ["ctrl+c", "."], "command": "goto_symbol_in_project" },
+    { "keys": ["ctrl+c", "i"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
 
     // Other Emacs keys.
     // TODO: Add to Extend Emacs Pro Essentials.
@@ -60,6 +64,8 @@
     { "keys": ["super+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
     { "keys": ["super+alt+f"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} },
     { "keys": ["super+e"], "command": "slurp_find_string" },
+
+
 
 
     // OS X key bindings (working but don't enable it).
