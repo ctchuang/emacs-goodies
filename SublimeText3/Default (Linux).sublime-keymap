@@ -7,13 +7,9 @@
     {"keys": ["ctrl+."], "command": "goto_definition" },
     {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
 
-    // Doesn't work as expected.
-    {"keys": ["ctrl+]"], "command": "jump_forward" },
-    {"keys": ["ctrl+["], "command": "jump_backward" },
-
     // SourceInsight-like
-    { "keys": ["f7"], "command": "goto_symbol_in_project" },
-    { "keys": ["f8"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+    // { "keys": ["f7"], "command": "goto_symbol_in_project" },
+    // { "keys": ["f8"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
 
     // My preference in Emacs
     { "keys": ["ctrl+c", "."], "command": "goto_symbol_in_project" },
@@ -21,6 +17,7 @@
     { "keys": ["ctrl+c", "g"], "command": "show_panel", "args": {"panel": "find_in_files"} },
     { "keys": ["ctrl+c", "o"], "command": "match" },
     { "keys": ["ctrl+c", "/"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["ctrl+c", ";"], "command": "toggle_comment", "args": { "block": false } },
     { "keys": ["ctrl+c", "O"],
         "command": "outline",
         "args": {
@@ -31,6 +28,8 @@
           "layout": 0
         }
     },
+    { "keys": ["ctrl+c", "]"], "command": "jump_forward" },  // Not working.
+    { "keys": ["ctrl+c", "["], "command": "jump_backward" },  // Not working.
 
     // TODO: add to match package
     // {
