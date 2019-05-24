@@ -19,6 +19,15 @@
     { "keys": ["ctrl+c", "."], "command": "goto_symbol_in_project" },
     { "keys": ["ctrl+c", "i"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
     { "keys": ["ctrl+c", "g"], "command": "show_panel", "args": {"panel": "find_in_files"} },
+    { "keys": ["ctrl+c", "o"], "command": "match" },
+    { "keys": ["ctrl+c", "/"], "command": "toggle_comment", "args": { "block": false } },
+
+    // TODO: add to match package
+    // {
+    //     "keys": ["q"],
+    //     "command": "match_next",
+    //     "context":  [{"key": "selector", "operator": "equal", "operand": "source.match"}]
+    // },
 
     // Other Emacs keys.
     // TODO: Add to Extend Emacs Pro Essentials.
