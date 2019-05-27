@@ -86,8 +86,8 @@
 
     //   =>  Tab
     { "keys": ["super+w"], "command": "close" },
-    { "keys": ["super+shift+]"], "command": "next_view" },
-    { "keys": ["super+shift+["], "command": "prev_view" },
+    { "keys": ["super+}"], "command": "next_view" },
+    { "keys": ["super+{"], "command": "prev_view" },
 
     // Sublime Text 3 for Mac OS
     { "keys": ["super+shift+f"], "command": "show_panel", "args": {"panel": "find_in_files"} },
