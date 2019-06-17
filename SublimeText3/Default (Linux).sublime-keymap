@@ -38,9 +38,9 @@
     },
     { "keys": ["ctrl+x", "b"], "command": "sbp_switch_to_view"},
 
-    { "keys": ["ctrl+c", "]"], "command": "jump_forward" },  // Not working.
-    { "keys": ["ctrl+c", "["], "command": "jump_back" },  // Not working.
-
+    // Follow Safari key convention.
+    { "keys": ["super+]"], "command": "jump_forward" },
+    { "keys": ["super+["], "command": "jump_back" },
     // TODO: add to match package
     // {
     //     "keys": ["q"],
