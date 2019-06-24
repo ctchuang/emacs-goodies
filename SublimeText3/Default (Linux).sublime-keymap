@@ -8,7 +8,7 @@
 
     // Goto definition and reference.
     {"keys": ["ctrl+."], "command": "goto_definition" },
-    {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
+    // {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
 
     // SourceInsight-like
     // { "keys": ["f7"], "command": "goto_symbol_in_project" },
@@ -25,6 +25,7 @@
         }
     },
     { "keys": ["ctrl+c", "o"], "command": "match" },
+    { "keys": ["ctrl+c", "/"], "command": "goto_reference"},
     { "keys": ["ctrl+c", ";"], "command": "toggle_comment", "args": { "block": false } },
     { "keys": ["ctrl+c", "O"],
         "command": "outline",
