@@ -5,17 +5,39 @@
 
     // Goto definition and reference.
     {"keys": ["ctrl+."], "command": "goto_definition" },
-    {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
 
-    // By default ctrl+hyphen is jump backward.
-    {"keys": ["ctrl+equals"], "command": "jump_forward" },  
+    { "keys": ["ctrl+c", "."], "command": "goto_symbol_in_project" },
+    { "keys": ["ctrl+c", "i"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+    { "keys": ["ctrl+c", "g"], "command": "chain", "args": {
+            "commands": [
+                ["slurp_find_string"],
+                ["show_panel", {"panel": "find_in_files"}],
+            ]
+        }
+    },
+    { "keys": ["ctrl+c", "o"], "command": "match" },
+    { "keys": ["ctrl+c", "/"], "command": "goto_reference"},
+    { "keys": ["ctrl+c", ";"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["ctrl+c", "O"],
+        "command": "outline",
+        "args": {
+          "immediate": true,
+          "other_group": "right",
+          "single_pane": true,
+          "project": true,
+          "layout": 0
+        }
+    },
+    { "keys": ["ctrl+x", "b"], "command": "sbp_switch_to_view"},
 
-    // {"keys": ["super+0"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "self"}}, 
-    // {"keys": ["super+1"], "command": "sbp_pane_cmd", "args": {"cmd": "destroy", "pane": "others"}},
-    // {"keys": ["super+2"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "h"}},
-    // {"keys": ["super+3"], "command": "sbp_pane_cmd", "args": {"cmd": "split", "stype": "v"}},
+    // Follow Safari key convention.
+    { "keys": ["super+]"], "command": "jump_forward" },
+    { "keys": ["super+["], "command": "jump_back" },
 
-    // TODO: Extend Emacs Pro Essentials later.
+    // Other Emacs keys.
+    // TODO: Add to Extend Emacs Pro Essentials.
+    {"keys": ["alt+b"], "command": "move", "args": {"by": "subwords", "forward": false} },
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
     {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
+    {"keys": ["ctrl+k"], "command": "sbp_move_then_delete", "args": {"move_cmd": "sbp_move_for_kill_line"}},
 ]
