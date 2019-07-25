@@ -100,7 +100,7 @@
 
 (require 'whitespace)
 (setq-default whitespace-style
-              '(trailing lines-tail))
+              '(trailing tabs lines-tail))
 (setq whitespace-line-column nil) ;; use fill-column instead
 (setq whitespace-display-mappings
       '((space-mark   ?\    [?\xB7]     [?.])	; space
