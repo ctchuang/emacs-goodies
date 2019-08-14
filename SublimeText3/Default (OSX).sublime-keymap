@@ -1,4 +1,7 @@
 [
+    // Required packages:
+    // - 'Chain of Commands'
+
     // Personal favorite.
     {"keys": ["alt+p"], "command": "minus_line", "args": {"lines": 3} },
     {"keys": ["alt+n"], "command": "plus_line", "args": {"lines": 3} },
@@ -6,6 +9,7 @@
     // Goto definition and reference.
     {"keys": ["ctrl+."], "command": "goto_definition" },
 
+    // My preference in Emacs
     { "keys": ["ctrl+c", "."], "command": "goto_symbol_in_project" },
     { "keys": ["ctrl+c", "i"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
     { "keys": ["ctrl+c", "g"], "command": "chain", "args": {

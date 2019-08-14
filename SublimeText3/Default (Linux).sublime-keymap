@@ -8,11 +8,6 @@
 
     // Goto definition and reference.
     {"keys": ["ctrl+."], "command": "goto_definition" },
-    // {"keys": ["ctrl+forward_slash"], "command": "goto_reference" },
-
-    // SourceInsight-like
-    // { "keys": ["f7"], "command": "goto_symbol_in_project" },
-    // { "keys": ["f8"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
 
     // My preference in Emacs
     { "keys": ["ctrl+c", "."], "command": "goto_symbol_in_project" },
@@ -42,12 +37,6 @@
     // Follow Safari key convention.
     { "keys": ["super+]"], "command": "jump_forward" },
     { "keys": ["super+["], "command": "jump_back" },
-    // TODO: add to match package
-    // {
-    //     "keys": ["q"],
-    //     "command": "match_next",
-    //     "context":  [{"key": "selector", "operator": "equal", "operand": "source.match"}]
-    // },
 
     // Other Emacs keys.
     // TODO: Add to Extend Emacs Pro Essentials.
@@ -55,6 +44,8 @@
     {"keys": ["alt+q"], "command": "wrap_lines", "args": {"width": 99},},
     {"keys": ["ctrl+j"], "command": "insert_snippet", "args": { "contents": "\n" }},
     {"keys": ["ctrl+k"], "command": "sbp_move_then_delete", "args": {"move_cmd": "sbp_move_for_kill_line"}},
+
+    // --------------------------------------------------
 
     // OS X key bindings (working).
     { "keys": ["super+z"], "command": "undo" },
