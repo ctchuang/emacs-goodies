@@ -72,7 +72,7 @@
     // { "keys": ["super+shift+down"], "command": "move_to", "args": {"to": "eof", "extend": true} },
 
     //   =>  Zooming
-    { "keys": ["super+shift+="], "command": "increase_font_size" },
+    { "keys": ["super+="], "command": "increase_font_size" },
     { "keys": ["super+-"], "command": "decrease_font_size" },
 
     //   =>  Tab
