@@ -983,10 +983,10 @@
 
       ;; Set the best Mac programming font - Menlo.
       (defun my-set-font (height)
-        (let ((new-height (ffloor (* height 0.7))))  ;; Somehow the font level between Mac and Linux is different.
-          (set-frame-font
-           (format "-apple-Menlo-medium-normal-normal-*-%d-*-*-*-m-0-*-1" new-height)
-           t)))
+        ;; (let ((new-height (ffloor (* height 0.7))))  ;; Somehow the font level between Mac and Linux is different.
+        (set-frame-font
+         (format "-apple-Menlo-medium-normal-normal-*-%d-*-*-*-m-0-*-1" height)
+         t))
 
       ;; Use Option key as Meta key (consistent with Mac key bindings).
       (setq mac-option-modifier 'meta)
