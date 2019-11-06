@@ -910,6 +910,8 @@
 ; colored ANSI term inside Emacs (quite handy when running nontrivial shell commands at current folder)
 (global-set-key "\C-ct" '(lambda () (interactive) (ansi-term  "/bin/bash" "Term")))
 
+(global-set-key "\C-cx" 'xterm-mouse-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Custom Variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
