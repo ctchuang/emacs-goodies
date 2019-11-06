@@ -774,6 +774,9 @@
       ;; (global-set-key (quote [C-up]) '(lambda () (interactive) (previous-line 3)))
       ;; (global-set-key (quote [C-down]) '(lambda () (interactive) (next-line 3)))
 
+      ;; Mac style fullscreen
+      (global-set-key (kbd "<C-s-268632070>") 'my-maximize-frame)
+
       ;; Mac style text editing
       (global-set-key (kbd "s-z") 'undo)
       (global-set-key (kbd "s-x") 'kill-region)
@@ -877,7 +880,6 @@
 ; Shortcut
 (global-set-key "\C-cg" 'my-grep)
 (global-set-key "\C-co" 'my-occur)
-(global-set-key "\C-cx" 'my-maximize-frame)
 (global-set-key "\C-cs" 'my-code-search)
 (global-set-key "\C-cS" 'my-stl-doc)
 (global-set-key "\C-cv" 'view-mode)
