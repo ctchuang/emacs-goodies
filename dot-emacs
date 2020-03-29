@@ -296,6 +296,28 @@
       (ido-completing-read
        "Project file: " (tags-table-files) nil nil initial-input)))))
 
+(setq my-source-list '())
+
+(defun my-scan-source ()
+  "Build input for my-ido-find-file-in-sources"
+  (interactive)
+  (setq my-source-list (split-string (shell-command-to-string (concat
+                  "find $(pwd) ! -path '*/.*/*' -and "
+                  " \\( -name '*.cc' "
+                  " -or -name '*.[ch]' "
+                  " -or -name '*.cpp' "
+                  " -or -name '*.java' "
+                  " -or -name '*.py' "
+                  " -or -name '*.mm' \\) ")))))
+
+(defun my-ido-find-file-in-source ()
+  (interactive)
+  (let ((initial-input (thing-at-point 'filename)))
+    (find-file
+     (expand-file-name
+      (ido-completing-read
+       "Project file: " my-source-list nil nil initial-input)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun my-ido-recent-file ()
@@ -879,7 +901,8 @@
 ; Shortcut
 (global-set-key "\C-cg" 'my-grep)
 (global-set-key "\C-co" 'my-occur)
-(global-set-key "\C-cs" 'my-code-search)
+;; (global-set-key "\C-cs" 'my-code-search)
+(global-set-key "\C-cs" 'my-scan-source)
 (global-set-key "\C-cS" 'my-stl-doc)
 (global-set-key "\C-cv" 'view-mode)
 
@@ -888,8 +911,10 @@
 ;; (global-set-key "\C-c." 'my-ido-find-tag) ;; Broken
 (global-set-key "\C-c." 'find-tag)  ;; Also defined as M-.
 (global-set-key "\C-c," 'pop-tag-mark)
-;(global-set-key "\C-cf" 'ftf-find-file)
-(global-set-key "\C-cf" 'my-ido-find-file-in-tag-files)
+;;(global-set-key "\C-cf" 'ftf-find-file)
+;; etags is full of bugs
+;; (global-set-key "\C-cf" 'my-ido-find-file-in-tag-files)
+(global-set-key "\C-cf" 'my-ido-find-file-in-source)
 (global-set-key "\C-ci" 'idomenu) ; old: imenu
 (global-set-key "\C-c\C-r" 'my-reload-file)
 (global-set-key "\C-cr" 'my-ido-recent-file)
