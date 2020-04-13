@@ -1058,7 +1058,10 @@
       ;; Remember to set font size here or ~/.emacs.d/local-setting.el.
       ;; For example:
       ; (my-set-font 20)
-      ))
+      )
+  (progn
+    (load-theme 'wombat))
+  )
 
 ;; Disable background color of color theme in Terminal mode.
 ;; This is especially useful after (server-start) in emacs on X11,
