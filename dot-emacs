@@ -305,6 +305,7 @@
                   "find $(pwd) ! -path '*/.*/*' -and "
                   " \\( -name '*.cc' "
                   " -or -name '*.[ch]' "
+                  " -or -name '*.hpp' "
                   " -or -name '*.cpp' "
                   " -or -name '*.java' "
                   " -or -name '*.py' "
