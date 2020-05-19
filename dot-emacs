@@ -1052,30 +1052,8 @@
 ;;; Themes and Fonts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Load customized version of zenburn theme
-;; (if window-system
-;;     (progn
-;;       (load-theme 'zenburn t)
-;;       ;; Remember to set font size here or ~/.emacs.d/local-setting.el.
-;;       ;; For example:
-;;       ; (my-set-font 20)
-;;       )
-;;   (progn
-;;     (load-theme 'wombat))
-;;   )
-
 ;;; Wombat seems very good for both window and terminal.
 (load-theme 'wombat)
-
-;; Disable background color of color theme in Terminal mode.
-;; This is especially useful after (server-start) in emacs on X11,
-;; and connect from tty like 'emacsclient -t'.
-(defun my-setup-frame-color (frame)
-  (select-frame frame)
-  (unless (window-system frame)
-    (set-face-background 'default "unspecified-bg" frame)))
-
-(add-hook 'after-make-frame-functions 'my-setup-frame-color t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Final Steps - Load local-setting.el
