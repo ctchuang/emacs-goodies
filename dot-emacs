@@ -1055,6 +1055,12 @@
 ;;; Wombat seems very good for both window and terminal.
 (load-theme 'wombat)
 
+;; Force a darker background color
+(let ((class '((class color) (min-colors 89))))
+  (custom-theme-set-faces
+   'wombat
+   `(default ((,class (:background "#171717" :foreground "#f6f3e8"))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Final Steps - Load local-setting.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
