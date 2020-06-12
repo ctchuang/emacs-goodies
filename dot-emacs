@@ -898,6 +898,7 @@
 ; Indent region
 (global-set-key "\C-c>" 'my-indent)
 (global-set-key "\C-c<" 'my-unindent)
+(global-set-key (kbd "C-c SPC") '(lambda () (interactive) (insert "          ")))
 
 ; Shortcut
 (global-set-key "\C-cg" 'my-grep)
