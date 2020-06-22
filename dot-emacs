@@ -870,6 +870,9 @@
 ;;; The following settings work both in Terminal and Window mode
 ;;;
 
+(global-set-key "\C-h" 'delete-backward-char)
+(global-set-key "\C-xh" 'help-command)
+
 ; Override Ctrl-z setting (used as "minimize window" in Linux desktop)
 ;; (global-set-key "\C-z" 'undo)
 
