@@ -437,6 +437,7 @@
                     ("\\.cc\\'" (".h" ".hxx"))
                     ("\\.cxx\\'" (".h" ".hxx"))
                     ("\\.hxx\\'" (".cc" ".cxx" ".cpp"))
+                    ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
                     ))))
 
 (add-hook 'java-mode-hook (lambda ()
