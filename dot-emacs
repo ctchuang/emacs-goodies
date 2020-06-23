@@ -66,7 +66,7 @@
 ;;;;                     Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
-;;; CSS Mode
+;;; [CSS Mode]
 
 (when (require 'css-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.less$" . css-mode)))
@@ -75,19 +75,19 @@
 ;;;;                     Non-Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
-;;; Outline Mode
+;;; [Outline Mode]
 
 (add-hook 'outline-mode-hook '(lambda ()
                                 ;; Collapse subnodes when opening outline file
                                 (hide-sublevels 1)))
 
-;;; Rebase Mode
+;;; [Rebase Mode]
 
 ;; Disable git-rebase mode.
 (setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
                               auto-mode-alist))
 
-;;; Dired Mode
+;;; [Dired Mode]
 
 (require 'dired-x)
 
@@ -99,7 +99,7 @@
       (concat dired-omit-files
               "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
 
-;;; Occur Mode
+;;; [Occur Mode]
 
 ;; Bind p, n keys to be consistent with grep mode.
 (add-hook 'occur-mode-hook
@@ -113,7 +113,7 @@
                                                 (occur-mode-goto-occurrence-other-window)
                                                 (other-window 1)))))
 
-;;; Hexl Mode
+;;; [Hexl Mode]
 
 (setq hexl-bits 8)
 
@@ -121,7 +121,7 @@
 ;;;;                     Minor Modes
 ;;;; ---------------------------------------------------------------------------
 
-;;; Outline minor mode
+;;; [Outline Minor Mode]
 
 ;; Use C-c C-c as prefix (We use C-c as key prefix in Outline Major Mode)
 (add-hook 'outline-minor-mode-hook
@@ -132,26 +132,26 @@
 ;;;;                     Misc
 ;;;; ---------------------------------------------------------------------------
 
-;;; Uniquify
+;;; [Uniquify]
 
 ;; better renaming of buffers viewing files with same name in different
 ;; directories.
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
 
-;;; Recentf
+;;; [Recentf]
 
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-menu-items 1000)  ; with ido mode, we can leverage more items.
 
-;;; Mini-buffer
+;;; [Mini-buffer]
 
 ;; Makes C-p/n work like Up/Down.
 (define-key minibuffer-local-map (kbd "C-p") 'previous-line-or-history-element)
 (define-key minibuffer-local-map (kbd "C-n") 'next-line-or-history-element)
 
-;;; Spaces
+;;; [Whitespace]
 
 (require 'whitespace)
 (setq-default whitespace-style
