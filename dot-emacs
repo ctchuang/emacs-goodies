@@ -630,18 +630,6 @@
                              nil)))
     (grep command))
 
-(defun my-etags ()
-  "Build etags for the current folder"
-  (interactive)
-  (shell-command (concat
-                  "find . ! -path '*/.*/*' -and "
-                  " \\( -name '*.cc' "
-                  " -or -name '*.[ch]' "
-                  " -or -name '*.cpp' "
-                  " -or -name '*.java' "
-                  " -or -name '*.py' "
-                  " -or -name '*.mm' \\) -print0 | xargs -0 etags")))
-
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
