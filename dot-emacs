@@ -769,7 +769,17 @@
 (global-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
 (global-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
 
+;;; Select all
+
+(global-set-key "\C-ca" 'mark-whole-buffer)
+
+;;; Comment
+
+(global-set-key "\C-c;" 'my-comment-or-uncomment-region-or-line)
+(global-set-key "\C-c/" 'my-comment-or-uncomment-region-or-line)
+
 ;;; Indent region
+
 (global-set-key "\C-c>" 'my-indent)
 (global-set-key "\C-c<" 'my-unindent)
 (global-set-key (kbd "C-c SPC") '(lambda () (interactive) (insert "          ")))
@@ -780,6 +790,9 @@
 (global-set-key "\C-c\C-i"
   '(lambda nil nil (interactive) (insert-tab)))
 
+;; Insert boilerplates
+;; (global-set-key "\C-ch" 'my-insert-ahref-tag)
+
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Key binding for split window
 ;;;; ---------------------------------------------------------------------------
@@ -787,37 +800,34 @@
 (global-set-key "\C-x[" '(lambda () (interactive) (other-window -1)))
 (global-set-key  "\C-x]" '(lambda () (interactive) (other-window 1)))
 
-; Select all
-(global-set-key "\C-ca" 'mark-whole-buffer)
+;;;; ---------------------------------------------------------------------------
+;;;;                     Key binding for code navigation
+;;;; ---------------------------------------------------------------------------
 
-; Comment
-(global-set-key "\C-c;" 'my-comment-or-uncomment-region-or-line)
-(global-set-key "\C-c/" 'my-comment-or-uncomment-region-or-line)
+;;; Seach in local sources
 
-; Summarize
 (global-set-key "\C-cb" 'my-summarize-indentation-at-point) ; back track
-
-; Simple templates
-; (global-set-key "\C-ch" 'my-insert-ahref-tag)
-
-
-; Shortcut
 (global-set-key "\C-cg" 'my-grep)
 (global-set-key "\C-co" 'my-occur)
-;; (global-set-key "\C-cs" 'my-code-search)
-(global-set-key "\C-cs" 'my-scan-source)
-(global-set-key "\C-cS" 'my-stl-doc)
-(global-set-key "\C-cv" 'view-mode)
-
-;; imenu
-(global-set-key "\C-cf" 'my-ido-find-file-in-source)
 (global-set-key "\C-ci" 'idomenu)
-(global-set-key "\C-c\C-r" 'my-reload-file)
-(global-set-key "\C-cr" 'my-ido-recent-file)
+
+;;; Search on cloud
+
+(global-set-key "\C-cS" 'my-stl-doc)
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Key bindings to file opening
 ;;;; ---------------------------------------------------------------------------
+
+;;; Ido mode
+
+(global-set-key "\C-cs" 'my-scan-source)
+(global-set-key "\C-cf" 'my-ido-find-file-in-source)
+(global-set-key "\C-cr" 'my-ido-recent-file)
+
+;;; Misc
+
+(global-set-key "\C-c\C-r" 'my-reload-file)
 
 ;; Open the current folder. It's very commonly used. (equivalent to C-x C-f .)
 (global-set-key "\C-x." '(lambda () (interactive) (find-file ".")))
