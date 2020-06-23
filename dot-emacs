@@ -728,17 +728,8 @@
 
 
 ;;;; ---------------------------------------------------------------------------
-;;;;                     Key bindings for text editing
+;;;;                     Key bindings for standard text editing
 ;;;; ---------------------------------------------------------------------------
-
-;;; My favorite way to jump 3 lines at a time.
-
-(global-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
-(global-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
-
-;;; Xterm mouse mode
-
-(global-set-key "\C-cx" 'xterm-mouse-mode)
 
 ;;; Mac style text editing on X11
 
@@ -766,20 +757,35 @@
 (global-set-key (kbd "C-S-v") 'yank)
 
 ;;;; ---------------------------------------------------------------------------
-;;;;                     Misc key bindings
+;;;;                     Key bindings for custom text editing
+;;;; ---------------------------------------------------------------------------
+
+;;; Xterm mouse mode
+
+(global-set-key "\C-cx" 'xterm-mouse-mode)
+
+;;; My favorite way to jump 3 lines at a time.
+
+(global-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
+(global-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
+
+;;; Indent region
+(global-set-key "\C-c>" 'my-indent)
+(global-set-key "\C-c<" 'my-unindent)
+(global-set-key (kbd "C-c SPC") '(lambda () (interactive) (insert "          ")))
+
+;;; Insert text
+
+;; Insert tab character (C-c TAB)
+(global-set-key "\C-c\C-i"
+  '(lambda nil nil (interactive) (insert-tab)))
+
+;;;; ---------------------------------------------------------------------------
+;;;;                     Key binding for split window
 ;;;; ---------------------------------------------------------------------------
 
 (global-set-key "\C-x[" '(lambda () (interactive) (other-window -1)))
 (global-set-key  "\C-x]" '(lambda () (interactive) (other-window 1)))
-
-; Insert tab character (C-c TAB)
-(global-set-key "\C-c\C-i"
-  '(lambda nil nil (interactive) (insert-tab)))
-
-; Goto line
-;; Emacs Pro in Sublime Text
-;; Use default M-g g is good enough
-;; (global-set-key "\C-xl" 'goto-line)
 
 ; Select all
 (global-set-key "\C-ca" 'mark-whole-buffer)
@@ -794,10 +800,6 @@
 ; Simple templates
 ; (global-set-key "\C-ch" 'my-insert-ahref-tag)
 
-; Indent region
-(global-set-key "\C-c>" 'my-indent)
-(global-set-key "\C-c<" 'my-unindent)
-(global-set-key (kbd "C-c SPC") '(lambda () (interactive) (insert "          ")))
 
 ; Shortcut
 (global-set-key "\C-cg" 'my-grep)
@@ -813,7 +815,11 @@
 (global-set-key "\C-c\C-r" 'my-reload-file)
 (global-set-key "\C-cr" 'my-ido-recent-file)
 
-;; Open the current folder. It's very commonly used. (Shortcut to C-x C-f .)
+;;;; ---------------------------------------------------------------------------
+;;;;                     Key bindings to file opening
+;;;; ---------------------------------------------------------------------------
+
+;; Open the current folder. It's very commonly used. (equivalent to C-x C-f .)
 (global-set-key "\C-x." '(lambda () (interactive) (find-file ".")))
 
 ;;;; ---------------------------------------------------------------------------
