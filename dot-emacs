@@ -3,7 +3,7 @@
 ; Tips:
 ;
 ; - Check Comment style at https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
-;     1 semicolon - after code
+;     1 semicolon - same line, after code
 ;     2 semicolons - the following line
 ;     3 semicolons - the following block
 ;     4 semicolons - major structure
@@ -307,9 +307,9 @@
     (when file
       (find-file file))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Large Projects
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; ---------------------------------------------------------------------------
+;;;;                     Special logic for large code projects
+;;;; ---------------------------------------------------------------------------
 
 ;;; Detect files in linux kernel.
 (setq my-linux-style-pattern-list
@@ -318,14 +318,6 @@
 (defun my-is-linux-file-p ()
   (let ((result nil))
     (dolist (pattern my-linux-style-pattern-list)
-      (when (and buffer-file-name
-                 (string-match pattern buffer-file-name))
-        (setq result t)))
-    result))
-
-(defun my-is-autotest-file-p ()
-  (let ((result nil))
-    (dolist (pattern (list "autotest"))
       (when (and buffer-file-name
                  (string-match pattern buffer-file-name))
         (setq result t)))
