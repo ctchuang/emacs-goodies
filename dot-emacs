@@ -63,10 +63,20 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;;;; ---------------------------------------------------------------------------
-;;;;                     Major Modes
+;;;;                     Programming Major Modes
+;;;; ---------------------------------------------------------------------------
+
+;;; CSS Mode
+
+(when (require 'css-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.less$" . css-mode)))
+
+;;;; ---------------------------------------------------------------------------
+;;;;                     Non-Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
 ;;; Outline mode
+
 (add-hook 'outline-mode-hook '(lambda ()
                                 ;; Collapse subnodes when opening outline file
                                 (hide-sublevels 1)))
@@ -354,10 +364,6 @@
 
 ;;; GN
 (add-to-list 'auto-mode-alist '("\\.gn$" . python-mode))
-
-;;; CSS Mode
-(when (require 'css-mode nil t)
-  (add-to-list 'auto-mode-alist '("\\.less$" . css-mode)))
 
 ;;; C Mode
 
