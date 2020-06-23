@@ -69,6 +69,10 @@
 
 (setq scroll-bar-mode nil)
 
+;; Don't indent with tab
+(setq default-tab-width 2)  ; Google C++ Style
+(setq-default indent-tabs-mode nil)
+
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
@@ -246,9 +250,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'cc-mode)
-
-(setq default-tab-width 2)  ; Google C++ Style
-(setq-default indent-tabs-mode nil)
 
 ;;; CUDA
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
