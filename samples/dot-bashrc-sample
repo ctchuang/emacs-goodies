@@ -4,28 +4,13 @@
 # Utilities
 ###################################################
 
-function my-screen-title
+function _my_tmux_name()
 {
   local TITLE="$1"
-  if [ "$TERM" = "screen" ] || [ ! -z "$WINDOW" ]; then
-    screen -X title "${TITLE}"
-  fi
+  tmux rename-window "${TITLE}"
 }
 
-function my-xterm-title
-{
-  local TITLE="$1"
-  echo -en "\033]0;${TITLE}\a"
-}
-
-###################################################
-# Mac OS X Emacs
-###################################################
-
-# emacs, emacsclient, etags, etc.
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
-export PATH=/Applications/Emacs.app/Contents/MacOS/bin/:$PATH
-
+my-title() { printf "\033]0;$*\007"; }
 
 ###################################################
 # Emacs-friendly settings in terminal mode
@@ -36,19 +21,21 @@ e() {
 }
 
 es() {
-  my-screen-title e
+  _my_tmux_name e
   emacs --eval "(server-start)" -nw "$@"
-  my-screen-title -
+  _my_tmux_name -
 }
 
 ec() {
-  my-screen-title e
+  _my_tmux_name e
   emacsclient -t "$@"
-  my-screen-title -
+  _my_tmux_name -
 }
 
 export EDITOR="emacs -nw"
 
-# Fix Ctrl+S in GNU Screen (Ctrl+S is used in Emacs)
-stty ixany
-stty ixoff -ixon
+# For login shell only
+case $- in
+    # Fix Ctrl+S in GNU Screen (Ctrl+S is used in Emacs)
+    *i*) stty ixany && stty ixoff -ixon
+esac
