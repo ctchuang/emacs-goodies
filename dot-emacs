@@ -35,6 +35,9 @@
 
 (add-to-list 'load-path emacs-goodies-path)
 
+;;; Language environment
+(set-language-environment 'UTF-8)
+
 ;;;; ------------------------------------------------------------
 ;;;;                     Basic settings
 ;;;; ------------------------------------------------------------
@@ -49,15 +52,11 @@
 ;;; only want to split vertically.
 (setq split-width-threshold nil)
 
-;; (setq visible-bell t)
+;;; don't ring
 (setq ring-bell-function 'ignore)
 
-;;; Language environment
-(set-language-environment 'UTF-8)
-
-;;; Truncate lines
+;;; truncate lines
 (set-default 'truncate-lines t)
-
 
 ;;;; ------------------------------------------------------------
 ;;;;                     Modes
