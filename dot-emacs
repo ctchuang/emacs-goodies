@@ -736,6 +736,10 @@
 (global-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
 (global-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
 
+;;; Xterm mouse mode
+
+(global-set-key "\C-cx" 'xterm-mouse-mode)
+
 ;;; Mac style text editing on X11
 
 (global-set-key (kbd "s-z") 'undo)
@@ -777,9 +781,6 @@
 ;; Use default M-g g is good enough
 ;; (global-set-key "\C-xl" 'goto-line)
 
-; shell-command (M-! doesn't work in Chromium ssh)
-(global-set-key "\C-c!" 'shell-command)
-
 ; Select all
 (global-set-key "\C-ca" 'mark-whole-buffer)
 
@@ -789,6 +790,9 @@
 
 ; Summarize
 (global-set-key "\C-cb" 'my-summarize-indentation-at-point) ; back track
+
+; Simple templates
+; (global-set-key "\C-ch" 'my-insert-ahref-tag)
 
 ; Indent region
 (global-set-key "\C-c>" 'my-indent)
@@ -812,21 +816,15 @@
 ;; Open the current folder. It's very commonly used. (Shortcut to C-x C-f .)
 (global-set-key "\C-x." '(lambda () (interactive) (find-file ".")))
 
-; Man page
+;;;; ---------------------------------------------------------------------------
+;;;;                     Key bindings to launch applications
+;;;; ---------------------------------------------------------------------------
+
+(global-set-key "\C-c!" 'shell-command)  ; M-! doesn't work in Chromium ssh
 (global-set-key "\C-cm" 'manual-entry)
-
-; Simple Calculator
 (global-set-key "\C-cc" 'calculator)
-
-; Simple templates
-; (global-set-key "\C-ch" 'my-insert-ahref-tag)
-
 (global-set-key "\C-cd" 'calendar)
-
-; colored ANSI term inside Emacs (quite handy when running nontrivial shell commands at current folder)
 (global-set-key "\C-ct" '(lambda () (interactive) (ansi-term  "/bin/bash" "Term")))
-
-(global-set-key "\C-cx" 'xterm-mouse-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Custom Variables
