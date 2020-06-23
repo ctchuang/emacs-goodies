@@ -7,7 +7,7 @@
 ;     2 semicolons - the following line
 ;     3 semicolons - the following block
 ;
-; - On Mac OS, use Homebrew emacs package to replace the built-in terminal version.
+; - On Mac OS, use Homebrew Emacs package to replace the built-in version.
 ;
 
 ;;;; ------------------------------------------------------------
@@ -67,8 +67,8 @@
                               auto-mode-alist))
 
 ;;; Outline mode
-;; Collapse subnodes when opening outline file
 (add-hook 'outline-mode-hook '(lambda ()
+                                ;; Collapse subnodes when opening outline file
                                 (hide-sublevels 1)))
 
 ;; better renaming of buffers viewing files with same name in different
