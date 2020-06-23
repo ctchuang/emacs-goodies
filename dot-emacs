@@ -307,26 +307,6 @@
     (when file
       (find-file file))))
 
-;;;; ---------------------------------------------------------------------------
-;;;;                     Special logic for large code projects
-;;;; ---------------------------------------------------------------------------
-
-(defun my-is-linux-file-p ()
-  (let ((result nil))
-    (dolist (pattern (list "kernel"))
-      (when (and buffer-file-name
-                 (string-match pattern buffer-file-name))
-        (setq result t)))
-    result))
-
-(defun my-is-android-file-p ()
-  (let ((result nil))
-    (dolist (pattern (list "droid" ))
-      (when (and buffer-file-name
-                 (string-match pattern buffer-file-name))
-        (setq result t)))
-    result))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Language-specific Hooks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -521,9 +501,25 @@
 (require 'vc)
 (setq vc-handled-backends ())
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; my-chrome-code-search
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; ---------------------------------------------------------------------------
+;;;;                     Code Search Integration
+;;;; ---------------------------------------------------------------------------
+
+(defun my-is-linux-file-p ()
+  (let ((result nil))
+    (dolist (pattern (list "kernel"))
+      (when (and buffer-file-name
+                 (string-match pattern buffer-file-name))
+        (setq result t)))
+    result))
+
+(defun my-is-android-file-p ()
+  (let ((result nil))
+    (dolist (pattern (list "droid" ))
+      (when (and buffer-file-name
+                 (string-match pattern buffer-file-name))
+        (setq result t)))
+    result))
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome"
