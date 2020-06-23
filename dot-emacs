@@ -669,11 +669,6 @@
   (interactive)
   (kill-line 0))
 
-(defun my-kill-all-buffers ()
-  (interactive)
-  (mapc 'kill-buffer (buffer-list))
-  (delete-other-windows))
-
 (defun my-indent ()
   "indent to right 2 spaces"
   (interactive)
