@@ -1,28 +1,27 @@
 ; -*- emacs-lisp -*-
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Basic Environments
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; Init package
 
 (if (> emacs-major-version 24)  ; be compatible with old emacs
     (package-initialize))
 
-;;; Auto add emacs-goodies path as long as .emacs is symlinked to the file in
-;;; the same folder containing it.
+;;;; Add emacs-goodies to load-path
+
 (if (eq system-type 'gnu/linux)
     (setq emacs-goodies-path
           (replace-regexp-in-string "\n$" ""
                                     (shell-command-to-string
                                      "readlink -f ~/.emacs | xargs dirname"))))
 
-;; It's sad that OS X readlink doesn't suport -f flag.
 (if (eq system-type 'darwin)
     (setq emacs-goodies-path
           (replace-regexp-in-string "\n$" ""
+                                    ;; OS X readlink doesn't suport -f flag.
                                     (shell-command-to-string "(cd $(readlink -n ~/.emacs | xargs dirname); pwd)"))))
 
 (add-to-list 'load-path emacs-goodies-path)
 
+;;;; Basic settings
 
 ;;; Disable backup
 (setq make-backup-files nil)
