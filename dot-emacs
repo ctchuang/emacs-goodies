@@ -6,7 +6,7 @@
 ;     1 semicolon - same line, after code
 ;     2 semicolons - the following line
 ;     3 semicolons - the following block
-;     4 semicolons - major structure
+;     4 semicolons - major section
 ;
 ; - On Mac OS, use Homebrew Emacs package to replace the built-in version.
 ;
@@ -73,6 +73,8 @@
 ;;;;                     Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
+;;; [C++ Mode]
+
 ;;; [CSS Mode]
 
 ;; Support .less file.
@@ -128,6 +130,12 @@
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Minor Modes
 ;;;; ---------------------------------------------------------------------------
+
+;;; [Which Function Mode]
+
+(which-function-mode 1)
+;; It has performance penalty in Python.
+(setq which-func-modes '(python-mode c-mode c++-mode js2-mode java-mode go-mode))
 
 ;;; [Outline Minor Mode]
 
@@ -241,12 +249,6 @@
 
 (setq default-tab-width 2)  ; Google C++ Style
 (setq-default indent-tabs-mode nil)
-; (setq-default c-basic-offset 4)
-
-;; which-function-mode is global minor mode.
-;; It has performance penalty in Python. So enable it only in selected modes.
-(which-function-mode 1)
-(setq which-func-modes '(python-mode c-mode c++-mode js2-mode java-mode go-mode))
 
 ;;; CUDA
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
