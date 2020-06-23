@@ -732,11 +732,6 @@
 ;; (Although it's not supported in Terminal, KeyRemap4MacBook can emulate similar functions)
 (if window-system
     (progn
-      ;; XEmacs style
-      ;; Faster moving with C-up/down.
-      ;; (global-set-key (quote [C-up]) '(lambda () (interactive) (previous-line 3)))
-      ;; (global-set-key (quote [C-down]) '(lambda () (interactive) (next-line 3)))
-
       ;; Mac style fullscreen
       (global-set-key (kbd "<C-s-268632070>") 'my-maximize-frame)
 
@@ -754,10 +749,6 @@
       (global-set-key (quote [s-backspace]) 'kill-start-of-line)
 
       ;; Mac Emacs defaults
-      ;; TODO: s-h => Hide Emacs
-      ;; TODO: s-m => Iconify Emacs
-      ;; TODO: s-t => Font Dialog
-
       ;; (global-set-key (kbd "s-d") 'isearch-repeat-backward)
       ;; (global-set-key (kbd "s-e") 'isearch-yank-kill)
       ;; (global-set-key (kbd "s-f") 'isearch-forward)
@@ -784,16 +775,6 @@
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
       (global-set-key (kbd "C-S-c") 'kill-ring-save)
       (global-set-key (kbd "C-S-v") 'yank)
-
-      ;; Windows style
-      ;; (global-set-key (kbd "<C-tab>") 'switch-to-buffer)
-      ;; (global-set-key (kbd "<M-f4>") 'save-buffers-kill-emacs) ;; Alt+F4
-
-      ;; My favorite buffer keys
-      ;; (global-set-key (kbd "s-0") 'delete-window)
-      ;; (global-set-key (kbd "s-1") 'delete-other-windows)
-      ;; (global-set-key (kbd "s-2") 'split-window-vertically)
-      ;; (global-set-key (kbd "s-3") 'split-window-horizontally)
       )
   (progn 
      ;; Ctrl+Left and Ctrl+Right (Windows-Style) - I uses these two keys in GNU Screen.
