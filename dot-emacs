@@ -1072,9 +1072,9 @@
     (progn
       (my-set-font my-default-font-size)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Final Steps - Load local-setting.el
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; ------------------------------------------------------------
+;;;;                     local-setting.el
+;;;; ------------------------------------------------------------
 
 ;; After Emacs 25, ~/.emacs.d is not recommended for default load-path.
 (add-to-list 'load-path "~/.emacs.d/lisp")
@@ -1082,9 +1082,3 @@
 (let ((local-init-file "~/.emacs.d/lisp/local-setting.el"))
   (if (file-readable-p local-init-file)
       (load-file local-init-file)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
