@@ -67,39 +67,46 @@
                                 ;; Collapse subnodes when opening outline file
                                 (hide-sublevels 1)))
 
+;;; Rebase mode
+
+;; Disable git-rebase mode.
+(setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
+                              auto-mode-alist))
+
+
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Misc Modes
 ;;;; ---------------------------------------------------------------------------
 
 ;;; Uniquify
+
 ;; better renaming of buffers viewing files with same name in different
 ;; directories.
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
 
 ;;; Recentf
+
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-menu-items 1000)  ; with ido mode, we can leverage more items.
 
 ;;; Mini-buffer
+
 ;; Makes C-p/n work like Up/Down.
 (define-key minibuffer-local-map (kbd "C-p") 'previous-line-or-history-element)
 (define-key minibuffer-local-map (kbd "C-n") 'next-line-or-history-element)
 
-;;; Disable git-rebase mode.
-(setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
-                              auto-mode-alist))
+;;; Dired
 
-;;; Dired-X
 (require 'dired-x)
 
 ;; Use C-x M-o to toggle.
-(setq-default dired-omit-files-p t) ; this is buffer-local variable
+(setq-default dired-omit-mode t) ; this is buffer-local variable
 
-; Ignore some junk files on Mac.
+;; Ignore dot files and system files on Mac.
 (setq dired-omit-files
-      (concat dired-omit-files "\\|^\\.\\$\\|^\\..\\$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
+      (concat dired-omit-files "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
 
 ;;; Spaces
 
