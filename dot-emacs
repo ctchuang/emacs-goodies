@@ -732,15 +732,16 @@
 ;; (Although it's not supported in Terminal, KeyRemap4MacBook can emulate similar functions)
 (if window-system
     (progn
-      ;; Mac style fullscreen
+      ;; Mac style fullscreen on X11
       (global-set-key (kbd "<C-s-268632070>") 'my-maximize-frame)
 
-      ;; Mac style text editing
+      ;; Mac style text editing on X11
       (global-set-key (kbd "s-z") 'undo)
       (global-set-key (kbd "s-x") 'kill-region)
       (global-set-key (kbd "s-c") 'kill-ring-save)
       (global-set-key (kbd "s-v") 'yank)
       (global-set-key (kbd "s-a") 'mark-whole-buffer)
+      (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)  ; Xcode style
 
       (global-set-key (quote [s-up]) 'beginning-of-buffer)
       (global-set-key (quote [s-down]) 'end-of-buffer)
@@ -769,9 +770,6 @@
       (global-set-key (kbd "s-n") 'make-frame)
       (global-set-key (kbd "s-w") 'delete-frame)
       
-      ;; Xcode style (working on Linux, too)
-      (global-set-key (kbd "s-/") 'my-comment-or-uncomment-region-or-line)
-
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
       (global-set-key (kbd "C-S-c") 'kill-ring-save)
       (global-set-key (kbd "C-S-v") 'yank)
