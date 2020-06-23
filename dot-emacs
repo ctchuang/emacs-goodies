@@ -68,6 +68,7 @@
 
 ;;; [CSS Mode]
 
+;; Support .less file.
 (when (require 'css-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.less$" . css-mode)))
 
@@ -268,7 +269,9 @@
         (message "No imenu tags in buffer")
       (imenu (idomenu--read (idomenu--trim-alist index-alist) nil t)))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; ---------------------------------------------------------------------------
+;;;;                     Ido find files in source and recentf 
+;;;; ---------------------------------------------------------------------------
 
 (require 'find-file)
 
