@@ -1,11 +1,25 @@
 ; -*- emacs-lisp -*-
+;
+; Tips:
+;
+; - Check Comment style at https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
+;     1 semicolon - after code
+;     2 semicolons - the following line
+;     3 semicolons - the following block
+;
+; - On Mac OS, use Homebrew emacs package to replace the built-in terminal version.
+;
 
-;;;; Init package
+;;;; ------------------------------------------------------------
+;;;;                     Environments
+;;;; ------------------------------------------------------------
+
+;;; Init package
 
 (if (> emacs-major-version 24)  ; be compatible with old emacs
     (package-initialize))
 
-;;;; Add emacs-goodies to load-path
+;;; Add emacs-goodies to load-path
 
 (if (eq system-type 'gnu/linux)
     (setq emacs-goodies-path
@@ -21,15 +35,13 @@
 
 (add-to-list 'load-path emacs-goodies-path)
 
-;;;; Basic settings
+;;;; ------------------------------------------------------------
+;;;;                     Basic settings
+;;;; ------------------------------------------------------------
 
 ;;; Disable backup
 (setq make-backup-files nil)
 (setq auto-save-default nil)
-
-;;; Disable git rebase mode
-(setq auto-mode-alist (delete '("/git-rebase-todo\\'" . git-rebase-mode)
-                              auto-mode-alist))
 
 ;;; allow y/n instead of yes/no on prompts
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -45,6 +57,15 @@
 
 ;;; Truncate lines
 (set-default 'truncate-lines t)
+
+
+;;;; ------------------------------------------------------------
+;;;;                     Modes
+;;;; ------------------------------------------------------------
+
+;;; Disable git rebase mode
+(setq auto-mode-alist (delete '("/git-rebase-todo\\'" . git-rebase-mode)
+                              auto-mode-alist))
 
 ;;; Outline mode
 ;; Collapse subnodes when opening outline file
