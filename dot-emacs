@@ -110,6 +110,12 @@
 ;;;;                     Minor Modes
 ;;;; ---------------------------------------------------------------------------
 
+;;; Outline minor mode
+
+;; Use C-c C-c as prefix (We use C-c as key prefix in Outline Major Mode)
+(add-hook 'outline-minor-mode-hook
+          (lambda () (local-set-key "\C-c\C-c"
+                                    outline-mode-prefix-map)))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Misc
@@ -144,12 +150,6 @@
       '((space-mark   ?\    [?\xB7]     [?.])	; space
         (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
         ))
-
-;;; Outline minor mode (outline minor mode in programming mode)
-;; Use C-c C-c as prefix (like C-c in outline major mode)
-(add-hook 'outline-minor-mode-hook
-          (lambda () (local-set-key "\C-c\C-c"
-                                    outline-mode-prefix-map)))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     ido
