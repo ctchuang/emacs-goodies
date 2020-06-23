@@ -4,11 +4,7 @@
 ;;; Basic Environments
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(if (> emacs-major-version 24) ;; Work with emacs built-in in Mac OS X
+(if (> emacs-major-version 24)  ; be compatible with old emacs
     (package-initialize))
 
 ;;; Auto add emacs-goodies path as long as .emacs is symlinked to the file in
@@ -64,14 +60,6 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
 
-;;; ange-ftp (obsoleted by SSH in most case)
-;; (require 'ange-ftp)
-;; (setq ange-ftp-auto-save 0)
-
-;;; TRAMP
-(require 'tramp)
-(setq tramp-default-method "ssh")
-
 ;;; Recentf
 (require 'recentf)
 (recentf-mode t)
@@ -106,13 +94,6 @@
       '((space-mark   ?\    [?\xB7]     [?.])	; space
         (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
         ))
-;; (set-face-attribute 'whitespace-line nil
-;;                     :background "purple"
-;;                     :foreground "white"
-;;                     :weight 'bold)
-
-;;; Do not use global-whitespace-mode because it will impact dired.
-;; (global-whitespace-mode nil)
 
 ;;; Occur Mode
 ; Add p, n key in occur mode to be consistent.
@@ -139,29 +120,6 @@
 (add-hook 'outline-minor-mode-hook
           (lambda () (local-set-key "\C-c\C-c"
                                     outline-mode-prefix-map)))
-
-;;; Fly Spell
-;; (if (eq system-type 'gnu/linux)
-;;     (progn
-;;       ;; check (program source code only)
-;;       (setq ispell-dictionary "american")
-
-;;       ; I only do text editing in outline-mode
-;;        (dolist (hook '(outline-mode-hook))
-;;          (add-hook hook (lambda () (flyspell-mode 1))))
-
-;;       ; Checks spell only in comments
-;;       ;; (dolist (hook '(emacs-lisp-mode-hook
-;;       ;;                 c-mode-hook
-;;       ;;                 python-mode-hook
-;;       ;;                 php-mode-hook
-;;       ;;                 css-mode-hook
-;;       ;;                 nxml-mode-hook
-;;       ;;                 perl-mode-hook
-;;       ;;                 javascript-mode-hook
-;;       ;;                 LaTeX-mode-hook))
-;;       ;;   (add-hook hook 'flyspell-prog-mode))))
-;; ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ido mode
