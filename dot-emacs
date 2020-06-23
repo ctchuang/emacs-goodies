@@ -560,10 +560,6 @@
     keyword))
   (my-switch-workspace-chrome))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; my-stl-doc
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defun my-stl-doc (stl)
   (interactive (list
                 (read-string "STL: " "" nil nil)))
