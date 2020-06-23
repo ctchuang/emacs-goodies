@@ -83,7 +83,12 @@
 
 ;;; [Java Mode]
 
-
+(add-hook 'java-mode-hook
+          (lambda ()
+            ;; Disable whitespace mode before changing column width.
+            (whitespace-mode 0)
+            (setq-local fill-column 100)
+            (whitespace-mode 1)))
 
 ;;; [Obj-C Mode]
 
@@ -319,14 +324,6 @@
                     ("\\.hxx\\'" (".cc" ".cxx" ".cpp"))
                     ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
                     ))))
-
-(add-hook 'java-mode-hook (lambda ()
-                            ;; Disable whitespace mode before changing column width.
-                            (whitespace-mode 0)
-                            (setq-local fill-column 100)
-                            (whitespace-mode 1)
-                            ;; (setq-local whitespace-line-column 100)
-                            (whitespace-mode)))
 
 ;; Set style for linux kernel
 (add-hook 'c-mode-common-hook
