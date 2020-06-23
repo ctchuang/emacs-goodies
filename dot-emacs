@@ -43,21 +43,24 @@
 ;;;;                     Basic settings
 ;;;; ---------------------------------------------------------------------------
 
-;;; Disable backup
+;; Disable backup and autosave
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;;; allow y/n instead of yes/no on prompts
+;; allow y/n instead of yes/no on prompts
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;; only want to split vertically.
+;; only want to split vertically.
 (setq split-width-threshold nil)
 
-;;; don't ring
+;; don't ring
 (setq ring-bell-function 'ignore)
 
-;;; truncate lines
+;; truncate lines
 (set-default 'truncate-lines t)
+
+;; Narrow-to-region C-x n n and C-x n w
+(put 'narrow-to-region 'disabled nil)
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Major Modes
@@ -141,10 +144,6 @@
       '((space-mark   ?\    [?\xB7]     [?.])	; space
         (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
         ))
-
-;;; Narrow-to-region C-x n n and C-x n w
-(put 'narrow-to-region 'disabled nil)
-
 
 ;;; Outline minor mode (outline minor mode in programming mode)
 ;; Use C-c C-c as prefix (like C-c in outline major mode)
