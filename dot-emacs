@@ -96,7 +96,8 @@
 
 ;; Ignore dot files and system files on Mac.
 (setq dired-omit-files
-      (concat dired-omit-files "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
+      (concat dired-omit-files
+              "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
 
 ;;; Occur Mode
 
