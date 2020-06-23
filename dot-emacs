@@ -89,6 +89,21 @@
 
 (add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 
+;;; [Go Mode]
+
+;; See http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
+(when (require 'go-mode nil 'noerror)
+  (progn
+    (if (> emacs-major-version 24)
+        ;; It's standard practice to run gofmt when saving.
+        (add-hook 'before-save-hook 'gofmt-before-save))
+    (add-hook 'go-mode-hook
+              '(lambda ()
+                 (subword-mode 1)  ; Go uses MixedCase.
+                 (setq whitespace-style '(trailing))  ; no lines-tail
+                 (setq truncate-lines nil)  ; no line wrapping in Go
+                 ))))
+
 ;;; [GN]
 
 (add-to-list 'auto-mode-alist '("\\.gn$" . python-mode))
@@ -324,15 +339,6 @@
                    (setq indent-tabs-mode t)))))
 
 ;;; Go
-(when (require 'go-mode nil 'noerror)
-    (add-hook 'go-mode-hook
-              '(lambda ()
-                 ;; Go uses MixedCase.
-                 (subword-mode 1)
-                 (auto-complete-mode)
-                 ;; People don't wrap lines in Go files.
-                 (setq whitespace-style '(trailing)) ; no lines-tail
-                 (setq truncate-lines nil))))
 
 
 ;;; Web mode
