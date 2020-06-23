@@ -77,7 +77,21 @@
 ;;;;                     Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
-;;; [C++ Mode]
+;;; [CUDA]
+
+(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+
+;;; [Java Mode]
+
+
+
+;;; [Obj-C Mode]
+
+(add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
+
+;;; [GN]
+
+(add-to-list 'auto-mode-alist '("\\.gn$" . python-mode))
 
 ;;; [CSS Mode]
 
@@ -251,21 +265,8 @@
 
 (require 'cc-mode)
 
-;;; CUDA
-(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
-
-;;; Obj-C
-(add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
-
 ;;; JS2
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
-;;; GYP
-;; (require 'yaml-mode)
-;; (add-to-list 'auto-mode-alist '("\\.gyp$" . yaml-mode))
-
-;;; GN
-(add-to-list 'auto-mode-alist '("\\.gn$" . python-mode))
 
 ;;; C Mode
 
