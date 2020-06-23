@@ -143,9 +143,9 @@
           (lambda () (local-set-key "\C-c\C-c"
                                     outline-mode-prefix-map)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; ido mode
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; ---------------------------------------------------------------------------
+;;;;                     ido
+;;;; ---------------------------------------------------------------------------
 
 ;;; ido
 (require 'ido)
@@ -253,16 +253,6 @@
 
 (require 'find-file)
 
-; TODO: use (thing-at-point 'word) since we want to extract file name in Python 'import dir1.dir2.filename'
-(defun my-ido-find-file-in-tag-files ()
-  (interactive)
-  (let ((initial-input (thing-at-point 'filename)))
-    (visit-tags-table-buffer)
-    (find-file
-     (expand-file-name
-      (ido-completing-read
-       "Project file: " (tags-table-files) nil nil initial-input)))))
-
 (setq my-source-list '())
 
 (defun my-scan-source ()
@@ -285,8 +275,6 @@
      (expand-file-name
       (ido-completing-read
        "Project file: " my-source-list nil nil initial-input)))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun my-ido-recent-file ()
   "Find a recent file using Ido."
@@ -883,8 +871,6 @@
 (global-set-key "\C-c." 'find-tag)  ;; Also defined as M-.
 (global-set-key "\C-c," 'pop-tag-mark)
 ;;(global-set-key "\C-cf" 'ftf-find-file)
-;; etags is full of bugs
-;; (global-set-key "\C-cf" 'my-ido-find-file-in-tag-files)
 (global-set-key "\C-cf" 'my-ido-find-file-in-source)
 (global-set-key "\C-ci" 'idomenu) ; old: imenu
 (global-set-key "\C-c\C-r" 'my-reload-file)
@@ -925,10 +911,9 @@
  '(show-paren-mode t nil (paren))
  '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify))))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Platform-dependent settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;; ---------------------------------------------------------------------------
+;;;;                     Platform-dependent settings
+;;;; ---------------------------------------------------------------------------
 
 (menu-bar-mode -1)
 
