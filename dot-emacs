@@ -653,7 +653,7 @@
                              (thing-at-point 'filename))))
   (occur word))
 
-(defun kill-start-of-line ()
+(defun my-kill-start-of-line ()
   "kill from point to start of line"
   (interactive)
   (kill-line 0))
@@ -744,7 +744,7 @@
 (global-set-key (quote [s-down]) 'end-of-buffer)
 (global-set-key (quote [s-left]) 'move-beginning-of-line)
 (global-set-key (quote [s-right]) 'move-end-of-line)
-(global-set-key (quote [s-backspace]) 'kill-start-of-line)
+(global-set-key (quote [s-backspace]) 'my-kill-start-of-line)
 
 ;;; Mac style Option+Left and Option+Right on Terminal and X11
 
