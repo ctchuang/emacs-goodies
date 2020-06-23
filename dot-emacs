@@ -732,8 +732,10 @@
 ;; (Although it's not supported in Terminal, KeyRemap4MacBook can emulate similar functions)
 (if window-system
     (progn
-      ;; Mac style fullscreen on X11
+      ;; Mac style window management on X11
       (global-set-key (kbd "<C-s-268632070>") 'my-maximize-frame)
+      (global-set-key (kbd "s-n") 'make-frame)
+      (global-set-key (kbd "s-w") 'delete-frame)
 
       ;; Mac style text editing on X11
       (global-set-key (kbd "s-z") 'undo)
@@ -771,8 +773,6 @@
       ;; Conflicted with Sublime Text 3
       ;; (global-set-key (kbd "s-{") '(lambda () (interactive) (other-window -1)))
       ;; (global-set-key (kbd "s-}") '(lambda () (interactive) (other-window 1)))
-      (global-set-key (kbd "s-n") 'make-frame)
-      (global-set-key (kbd "s-w") 'delete-frame)
       
       ;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
       (global-set-key (kbd "C-S-c") 'kill-ring-save)
