@@ -1066,6 +1066,39 @@
    `(default ((,class (:background "#171717" :foreground "#f6f3e8"))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Hotkeys for Window-mode font levels (Command - +/-)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq my-font-size 20)
+(setq my-default-font-size 20)
+
+(global-set-key (kbd "s-0")
+                '(lambda () (interactive) ;
+                   (progn
+                     (setq my-font-size my-default-font-size)
+                     (my-set-font my-font-size))))
+
+(global-set-key (kbd "s-=")
+                '(lambda () (interactive)
+                   (progn
+                     (setq my-font-size (+ my-font-size 2))
+                     (my-set-font my-font-size))))
+
+(global-set-key (kbd "s--")
+                '(lambda () (interactive)
+                   (progn
+                     (setq my-font-size (- my-font-size 2))
+                     (my-set-font my-font-size))))
+
+(add-hook 'after-make-frame-functions
+          '(lambda (frame) (interactive)
+             (my-set-font my-font-size)))
+
+(if window-system
+    (progn
+      (my-set-font my-default-font-size)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Final Steps - Load local-setting.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
