@@ -36,6 +36,7 @@
 (add-to-list 'load-path emacs-goodies-path)
 
 ;;; Language environment
+
 (set-language-environment 'UTF-8)
 
 ;;;; ---------------------------------------------------------------------------
@@ -73,9 +74,25 @@
 (setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
                               auto-mode-alist))
 
+;;; Dired mode
+
+(require 'dired-x)
+
+;; Use C-x M-o to toggle.
+(setq-default dired-omit-mode t) ; this is buffer-local variable
+
+;; Ignore dot files and system files on Mac.
+(setq dired-omit-files
+      (concat dired-omit-files "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
+
 
 ;;;; ---------------------------------------------------------------------------
-;;;;                     Misc Modes
+;;;;                     Minor Modes
+;;;; ---------------------------------------------------------------------------
+
+
+;;;; ---------------------------------------------------------------------------
+;;;;                     Misc
 ;;;; ---------------------------------------------------------------------------
 
 ;;; Uniquify
@@ -96,17 +113,6 @@
 ;; Makes C-p/n work like Up/Down.
 (define-key minibuffer-local-map (kbd "C-p") 'previous-line-or-history-element)
 (define-key minibuffer-local-map (kbd "C-n") 'next-line-or-history-element)
-
-;;; Dired
-
-(require 'dired-x)
-
-;; Use C-x M-o to toggle.
-(setq-default dired-omit-mode t) ; this is buffer-local variable
-
-;; Ignore dot files and system files on Mac.
-(setq dired-omit-files
-      (concat dired-omit-files "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
 
 ;;; Spaces
 
