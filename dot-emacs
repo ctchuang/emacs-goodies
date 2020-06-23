@@ -85,6 +85,23 @@
 (setq dired-omit-files
       (concat dired-omit-files "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
 
+;;; Occur mode
+
+;; Bind p, n keys to be consistent with grep mode.
+(add-hook 'occur-mode-hook
+          '(lambda ()
+             (define-key occur-mode-map "p" '(lambda () (interactive)
+                                               (occur-prev)
+                                               (occur-mode-goto-occurrence-other-window)
+                                               (other-window 1)))
+             (define-key occur-mode-map "n"  '(lambda () (interactive)
+                                                (occur-next)
+                                                (occur-mode-goto-occurrence-other-window)
+                                                (other-window 1)))))
+
+;;; Hexl Mode
+
+(setq hexl-bits 8)
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Minor Modes
@@ -124,22 +141,6 @@
       '((space-mark   ?\    [?\xB7]     [?.])	; space
         (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
         ))
-
-;;; Occur Mode
-; Add p, n key in occur mode to be consistent.
-(add-hook 'occur-mode-hook
-          '(lambda ()
-             (define-key occur-mode-map "p" '(lambda () (interactive)
-                                               (occur-prev)
-                                               (occur-mode-goto-occurrence-other-window)
-                                               (other-window 1)))
-             (define-key occur-mode-map "n"  '(lambda () (interactive)
-                                                (occur-next)
-                                                (occur-mode-goto-occurrence-other-window)
-                                                (other-window 1)))))
-
-; Hexl Mode
-(setq hexl-bits 8)
 
 ;;; Narrow-to-region C-x n n and C-x n w
 (put 'narrow-to-region 'disabled nil)
