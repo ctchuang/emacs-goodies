@@ -605,6 +605,41 @@
   (interactive)
   (electric-indent-mode -1))
 
+(defun my-kill-start-of-line ()
+  "kill from point to start of line"
+  (interactive)
+  (kill-line 0))
+
+(defun my-indent ()
+  "indent to right 2 spaces"
+  (interactive)
+  (indent-rigidly (region-beginning) (region-end) c-basic-offset))
+
+(defun my-unindent ()
+  "indent to left 2 spaces"
+  (interactive)
+  (indent-rigidly (region-beginning) (region-end) -2))
+
+(defun my-indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun my-reload-file ()
+  (interactive)
+  ;; Only prompt if buffer is modified.
+  (revert-buffer t (not (buffer-modified-p)) t))
+
+;; Copied from
+;; http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
+(defun my-comment-or-uncomment-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+            (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)
+        (next-line)))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Functions for more tools
@@ -663,42 +698,6 @@
                              nil
                              (thing-at-point 'filename))))
   (occur word))
-
-(defun my-kill-start-of-line ()
-  "kill from point to start of line"
-  (interactive)
-  (kill-line 0))
-
-(defun my-indent ()
-  "indent to right 2 spaces"
-  (interactive)
-  (indent-rigidly (region-beginning) (region-end) c-basic-offset))
-
-(defun my-unindent ()
-  "indent to left 2 spaces"
-  (interactive)
-  (indent-rigidly (region-beginning) (region-end) -2))
-
-(defun my-indent-buffer ()
-  (interactive)
-  (indent-region (point-min) (point-max)))
-
-(defun my-reload-file ()
-  (interactive)
-  ;; Only prompt if buffer is modified.
-  (revert-buffer t (not (buffer-modified-p)) t))
-
-;; Copied from
-;; http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
-(defun my-comment-or-uncomment-region-or-line ()
-    "Comments or uncomments the region or the current line if there's no active region."
-    (interactive)
-    (let (beg end)
-        (if (region-active-p)
-            (setq beg (region-beginning) end (region-end))
-            (setq beg (line-beginning-position) end (line-end-position)))
-        (comment-or-uncomment-region beg end)
-        (next-line)))
 
 ;; Copied from https://code.google.com/p/chromium/wiki/Emacs
 (defun my-summarize-indentation-at-point ()
