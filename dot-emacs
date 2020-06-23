@@ -721,19 +721,24 @@
       (message "%s" (mapconcat 'identity trace "\n")))))
 
 ;;;; ---------------------------------------------------------------------------
-;;;;                     Basic key bindings
+;;;;                     Key bindings for window management
 ;;;; ---------------------------------------------------------------------------
-
-;;; My favorite way to jump 3 lines at a time.
-
-(global-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
-(global-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
 
 ;;; Mac style window management on X11
 
 (global-set-key (kbd "<C-s-268632070>") 'my-maximize-frame)
 (global-set-key (kbd "s-n") 'make-frame)
 (global-set-key (kbd "s-w") 'delete-frame)
+
+
+;;;; ---------------------------------------------------------------------------
+;;;;                     Key bindings for text editing
+;;;; ---------------------------------------------------------------------------
+
+;;; My favorite way to jump 3 lines at a time.
+
+(global-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
+(global-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
 
 ;;; Mac style text editing on X11
 
@@ -752,8 +757,8 @@
 
 ;;; Mac style Option+Left and Option+Right on Terminal and X11
 
-(global-set-key "\M-[1;3C"    'forward-word)
-(global-set-key "\M-[1;3D"    'backward-word)
+(global-set-key "\M-[1;3C" 'forward-word)
+(global-set-key "\M-[1;3D" 'backward-word)
 
 ;;; Linux style (Ctrl+Shift+C/V for copy/paste in Gnome Terminal)
 
