@@ -75,19 +75,19 @@
 ;;;;                     Non-Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
-;;; Outline mode
+;;; Outline Mode
 
 (add-hook 'outline-mode-hook '(lambda ()
                                 ;; Collapse subnodes when opening outline file
                                 (hide-sublevels 1)))
 
-;;; Rebase mode
+;;; Rebase Mode
 
 ;; Disable git-rebase mode.
 (setq auto-mode-alist (delete '("git-rebase-todo" . rebase-mode)
                               auto-mode-alist))
 
-;;; Dired mode
+;;; Dired Mode
 
 (require 'dired-x)
 
@@ -98,7 +98,7 @@
 (setq dired-omit-files
       (concat dired-omit-files "\\|^\\..+$\\|desktop.ini\\|__pycache__\\|.DS_Store\\|.git\\|Thumbs.db\\|Icon\015"))
 
-;;; Occur mode
+;;; Occur Mode
 
 ;; Bind p, n keys to be consistent with grep mode.
 (add-hook 'occur-mode-hook
