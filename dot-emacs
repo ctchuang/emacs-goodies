@@ -23,9 +23,6 @@
 
 (add-to-list 'load-path emacs-goodies-path)
 
-;;; Be compatible with old version of Emacs built in Mac OS X.
-(if window-system
-    (add-to-list 'custom-theme-load-path emacs-goodies-path))
 
 ;;; Disable backup
 (setq make-backup-files nil)
