@@ -807,12 +807,9 @@
 (global-set-key "\C-cS" 'my-stl-doc)
 (global-set-key "\C-cv" 'view-mode)
 
-;; xcscope & imenu
-(global-set-key  "\C-c/" 'cscope-find-this-symbol)
-(global-set-key "\C-c." 'find-tag)  ;; Also defined as M-.
-(global-set-key "\C-c," 'pop-tag-mark)
+;; imenu
 (global-set-key "\C-cf" 'my-ido-find-file-in-source)
-(global-set-key "\C-ci" 'idomenu) ; old: imenu
+(global-set-key "\C-ci" 'idomenu)
 (global-set-key "\C-c\C-r" 'my-reload-file)
 (global-set-key "\C-cr" 'my-ido-recent-file)
 
