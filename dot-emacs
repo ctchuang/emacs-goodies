@@ -6,6 +6,7 @@
 ;     1 semicolon - after code
 ;     2 semicolons - the following line
 ;     3 semicolons - the following block
+;     4 semicolons - major structure
 ;
 ; - On Mac OS, use Homebrew Emacs package to replace the built-in version.
 ;
