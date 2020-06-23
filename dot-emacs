@@ -245,19 +245,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; BROKEN in Emacs 25
-(defun my-ido-find-tag ()
-  "Find a tag using ido"
-  (interactive)
-  (tags-completion-table)
-  (let (tag-names)
-    (mapatoms (lambda (x)
-                (push (prin1-to-string x t) tag-names))
-              tags-completion-table)
-    (find-tag (ido-completing-read "Tag: " tag-names nil nil (thing-at-point 'filename)))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (require 'find-file)
 
 ; TODO: use (thing-at-point 'word) since we want to extract file name in Python 'import dir1.dir2.filename'
@@ -400,7 +387,6 @@
              ;;       (setq-local whitespace-line-column 80)))
 
              ;;; C-c. was set to c-set-style
-             ;; (local-set-key "\C-c." 'my-ido-find-tag)
              (local-set-key "\C-c." 'ftf-grepsource)
              (set (make-local-variable 'cc-other-file-alist)
                   '(("\\.m\\'" (".h"))
@@ -888,7 +874,6 @@
 
 ;; xcscope & imenu
 (global-set-key  "\C-c/" 'cscope-find-this-symbol)
-;; (global-set-key "\C-c." 'my-ido-find-tag) ;; Broken
 (global-set-key "\C-c." 'find-tag)  ;; Also defined as M-.
 (global-set-key "\C-c," 'pop-tag-mark)
 ;;(global-set-key "\C-cf" 'ftf-find-file)
