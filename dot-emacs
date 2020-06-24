@@ -77,6 +77,17 @@
 ;;;;                     Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
+;;; [Python Mode]
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (outline-minor-mode)
+            (subword-mode)
+            (whitespace-mode t)
+            (setq tab-width 2)  ; python-mode overrides tab-width to 8
+            (setq-local fill-column 79)
+            (setq python-indent-offset 4)))
+
 ;;; [Java Mode]
 
 (add-hook 'java-mode-hook
@@ -391,22 +402,6 @@
                    (subword-mode 0)
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
-
-;;; Python
-(add-hook 'python-mode-hook
-          (lambda ()
-             (outline-minor-mode)
-             (whitespace-mode t)
-             (subword-mode 1)
-             (setq-local fill-column 79)
-             (setq python-indent-offset 4)
-             (setq tab-width 2)
-             (setq indent-tabs-mode nil)
-            ; (imenu-add-to-menubar "imenu") ; defined in C mode
-            ; (outline-minor-mode) ; defined in C mode
-            ; (subword-mode 1) ; defined in C mode
-            ; (set-default 'truncate-lines t) ; defined in C mode
-             ))
 
 ;;; imenu
 (require 'imenu) ; TODO: add setting to hook (late initialization)
