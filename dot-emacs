@@ -265,6 +265,11 @@
 ;;;;                     Misc
 ;;;; ---------------------------------------------------------------------------
 
+;;; [imenu]
+
+;; (require 'imenu)
+;; (setq imenu-auto-rescan nil)  ; speedup
+
 ;;; [Uniquify]
 
 ;; better renaming of buffers viewing files with same name in different
@@ -397,10 +402,6 @@
                    (subword-mode 0)
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
-
-;;; imenu
-(require 'imenu) ; TODO: add setting to hook (late initialization)
-(setq imenu-auto-rescan nil)
 
 ;;; Version Control
 ; Disable vc mode (which is unnecessarily complex)
