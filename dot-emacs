@@ -162,6 +162,11 @@
           (lambda ()
             (setq css-indent-offset 4)))
 
+;;; [SGML Mode]
+
+(require 'sgml-mode)
+(define-key sgml-mode-map "\\r" 'newline-and-ident)
+
 ;;; [Markdown Mode]
 
 (when (require 'markdown-mode nil t)
@@ -387,10 +392,6 @@
                    (subword-mode 0)
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
-
-;;; SGML
-(require 'sgml-mode)
-(define-key sgml-mode-map "\\r" 'newline-and-ident)
 
 ;;; Python
 (add-hook 'python-mode-hook
