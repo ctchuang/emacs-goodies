@@ -376,7 +376,7 @@
             (define-key ido-completion-map (kbd "C-n") 'ido-next-match)))
 
 ;;;; ---------------------------------------------------------------------------
-;;;;                     Ido find files in source and recentf 
+;;;;                     Ido find files in source and recentf
 ;;;; ---------------------------------------------------------------------------
 
 (require 'find-file)
