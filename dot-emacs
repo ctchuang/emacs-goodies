@@ -79,6 +79,52 @@
 ;;;;                     Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
+;;; [C Mode]
+
+;; This applies to C, C++, Objective-C, and Java
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (outline-minor-mode)
+             (c-toggle-auto-hungry-state -1)
+             (c-toggle-auto-newline -1)
+             (c-toggle-electric-state t)
+             ;; ff-find-other-file will read #include lines, use
+             ;; ff-get-other-file instead.
+             (local-set-key  (kbd "M-h") 'ff-get-other-file) ;; be compatible with ST3
+             (setq c-tab-always-indent t)
+             (subword-mode 1) ; commonly used in Chromium style
+             (imenu-add-to-menubar "imenu")
+             ;; C++ style
+             (setq comment-start "//" comment-end "")
+             (local-set-key [(return)] 'newline-and-indent)
+             ;; Android (interfere with Java code)
+             ;; (if (my-is-android-file-p)
+             ;;     (progn
+             ;;       (setq c-basic-offset 2)
+             ;;       (setq-local fill-column 80)
+             ;;       (setq-local whitespace-line-column 80)))
+             (set (make-local-variable 'cc-other-file-alist)
+                  '(("\\.m\\'" (".h"))
+                    ("\\.mm\\'" (".h"))
+                    ("\\.h\\'" (".m" ".mm" ".c" ".cpp" ".cc"))
+                    ("\\.c\\'" (".h"))
+                    ("\\.cpp\\'" (".h" ".hxx"))
+                    ("\\.cc\\'" (".h" ".hxx"))
+                    ("\\.cxx\\'" (".h" ".hxx"))
+                    ("\\.hxx\\'" (".cc" ".cxx" ".cpp"))
+                    ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
+                    ))))
+
+;; Set style for linux kernel
+(add-hook 'c-mode-common-hook
+          '(lambda ()
+             (if (my-is-linux-file-p)
+                 (progn
+                   (c-set-style "linux")
+                   (subword-mode 0)
+                   (setq comment-start "/*" comment-end "*/")
+                   (setq indent-tabs-mode t)))))
+
 ;;; [Python Mode]
 
 (add-hook 'python-mode-hook
@@ -356,58 +402,6 @@
          (ido-completing-read "Choose recent file: " recentf-list nil t)))
     (when file
       (find-file file))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Language-specific Hooks
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'cc-mode)
-
-;;; C Mode
-
-;; This applies to C, C++, Objective-C, and Java
-(add-hook 'c-mode-common-hook
-          '(lambda ()
-             (outline-minor-mode)
-             (c-toggle-auto-hungry-state -1)
-             (c-toggle-auto-newline -1)
-             (c-toggle-electric-state t)
-             ;; ff-find-other-file will read #include lines, use
-             ;; ff-get-other-file instead.
-             (local-set-key  (kbd "M-h") 'ff-get-other-file) ;; be compatible with ST3
-             (setq c-tab-always-indent t)
-             (subword-mode 1) ; commonly used in Chromium style
-             (imenu-add-to-menubar "imenu")
-             ;; C++ style
-             (setq comment-start "//" comment-end "")
-             (local-set-key [(return)] 'newline-and-indent)
-             ;; Android (interfere with Java code)
-             ;; (if (my-is-android-file-p)
-             ;;     (progn
-             ;;       (setq c-basic-offset 2)
-             ;;       (setq-local fill-column 80)
-             ;;       (setq-local whitespace-line-column 80)))
-             (set (make-local-variable 'cc-other-file-alist)
-                  '(("\\.m\\'" (".h"))
-                    ("\\.mm\\'" (".h"))
-                    ("\\.h\\'" (".m" ".mm" ".c" ".cpp" ".cc"))
-                    ("\\.c\\'" (".h"))
-                    ("\\.cpp\\'" (".h" ".hxx"))
-                    ("\\.cc\\'" (".h" ".hxx"))
-                    ("\\.cxx\\'" (".h" ".hxx"))
-                    ("\\.hxx\\'" (".cc" ".cxx" ".cpp"))
-                    ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
-                    ))))
-
-;; Set style for linux kernel
-(add-hook 'c-mode-common-hook
-          '(lambda ()
-             (if (my-is-linux-file-p)
-                 (progn
-                   (c-set-style "linux")
-                   (subword-mode 0)
-                   (setq comment-start "/*" comment-end "*/")
-                   (setq indent-tabs-mode t)))))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Code Search Integration
