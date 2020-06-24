@@ -149,6 +149,7 @@
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
   (add-hook 'web-mode-hook
           '(lambda ()
+             (setq truncate-lines nil)
              (setq web-mode-enable-auto-indentation nil))))
 
 ;;; [CSS Mode]
@@ -406,12 +407,6 @@
             ; (subword-mode 1) ; defined in C mode
             ; (set-default 'truncate-lines t) ; defined in C mode
              ))
-
-;;; HTML
-(add-hook 'html-mode-hook
-          (lambda ()
-            (setq truncate-lines nil)
-            ))
 
 ;;; imenu
 (require 'imenu) ; TODO: add setting to hook (late initialization)
