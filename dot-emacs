@@ -97,12 +97,6 @@
              ;; C++ style
              (setq comment-start "//" comment-end "")
              (local-set-key [(return)] 'newline-and-indent)
-             ;; Android (interfere with Java code)
-             ;; (if (my-is-android-file-p)
-             ;;     (progn
-             ;;       (setq c-basic-offset 2)
-             ;;       (setq-local fill-column 80)
-             ;;       (setq-local whitespace-line-column 80)))
              (set (make-local-variable 'cc-other-file-alist)
                   '(("\\.m\\'" (".h"))
                     ("\\.mm\\'" (".h"))
@@ -115,9 +109,15 @@
                     ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
                     ))))
 
-;; Set style for linux kernel
+;; Set style for special projects.
 (add-hook 'c-mode-common-hook
           '(lambda ()
+             ;; Android (interfere with Java code)
+             ;; (if (my-is-android-file-p)
+             ;;     (progn
+             ;;       (setq c-basic-offset 2)
+             ;;       (setq-local fill-column 80)
+             ;;       (setq-local whitespace-line-column 80)))
              (if (my-is-linux-file-p)
                  (progn
                    (c-set-style "linux")
