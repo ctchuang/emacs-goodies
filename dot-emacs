@@ -474,7 +474,7 @@
 (defun my-stl-doc (stl)
   (interactive (list
                 (read-string "STL: " "" nil nil)))
-  (browse-url (format 
+  (browse-url (format
                "http://www.cplusplus.com/%s" stl))
   (my-switch-workspace-chrome))
 
@@ -565,7 +565,7 @@
                                ;; to narrow down file pattern.
                                ;; Ignore hidden files (ex: .git, .static .vscode .env)
                                "find . -name '*' ! -path '*/.*/*' ! -path '*/out*/*'  "
-                               ;; Ignore program artifacts 
+                               ;; Ignore program artifacts
                                " ! -name '*.sqlite3' ! -name '*.pyc' ! -name '*.o' "
                                ;; Ignore editor output.
                                " ! -name '*.sublime-*' ! -name 'TAGS' "
