@@ -116,7 +116,6 @@
              ;; ff-get-other-file instead.
              (local-set-key  (kbd "M-h") 'ff-get-other-file) ;; be compatible with ST3
              (setq c-tab-always-indent t)
-             (imenu-add-to-menubar "imenu")
              ;; C++ style
              (setq comment-start "//" comment-end "")
              (local-set-key [(return)] 'newline-and-indent)
@@ -212,7 +211,6 @@
   (add-hook 'js2-mode-hook
             (lambda ()
             ;; Scan the file for nested code blocks
-            (imenu-add-to-menubar "imenu")
             (setq js2-basic-offset 2)
             (subword-mode 1)
             (setq truncate-lines nil))))
