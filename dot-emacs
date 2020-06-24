@@ -90,6 +90,13 @@
 
 (add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 
+(add-hook 'objc-mode-hook
+          '(lambda ()
+             (subword-mode 1)  ; Obj-C uses MixedCase.
+             ;; People don't wrap lines in Obj-C files.
+             (setq whitespace-style '(trailing)) ; no lines-tail
+             (setq truncate-lines nil)))
+
 ;;; [Swift Mode]
 
 (when (require 'swift-mode nil 'noerror)
@@ -140,6 +147,23 @@
 ;; Support .less file.
 (when (require 'css-mode nil t)
   (add-to-list 'auto-mode-alist '("\\.less$" . css-mode)))
+
+(add-hook 'css-mode-hook
+          (lambda ()
+            (setq css-indent-offset 4)))
+
+;;; [Markdown Mode]
+
+(when (require 'markdown-mode nil t)
+  (add-hook 'markdown-mode-hook
+            (lambda ()
+              (flyspell-mode)
+              (outline-minor-mode)
+              (setq truncate-lines nil)
+              ;; Markdown mode override these keys. Set it back.
+              (local-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
+              (local-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
+              )))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Non-Programming Major Modes
@@ -354,15 +378,6 @@
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
 
-;;; Obj-C
-(add-hook 'objc-mode-hook
-          '(lambda ()
-             (subword-mode 1)
-             ;; People don't wrap lines in Obj-C files.
-             (setq whitespace-style '(trailing)) ; no lines-tail
-             (setq truncate-lines nil)))
-
-
 ;;; SGML
 (require 'sgml-mode)
 (define-key sgml-mode-map "\\r" 'newline-and-ident)
@@ -395,30 +410,10 @@
             (setq truncate-lines nil)
             ))
 
-;;; Markdown
-;; Do not fail if markdown-mode is not installed.
-
-(when (require 'markdown-mode nil t)
-  (add-hook 'markdown-mode-hook
-            (lambda ()
-              (flyspell-mode)
-              (outline-minor-mode)
-              (setq truncate-lines nil)
-              ;; Markdown mode override these keys in undesired way.
-              (local-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
-              (local-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
-              )))
-
 ;;; HTML
 (add-hook 'html-mode-hook
           (lambda ()
             (setq truncate-lines nil)
-            ))
-
-;;; CSS
-(add-hook 'css-mode-hook
-          (lambda ()
-            (setq css-indent-offset 4)
             ))
 
 ;;; imenu
