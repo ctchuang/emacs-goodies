@@ -94,6 +94,16 @@
 
 (add-to-list 'auto-mode-alist '("\\.mm$" . objc-mode))
 
+;;; [Swift Mode]
+
+(when (require 'swift-mode nil 'noerror)
+  (add-hook 'swift-mode-hook
+            '(lambda ()
+               (subword-mode 1)  ; Swift uses MixedCase.
+               ;; People don't wrap lines in Swift.
+               (setq whitespace-style '(trailing)) ; no lines-tail
+               (setq truncate-lines nil))))
+
 ;;; [Go Mode]
 
 ;; See http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
@@ -112,6 +122,10 @@
 ;;; [GN]
 
 (add-to-list 'auto-mode-alist '("\\.gn$" . python-mode))
+
+;;; [JS2 Mode]
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;;; [CSS Mode]
 
@@ -285,9 +299,6 @@
 
 (require 'cc-mode)
 
-;;; JS2
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
 ;;; C Mode
 
 ;; This applies to C, C++, Objective-C, and Java
@@ -335,9 +346,6 @@
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
 
-;;; Go
-
-
 ;;; Web mode
 
 (add-hook 'web-mode-hook
@@ -357,15 +365,6 @@
              (setq whitespace-style '(trailing)) ; no lines-tail
              (setq truncate-lines nil)))
 
-;;; Swift
-(when (require 'swift-mode nil 'noerror)
-  (add-hook 'swift-mode-hook
-            '(lambda ()
-               ;; Swift uses MixedCase.
-               (subword-mode 1)
-               ;; People don't wrap lines in SWIFT files.
-               (setq whitespace-style '(trailing)) ; no lines-tail
-               (setq truncate-lines nil))))
 
 ;;; SGML
 (require 'sgml-mode)
