@@ -84,6 +84,7 @@
 ;; This applies to C, C++, Objective-C, and Java
 (add-hook 'c-mode-common-hook
           '(lambda ()
+             (subword-mode 1)  ; Google C++ style uses MixedCase
              (outline-minor-mode)
              (c-toggle-auto-hungry-state -1)
              (c-toggle-auto-newline -1)
@@ -92,7 +93,6 @@
              ;; ff-get-other-file instead.
              (local-set-key  (kbd "M-h") 'ff-get-other-file) ;; be compatible with ST3
              (setq c-tab-always-indent t)
-             (subword-mode 1) ; commonly used in Chromium style
              (imenu-add-to-menubar "imenu")
              ;; C++ style
              (setq comment-start "//" comment-end "")
@@ -102,8 +102,8 @@
                     ("\\.mm\\'" (".h"))
                     ("\\.h\\'" (".m" ".mm" ".c" ".cpp" ".cc"))
                     ("\\.c\\'" (".h"))
-                    ("\\.cpp\\'" (".h" ".hxx"))
-                    ("\\.cc\\'" (".h" ".hxx"))
+                    ("\\.cpp\\'" (".h" ".hxx" ".hpp"))
+                    ("\\.cc\\'" (".h" ".hxx" ".hpp"))
                     ("\\.cxx\\'" (".h" ".hxx"))
                     ("\\.hxx\\'" (".cc" ".cxx" ".cpp"))
                     ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
