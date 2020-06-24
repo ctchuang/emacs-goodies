@@ -21,6 +21,7 @@
     (progn
       (require 'package)
       (package-initialize)
+      (setq package-check-signature nil)  ; workaround intermittent public key failure
       (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))))
 
 ;; Instructions
@@ -29,6 +30,7 @@
 ;;
 ;; (package-install 'markdown-mode)
 ;; (package-install 'auto-complete)
+;; (package-install 'git-gutter)
 ;;
 ;; Remarks:
 ;; 1. Delete ~/.emacs.d/elpa if the installed package is outdated.
@@ -314,6 +316,11 @@
       (setq package-selected-packages (quote (auto-complete)))
       (ac-config-default)
       (global-auto-complete-mode t)))
+
+;;; [Git Gutter Mode]
+
+(when (require 'git-gutter nil t)
+  (global-git-gutter-mode +1))
 
 ;;; [Which Function Mode]
 
