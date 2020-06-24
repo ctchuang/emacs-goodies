@@ -77,10 +77,6 @@
 ;;;;                     Programming Major Modes
 ;;;; ---------------------------------------------------------------------------
 
-;;; [CUDA]
-
-(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
-
 ;;; [Java Mode]
 
 (add-hook 'java-mode-hook
@@ -119,13 +115,25 @@
                  (setq truncate-lines nil)  ; no line wrapping in Go
                  ))))
 
-;;; [GN]
+;;; [CUDA - C++ Mode]
+
+(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+
+;;; [GN - Python Mode]
 
 (add-to-list 'auto-mode-alist '("\\.gn$" . python-mode))
 
-;;; [JS2 Mode]
+;;; [JavaScript - JS2 Mode]
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+;;; [HTML - Web Mode]
+
+(when (require 'web-mode nil 'noerror)
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+  (add-hook 'web-mode-hook
+          '(lambda ()
+             (setq web-mode-enable-auto-indentation nil))))
 
 ;;; [CSS Mode]
 
@@ -345,17 +353,6 @@
                    (subword-mode 0)
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
-
-;;; Web mode
-
-(add-hook 'web-mode-hook
-          '(lambda ()
-             (setq web-mode-enable-auto-indentation nil)))
-
-
-;; setup files ending in “.js” to open in javascript-mode
-(add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 
 ;;; Obj-C
 (add-hook 'objc-mode-hook
