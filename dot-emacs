@@ -248,6 +248,12 @@
           (lambda () (local-set-key "\C-c\C-c"
                                     outline-mode-prefix-map)))
 
+;;; [VC mode]
+
+;; Disable vc mode (which is unnecessarily complex)
+;; (require 'vc)
+;; (setq vc-handled-backends ())
+
 ;;; [Whitespace Minor Mode]
 
 ;; whitespace mode seems broken
@@ -402,11 +408,6 @@
                    (subword-mode 0)
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
-
-;;; Version Control
-; Disable vc mode (which is unnecessarily complex)
-(require 'vc)
-(setq vc-handled-backends ())
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Code Search Integration
