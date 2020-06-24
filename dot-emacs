@@ -67,6 +67,8 @@
 
 (setq fill-column 79)
 
+(setq-default show-trailing-whitespace t)
+
 (setq scroll-bar-mode nil)
 
 ;; Don't indent with tab
@@ -82,8 +84,7 @@
 (add-hook 'python-mode-hook
           (lambda ()
             (outline-minor-mode)
-            (subword-mode)
-            (whitespace-mode t)
+            (subword-mode)  ; Python uses MixedCase
             (setq tab-width 2)  ; python-mode overrides tab-width to 8
             (setq-local fill-column 79)
             (setq python-indent-offset 4)))
@@ -92,10 +93,7 @@
 
 (add-hook 'java-mode-hook
           (lambda ()
-            ;; Disable whitespace mode before changing column width.
-            (whitespace-mode 0)
-            (setq-local fill-column 100)
-            (whitespace-mode 1)))
+            (setq-local fill-column 100)))
 
 ;;; [Obj-C Mode]
 
@@ -105,7 +103,6 @@
           '(lambda ()
              (subword-mode 1)  ; Obj-C uses MixedCase.
              ;; People don't wrap lines in Obj-C files.
-             (setq whitespace-style '(trailing)) ; no lines-tail
              (setq truncate-lines nil)))
 
 ;;; [Swift Mode]
@@ -115,7 +112,6 @@
             '(lambda ()
                (subword-mode 1)  ; Swift uses MixedCase.
                ;; People don't wrap lines in Swift.
-               (setq whitespace-style '(trailing)) ; no lines-tail
                (setq truncate-lines nil))))
 
 ;;; [Go Mode]
@@ -129,7 +125,6 @@
     (add-hook 'go-mode-hook
               '(lambda ()
                  (subword-mode 1)  ; Go uses MixedCase.
-                 (setq whitespace-style '(trailing))  ; no lines-tail
                  (setq truncate-lines nil)  ; no line wrapping in Go
                  ))))
 
@@ -149,7 +144,6 @@
             (lambda ()
             ;; Scan the file for nested code blocks
             (imenu-add-to-menubar "imenu")
-            (whitespace-mode t)
             (setq js2-basic-offset 2)
             (subword-mode 1)
             (setq truncate-lines nil))))
@@ -254,6 +248,19 @@
           (lambda () (local-set-key "\C-c\C-c"
                                     outline-mode-prefix-map)))
 
+;;; [Whitespace Minor Mode]
+
+;; whitespace mode seems broken
+
+;; (require 'whitespace)
+;; (setq-default whitespace-style
+;;               '(trailing tabs lines-tail))
+;; (setq whitespace-line-column nil) ;; use fill-column instead
+;; (setq whitespace-display-mappings
+;;       '((space-mark   ?\    [?\xB7]     [?.])	; space
+;;         (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
+;;         ))
+
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Misc
 ;;;; ---------------------------------------------------------------------------
@@ -276,17 +283,6 @@
 ;; Makes C-p/n work like Up/Down.
 (define-key minibuffer-local-map (kbd "C-p") 'previous-line-or-history-element)
 (define-key minibuffer-local-map (kbd "C-n") 'next-line-or-history-element)
-
-;;; [Whitespace]
-
-(require 'whitespace)
-(setq-default whitespace-style
-              '(trailing tabs lines-tail))
-(setq whitespace-line-column nil) ;; use fill-column instead
-(setq whitespace-display-mappings
-      '((space-mark   ?\    [?\xB7]     [?.])	; space
-        (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
-        ))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     ido
@@ -362,7 +358,6 @@
 (add-hook 'c-mode-common-hook
           '(lambda ()
              (outline-minor-mode)
-             (whitespace-mode t)
              (c-toggle-auto-hungry-state -1)
              (c-toggle-auto-newline -1)
              (c-toggle-electric-state t)
