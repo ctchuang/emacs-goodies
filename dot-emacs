@@ -345,19 +345,28 @@
 ;;;;                     ido
 ;;;; ---------------------------------------------------------------------------
 
+;;; Enable ido mode everywhere.
+
 (require 'ido)
 (ido-mode 'both)
 (ido-everywhere 'both)
+
 ;; disabled for being buggy
-; (setq ido-enable-flex-matching t)
+;; (setq ido-enable-flex-matching t)
+
+;;; Allow opening folder.
+
 (setq ido-show-dot-for-dired t)
+
+;;; Open in current window
+
 ;; Be consistent with standard Emacs convention
 ;; (especially when Emacs has multiple frames in different workspaces).
 (setq ido-default-file-method 'selected-window)
 (setq ido-default-buffer-method 'selected-window)
 
+;;; Display vertically
 
-;; Display vertically
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 (add-hook 'ido-setup-hook
           (lambda ()
