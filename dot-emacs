@@ -92,7 +92,11 @@
 
 (setq-default show-trailing-whitespace t)
 
+;; Disable scrollbar, menubar, toolbar
 (setq scroll-bar-mode nil)
+(menu-bar-mode -1)
+(if window-system
+    (tool-bar-mode -1))
 
 ;; Don't indent with tab
 (setq default-tab-width 2)  ; Google C++ Style
@@ -789,8 +793,6 @@
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Platform-dependent settings
 ;;;; ---------------------------------------------------------------------------
-
-(menu-bar-mode -1)
 
 (if window-system
     (progn
