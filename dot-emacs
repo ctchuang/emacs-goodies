@@ -167,6 +167,16 @@
 (require 'sgml-mode)
 (define-key sgml-mode-map "\\r" 'newline-and-ident)
 
+;;;; ---------------------------------------------------------------------------
+;;;;                     Non-Programming Major Modes
+;;;; ---------------------------------------------------------------------------
+
+;;; [Outline Mode]
+
+(add-hook 'outline-mode-hook '(lambda ()
+                                ;; Collapse subnodes when opening outline file
+                                (hide-sublevels 1)))
+
 ;;; [Markdown Mode]
 
 (when (require 'markdown-mode nil t)
@@ -179,16 +189,6 @@
               (local-set-key "\M-p" '(lambda () (interactive) (previous-line 3)))
               (local-set-key "\M-n" '(lambda () (interactive) (next-line 3)))
               )))
-
-;;;; ---------------------------------------------------------------------------
-;;;;                     Non-Programming Major Modes
-;;;; ---------------------------------------------------------------------------
-
-;;; [Outline Mode]
-
-(add-hook 'outline-mode-hook '(lambda ()
-                                ;; Collapse subnodes when opening outline file
-                                (hide-sublevels 1)))
 
 ;;; [Rebase Mode]
 
