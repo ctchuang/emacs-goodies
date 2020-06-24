@@ -12,13 +12,33 @@
 ;
 
 ;;;; ---------------------------------------------------------------------------
-;;;;                     Environments
+;;;;                     Packages
 ;;;; ---------------------------------------------------------------------------
 
 ;;; Init package
 
 (if (> emacs-major-version 24)  ; be compatible with old emacs
-    (package-initialize))
+    (progn
+      (require 'package)
+      (package-initialize)
+      (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))))
+
+;; Instructions
+;;
+;; (package-refresh-contents)
+;;
+;; (package-install 'markdown-mode)
+;; (package-install 'auto-complete)
+;;
+;; Remarks:
+;; 1. Delete ~/.emacs.d/elpa if the installed package is outdated.
+;; 2. 'package-install' modifies .emacs automatically.
+;;    Revert its change and set 'package-selected-packges' in .emacs manually.
+
+
+;;;; ---------------------------------------------------------------------------
+;;;;                     Environments
+;;;; ---------------------------------------------------------------------------
 
 ;;; Add emacs-goodies to load-path
 
@@ -280,6 +300,15 @@
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Minor Modes
 ;;;; ---------------------------------------------------------------------------
+
+;;; [Auto Complete Mode]
+
+;; Enable global auto-complete mode
+(if (> emacs-major-version 24)  ; be compatible with old emacs
+    (progn
+      (setq package-selected-packages (quote (auto-complete)))
+      (ac-config-default)
+      (global-auto-complete-mode t)))
 
 ;;; [Which Function Mode]
 
