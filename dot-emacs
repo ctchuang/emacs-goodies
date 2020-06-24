@@ -132,7 +132,16 @@
 
 ;;; [JavaScript - JS2 Mode]
 
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(when (require 'js2-mode nil 'noerror)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-hook 'js2-mode-hook
+            (lambda ()
+            ;; Scan the file for nested code blocks
+            (imenu-add-to-menubar "imenu")
+            (whitespace-mode t)
+            (setq js2-basic-offset 2)
+            (subword-mode 1)
+            (setq truncate-lines nil))))
 
 ;;; [HTML - Web Mode]
 
@@ -397,18 +406,6 @@
             ; (subword-mode 1) ; defined in C mode
             ; (set-default 'truncate-lines t) ; defined in C mode
              ))
-
-;;; JavaScript
-(add-hook 'js2-mode-hook
-          (lambda ()
-            ;; Scan the file for nested code blocks
-            (imenu-add-to-menubar "imenu")
-            (whitespace-mode t)
-            (setq js2-basic-offset 2)
-            (subword-mode 1)
-            ;; Somehow people don't wrap lines in Go files.
-            (setq truncate-lines nil)
-            ))
 
 ;;; HTML
 (add-hook 'html-mode-hook
