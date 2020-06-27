@@ -796,6 +796,7 @@
 (global-set-key "\C-cc" 'calculator)
 (global-set-key "\C-cd" 'calendar)
 (global-set-key "\C-ct" '(lambda () (interactive) (ansi-term  "/bin/bash" "Term")))
+(global-set-key "\C-ch" '(lambda () (interactive) (shell-command "hostname")))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Platform-dependent settings
