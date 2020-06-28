@@ -783,6 +783,10 @@
 ;;; Misc
 
 (global-set-key "\C-c\C-r" 'my-reload-file)
+(add-hook 'sh-mode-hook
+          (lambda ()
+            ;; sh-mode overrides C-c C-r. Set it back to my preference.
+            (local-set-key "\C-c\C-r" 'my-reload-file)))
 
 ;; Open the current folder. It's very commonly used. (equivalent to C-x C-f .)
 (global-set-key "\C-x." '(lambda () (interactive) (find-file ".")))
