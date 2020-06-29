@@ -528,7 +528,7 @@
 ; Insert <a href>
 (defun my-insert-ahref-tag ()
   (interactive)
-  (insert-string "<a href=\"\"></a>")
+  (insert "<a href=\"\"></a>")
   (backward-char 6))
 
 (defun my-kernel-style ()
@@ -542,12 +542,16 @@
 ; Insert current date
 (defun my-insert-date ()
   (interactive)
-  (insert-string (format-time-string "%Y-%m-%d")))
+  (insert (format-time-string "%Y-%m-%d")))
 
 ; Insert current time
 (defun my-insert-time ()
   (interactive)
-  (insert-string (format-time-string "%Y-%m-%d %H:%M")))
+  (insert (format-time-string "%Y-%m-%d %H:%M")))
+
+(defun my-insert-outline-modeline ()
+  (interactive)
+  (insert "-*- mode: outline; eval: (auto-fill-mode 0) ; eval: (visual-line-mode) -*-"))
 
 (defun my-disable-paste-indent ()
   (interactive)
