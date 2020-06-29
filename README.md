@@ -23,3 +23,4 @@ $ ln -s ~/src/misc/emacs-goodies/dot-emacs ~/.emacs
 # TODO
 
 - Learn from [Purcell's .emacs](https://github.com/purcell/emacs.d)
+- [lsp-treemacs](https://github.com/emacs-lsp/lsp-treemacs)
