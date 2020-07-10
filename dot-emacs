@@ -557,7 +557,7 @@
 (defun my-insert-outline-date-header ()
   (interactive)
   (insert
-   (format-time-string "* %B 01, ")))
+   (format-time-string "* %B %d, ")))
 
 (defun my-insert-space-date-width ()
   (interactive)
