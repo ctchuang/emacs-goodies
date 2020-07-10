@@ -554,8 +554,14 @@
          (loop repeat n
                collect x)))
 
+(defun my-insert-outline-date-header ()
+  (interactive)
+  (insert
+   (format-time-string "* %B 01, ")))
+
 (defun my-insert-space-date-width ()
   (interactive)
+  (insert "*")
   (insert
    (make-repeated-string " " (length (format-time-string " %B 01, ")))))
 
@@ -756,6 +762,9 @@
 
 (global-set-key "\C-c>" 'my-indent)
 (global-set-key "\C-c<" 'my-unindent)
+
+;;; My shortcut for outline mode
+(global-set-key "\C-ch" 'my-insert-outline-date-header)
 (global-set-key (kbd "C-c SPC") 'my-insert-space-date-width)
 
 ;;; Insert text
@@ -823,7 +832,7 @@
 (global-set-key "\C-cc" 'calculator)
 (global-set-key "\C-cd" 'calendar)
 (global-set-key "\C-ct" '(lambda () (interactive) (ansi-term  "/bin/bash" "Term")))
-(global-set-key "\C-ch" '(lambda () (interactive) (shell-command "hostname")))
+(global-set-key "\C-cH" '(lambda () (interactive) (shell-command "hostname")))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Platform-dependent settings
