@@ -549,6 +549,16 @@
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M")))
 
+(defun make-repeated-string (x n)
+  (apply #'concat
+         (loop repeat n
+               collect x)))
+
+(defun my-insert-space-date-width ()
+  (interactive)
+  (insert
+   (make-repeated-string " " (length (format-time-string " %B 01, ")))))
+
 (defun my-insert-outline-modeline ()
   (interactive)
   (insert "-*- mode: outline; eval: (auto-fill-mode 0) ; eval: (visual-line-mode) -*-"))
@@ -746,7 +756,7 @@
 
 (global-set-key "\C-c>" 'my-indent)
 (global-set-key "\C-c<" 'my-unindent)
-(global-set-key (kbd "C-c SPC") '(lambda () (interactive) (insert "          ")))
+(global-set-key (kbd "C-c SPC") 'my-insert-space-date-width)
 
 ;;; Insert text
 
