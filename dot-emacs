@@ -561,7 +561,6 @@
 
 (defun my-insert-space-date-width ()
   (interactive)
-  (insert "*")
   (insert
    (make-repeated-string " " (length (format-time-string " %B 01, ")))))
 
