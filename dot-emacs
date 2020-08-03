@@ -551,7 +551,7 @@
 
 (defun make-repeated-string (x n)
   (apply #'concat
-         (loop repeat n
+         (cl-loop repeat n
                collect x)))
 
 (defun my-insert-outline-date-header ()
