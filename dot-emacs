@@ -154,6 +154,10 @@
                    (setq comment-start "/*" comment-end "*/")
                    (setq indent-tabs-mode t)))))
 
+;;; Mojom
+
+(add-to-list 'auto-mode-alist '("\\.mojom$" . c++-mode))
+
 ;;; [Python Mode]
 
 (add-hook 'python-mode-hook
