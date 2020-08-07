@@ -658,6 +658,7 @@
                          " -or -name '*.less' -or -name '*.html' -or -name '*.js' "
                          " -or -name '*.mm' -or -name '*.m' -or -name '*.swift' "
                          " -or -name '*.go' "
+                         " -or -name '*.mojom' "
                          " \\) -print0 | xargs -0 cat | wc -l")))
 
 (defun my-occur (word)
