@@ -110,6 +110,8 @@
 
 ;;; [C Mode]
 
+(require 'c++-mode)
+
 ;; This applies to C, C++, Objective-C, and Java
 (add-hook 'c-mode-common-hook
           '(lambda ()
@@ -584,7 +586,7 @@
 (defun my-indent ()
   "indent to right 2 spaces"
   (interactive)
-  (indent-rigidly (region-beginning) (region-end) c-basic-offset))
+  (indent-rigidly (region-beginning) (region-end) 2))
 
 (defun my-unindent ()
   "indent to left 2 spaces"
