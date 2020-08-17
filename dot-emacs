@@ -110,8 +110,6 @@
 
 ;;; [C Mode]
 
-(require 'c++-mode)
-
 ;; This applies to C, C++, Objective-C, and Java
 (add-hook 'c-mode-common-hook
           '(lambda ()
