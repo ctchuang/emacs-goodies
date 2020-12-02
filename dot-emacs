@@ -839,6 +839,30 @@
 (global-set-key "\C-ct" '(lambda () (interactive) (ansi-term  "/bin/bash" "Term")))
 (global-set-key "\C-cH" '(lambda () (interactive) (shell-command "hostname")))
 
+
+;;;; ---------------------------------------------------------------------------
+;;;;                     rename tmux window name with buffer name
+;;;; ---------------------------------------------------------------------------
+
+;;; https://gist.github.com/JohnLunzer/2a61627e5b1997742d76aadca34380a7
+
+(require 'deferred)
+(defun rename-tmux-window()
+  (deferred:$
+    (deferred:process "tmux" "display-message" "-p" "'#I'")
+    (deferred:nextc it
+      (lambda (x)
+        (setq x (replace-regexp-in-string "\'" ""
+                 (replace-regexp-in-string "\n\\'" "" x)))
+        (setq w
+          (replace-regexp-in-string "\*" ""
+            (car (mapcar
+              (function buffer-name)
+                (buffer-list)))))
+        (deferred:process "tmux" "rename-window" "-t" x w)))))
+
+(add-hook 'change-major-mode-hook 'rename-tmux-window)
+
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Platform-dependent settings
 ;;;; ---------------------------------------------------------------------------
