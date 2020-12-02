@@ -862,7 +862,10 @@
                                                                         (buffer-list))))))
         (deferred:process "tmux" "rename-window" "-t" x w)))))
 
-(add-hook 'change-major-mode-hook 'rename-tmux-window)
+;; Only enable tmux name changing under emacs server/client.
+(require 'server)
+(if server-process
+    (add-hook 'change-major-mode-hook 'rename-tmux-window))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Platform-dependent settings
