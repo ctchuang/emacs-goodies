@@ -855,10 +855,11 @@
         (setq x (replace-regexp-in-string "\'" ""
                  (replace-regexp-in-string "\n\\'" "" x)))
         (setq w
-          (replace-regexp-in-string "\*" ""
-            (car (mapcar
-              (function buffer-name)
-                (buffer-list)))))
+              (replace-regexp-in-string "\\..*$" ""  ; remove filename extension
+                                        (replace-regexp-in-string "\*" ""
+                                                                  (car (mapcar
+                                                                        (function buffer-name)
+                                                                        (buffer-list))))))
         (deferred:process "tmux" "rename-window" "-t" x w)))))
 
 (add-hook 'change-major-mode-hook 'rename-tmux-window)
