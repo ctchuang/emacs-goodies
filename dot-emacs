@@ -964,11 +964,8 @@
 ;;; Wombat seems very good for both window and terminal.
 (load-theme 'wombat)
 
-;; Force a darker background color
-(let ((class '((class color) (min-colors 89))))
-  (custom-theme-set-faces
-   'wombat
-   `(default ((,class (:background "#171717" :foreground "#f6f3e8"))))))
+(add-to-list 'initial-frame-alist '(background-color . "#171717"))
+(add-to-list 'default-frame-alist '(background-color . "#171717"))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     S +/- to change font size in window mode
