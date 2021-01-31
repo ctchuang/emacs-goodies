@@ -968,7 +968,7 @@
 (let ((class '((class color) (min-colors 89))))
   (custom-theme-set-faces
    'wombat
-   `(default ((,class (:background "#171717"))))))
+   `(default ((,class (:background "#171717" :foreground "#f6f3e8"))))))
 
 ;; Needed for OS X Windowing mode
 (add-to-list 'initial-frame-alist '(background-color . "#171717"))
