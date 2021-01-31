@@ -964,6 +964,13 @@
 ;;; Wombat seems very good for both window and terminal.
 (load-theme 'wombat)
 
+;; Needed for emacsclient
+(let ((class '((class color) (min-colors 89))))
+  (custom-theme-set-faces
+   'wombat
+   `(default ((,class (:background "#171717"))))))
+
+;; Needed for OS X Windowing mode
 (add-to-list 'initial-frame-alist '(background-color . "#171717"))
 (add-to-list 'default-frame-alist '(background-color . "#171717"))
 
