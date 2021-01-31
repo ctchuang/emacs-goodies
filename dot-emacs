@@ -917,13 +917,15 @@
       (defun my-maximize-frame (&optional f)
         (interactive)
         (toggle-frame-fullscreen)) ;; This method is only available after Emacs 24.4
+      (global-set-key (kbd "C-s-f") 'my-maximize-frame)
 
-      ;; Set the best Mac programming font - Menlo.
+      ;; SF Mono fonts must be install manually on OS X
+      ;; $ cd /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts
+      ;; $ open .
+      ;; In finder, select all fonts and 'Open' => 'Install'.
       (defun my-set-font (height)
-        ;; (let ((new-height (ffloor (* height 0.7))))  ;; Somehow the font level between Mac and Linux is different.
-        (set-frame-font
-         (format "-apple-Menlo-medium-normal-normal-*-%d-*-*-*-m-0-*-1" height)
-         t))
+        (set-face-attribute 'default nil :font (format "SF Mono-%d" height))
+        )
 
       ;; Use Option key as Meta key (consistent with Mac key bindings).
       (setq mac-option-modifier 'meta)
