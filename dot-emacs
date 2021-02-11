@@ -647,7 +647,7 @@
   "Count lines of C++ and Python code"
   (interactive)
   ;;; exclude 'static' folder because we usually collect static files there.
-  (shell-command (concat "find . ! -path '*/.*/*' -and ! -path '*/vendor/*' -and "
+  (shell-command (concat "find . -type f -and ! -path '*/.*/*' -and ! -path '*/vendor/*' -and "
                          " \\( -name '*.proto' "
                          " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
