@@ -962,17 +962,21 @@
 ;;;; ---------------------------------------------------------------------------
 
 ;;; Wombat seems very good for both window and terminal.
-(load-theme 'wombat)
+;; (load-theme 'wombat)
+;; (load-theme 'whiteboard)
+;; (load-theme 'tango-dark)
+;; (load-theme 'misterioso)
+(load-theme 'dichromacy)
 
-;; Needed for emacsclient
-(let ((class '((class color) (min-colors 89))))
-  (custom-theme-set-faces
-   'wombat
-   `(default ((,class (:background "#171717" :foreground "#f6f3e8"))))))
+;; ;; Needed for emacsclient
+;; (let ((class '((class color) (min-colors 89))))
+;;   (custom-theme-set-faces
+;;    'wombat
+;;    `(default ((,class (:background "#171717" :foreground "#f6f3e8"))))))
 
-;; Needed for OS X Windowing mode
-(add-to-list 'initial-frame-alist '(background-color . "#171717"))
-(add-to-list 'default-frame-alist '(background-color . "#171717"))
+;; ;; Needed for OS X Windowing mode
+;; (add-to-list 'initial-frame-alist '(background-color . "#171717"))
+;; (add-to-list 'default-frame-alist '(background-color . "#171717"))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     S +/- to change font size in window mode
