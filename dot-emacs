@@ -70,6 +70,9 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+;; Don't ask on symbolic link to git controlled file
+(setq vc-follow-symlinks nil)
+
 ;; allow y/n instead of yes/no on prompts
 (fset 'yes-or-no-p 'y-or-n-p)
 
