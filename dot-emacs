@@ -967,11 +967,8 @@
 ;;;; ---------------------------------------------------------------------------
 
 ;;; Wombat seems very good for both window and terminal.
-;; (load-theme 'wombat)
-;; (load-theme 'whiteboard)
-;; (load-theme 'tango-dark)
-;; (load-theme 'misterioso)
-(load-theme 'dichromacy)
+(load-theme 'wombat)
+;; (load-theme 'dichromacy)
 
 ;; ;; Needed for emacsclient
 ;; (let ((class '((class color) (min-colors 89))))
