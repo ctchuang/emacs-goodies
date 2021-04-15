@@ -495,7 +495,7 @@
 ;; char (:).
 
 ;; Hacky way to override default behavior.
-(setq thing-at-point-file-name-chars "[:alnum:]_.:")
+(setq thing-at-point-file-name-chars "[:alnum:]_.") ; no ':'
 
 (setq my-linux-code-search-pattern "http://lxr.free-electrons.com/ident?v=3.14&i=%s")
 
