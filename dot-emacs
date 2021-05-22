@@ -29,6 +29,7 @@
 ;; (package-refresh-contents)
 ;;
 ;; (package-install 'markdown-mode)
+;; (package-install 'protobuf-mode)
 ;; (package-install 'auto-complete)
 ;; (package-install 'git-gutter)
 ;;
