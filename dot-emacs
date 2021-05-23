@@ -178,7 +178,9 @@
             (setq-local fill-column 79)
             (setq python-indent-offset 4)))
 
+;; Bazel
 (add-to-list 'auto-mode-alist '("BUILD$" . python-mode))
+(add-to-list 'auto-mode-alist '("WORKSPACE$" . python-mode))
 
 ;;; [Java Mode]
 
