@@ -454,6 +454,8 @@
                   " -or -name '*.cpp' "
                   " -or -name '*.java' "
                   " -or -name '*.py' "
+                  " -or -name '*.mojom' "
+                  " -or -name '*.proto' "
                   " -or -name '*.mm' \\) ")))))
 
 (defun my-ido-find-file-in-source ()
