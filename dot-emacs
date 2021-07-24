@@ -104,7 +104,8 @@
   (setq scroll-bar-mode nil))
 (menu-bar-mode -1)
 (if window-system
-    (tool-bar-mode -1))
+    (tool-bar-mode -1)
+  (xterm-mouse-mode t))
 
 ;; Don't indent with tab
 (setq default-tab-width 2)  ; Google C++ Style
