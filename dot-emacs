@@ -710,6 +710,15 @@
         (forward-line -1))
       (message "%s" (mapconcat 'identity trace "\n")))))
 
+(defun my-git-show (sha)
+  "git show in diff mode"
+  (interactive (list
+                (read-string (format "git-show (%s): " (thing-at-point 'filename))
+                             (thing-at-point 'filename)
+                             nil
+                             (thing-at-point 'filename))))
+  (shell-command (concat "git show " sha)))
+
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Key bindings for window management
 ;;;; ---------------------------------------------------------------------------
