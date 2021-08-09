@@ -177,7 +177,7 @@
             (setq show-trailing-whitespace t)
             (setq tab-width 2)  ; python-mode overrides tab-width to 8
             (setq-local fill-column 79)
-            (setq python-indent-offset 4)))
+            (setq python-indent-offset 2)))
 
 ;; Bazel
 (add-to-list 'auto-mode-alist '("BUILD$" . python-mode))
