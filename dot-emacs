@@ -346,8 +346,8 @@
 
 ;;; [Git Gutter Mode]
 
-(when (require 'git-gutter nil t)
-  (global-git-gutter-mode +1))
+;; (when (require 'git-gutter nil t)
+;;   (global-git-gutter-mode +1))
 
 ;;; [Which Function Mode]
 
