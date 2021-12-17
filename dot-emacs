@@ -149,6 +149,8 @@
                     ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
                     ))))
 
+(require 'google-c-style)
+
 ;; Set style for special projects.
 (add-hook 'c-mode-common-hook
           '(lambda ()
@@ -158,6 +160,7 @@
              ;;       (setq c-basic-offset 2)
              ;;       (setq-local fill-column 80)
              ;;       (setq-local whitespace-line-column 80)))
+             (google-set-c-style)
              (if (my-is-linux-file-p)
                  (progn
                    (c-set-style "linux")
