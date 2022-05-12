@@ -150,6 +150,7 @@
                     ))))
 
 (require 'google-c-style)
+(require 'google-pastebin)
 
 ;; Set style for special projects.
 (add-hook 'c-mode-common-hook
