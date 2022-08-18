@@ -752,7 +752,7 @@
 ;;;;                     Key bindings for standard text editing
 ;;;; ---------------------------------------------------------------------------
 
-;;; Mac style text editing on X11
+;;; Mac style text editing on Mac
 
 (global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-x") 'kill-region)
@@ -819,6 +819,14 @@
 
 (global-set-key "\C-x[" '(lambda () (interactive) (other-window -1)))
 (global-set-key  "\C-x]" '(lambda () (interactive) (other-window 1)))
+
+(global-set-key (kbd "s-1") 'delete-other-windows)
+(global-set-key (kbd "s-2") 'split-window-below)
+(global-set-key (kbd "s-3") 'split-window-right)
+(global-set-key (kbd "s-k") 'kill-this-buffer)
+
+(global-set-key (kbd "s-[") '(lambda () (interactive) (other-window -1)))
+(global-set-key (kbd "s-]") '(lambda () (interactive) (other-window 1)))
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Key binding for code navigation
