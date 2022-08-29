@@ -820,14 +820,15 @@
 
 (global-set-key "\C-x[" '(lambda () (interactive) (other-window -1)))
 (global-set-key  "\C-x]" '(lambda () (interactive) (other-window 1)))
+(global-set-key (kbd "s-[") '(lambda () (interactive) (other-window -1)))
+(global-set-key (kbd "s-]") '(lambda () (interactive) (other-window 1)))
 
+(global-set-key (kbd "s-0") 'delete-window)
 (global-set-key (kbd "s-1") 'delete-other-windows)
 (global-set-key (kbd "s-2") 'split-window-below)
 (global-set-key (kbd "s-3") 'split-window-right)
 (global-set-key (kbd "s-k") 'kill-this-buffer)
-
-(global-set-key (kbd "s-[") '(lambda () (interactive) (other-window -1)))
-(global-set-key (kbd "s-]") '(lambda () (interactive) (other-window 1)))
+(global-set-key (kbd "<C-tab>") 'ido-switch-buffer)
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Key binding for code navigation
@@ -1020,14 +1021,14 @@
 ;;;;                     S +/- to change font size in window mode
 ;;;; ---------------------------------------------------------------------------
 
-(setq my-font-size 20)
-(setq my-default-font-size 20)
+(setq my-default-font-size 14)
+(setq my-font-size my-default-font-size)
 
-(global-set-key (kbd "s-0")
-                '(lambda () (interactive) ;
-                   (progn
-                     (setq my-font-size my-default-font-size)
-                     (my-set-font my-font-size))))
+;; (global-set-key (kbd "s-0")
+;;                 '(lambda () (interactive) ;
+;;                    (progn
+;;                      (setq my-font-size my-default-font-size)
+;;                      (my-set-font my-font-size))))
 
 (global-set-key (kbd "s-=")
                 '(lambda () (interactive)
