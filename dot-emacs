@@ -465,6 +465,7 @@
                   " -or -name '*.py' "
                   " -or -name '*.mojom' "
                   " -or -name '*.proto' "
+                  " -or -name '*.lua' "
                   " -or -name '*.mm' \\) ")))))
 
 (defun my-ido-find-file-in-source ()
