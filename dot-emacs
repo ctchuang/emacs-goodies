@@ -306,6 +306,9 @@
 
 (require 'dired-x)
 
+;; no uid, no gid, no . ..
+(setq dired-listing-switches "-AgGh") 
+
 ;; Use C-x M-o to toggle.
 (setq-default dired-omit-mode t) ; this is buffer-local variable
 
