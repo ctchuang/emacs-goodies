@@ -935,6 +935,10 @@
   (progn
     ))
 
+(if (eq system-type 'windows-nt)
+    (defun my-set-font (font-height)
+      nil))
+
 (if (eq system-type 'gnu/linux)
     (progn
       (defun my-maximize-frame (&optional f)
