@@ -348,10 +348,11 @@
 
 ;; Enable global auto-complete mode
 (if (> emacs-major-version 24)  ; be compatible with old emacs
-    (progn
-      (setq package-selected-packages (quote (auto-complete)))
-      (ac-config-default)
-      (global-auto-complete-mode t)))
+    (when (require 'auto-complete nil 'noerror)
+      (progn
+        (setq package-selected-packages (quote (auto-complete)))
+        (ac-config-default)
+        (global-auto-complete-mode t))))
 
 ;;; [Git Gutter Mode]
 
