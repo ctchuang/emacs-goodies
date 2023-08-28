@@ -49,6 +49,11 @@
 
 ;;; Add emacs-goodies to load-path
 
+
+(if (eq system-type 'windows-nt)
+    (setq emacs-goodies-path "C:/msys64/home/Justin/emacs-goodies"))
+
+
 (if (eq system-type 'gnu/linux)
     (setq emacs-goodies-path
           (replace-regexp-in-string "\n$" ""
