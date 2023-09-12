@@ -109,12 +109,12 @@
 (setq fill-column 79)
 
 ;; Disable scrollbar, menubar, toolbar
-(if window-system
-    (set-scroll-bar-mode nil)
-  (setq scroll-bar-mode nil))
+(set-scroll-bar-mode nil)
 (menu-bar-mode -1)
 (if window-system
-    (tool-bar-mode -1))
+    (tool-bar-mode -1)
+  (progn
+    (xterm-mouse-mode 1)))
 
 ;; Don't indent with tab
 (setq default-tab-width 2)  ; Google C++ Style
