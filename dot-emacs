@@ -109,10 +109,11 @@
 (setq fill-column 79)
 
 ;; Disable scrollbar, menubar, toolbar
-(set-scroll-bar-mode nil)
 (menu-bar-mode -1)
 (if window-system
-    (tool-bar-mode -1)
+    (progn
+      (set-scroll-bar-mode nil)
+      (tool-bar-mode -1))
   (progn
     (xterm-mouse-mode 1)))
 
