@@ -901,28 +901,12 @@
 ;;;;                     rename tmux window name with buffer name
 ;;;; ---------------------------------------------------------------------------
 
-;;; https://gist.github.com/JohnLunzer/2a61627e5b1997742d76aadca34380a7
+(defun update-tmux-title ()
+  "Update tmux window name to the current Emacs buffer's name."
+  (let ((filename (or (buffer-file-name) (buffer-name))))
+    (call-process-shell-command (concat "tmux rename-window " "'e:" (file-name-nondirectory filename) "'"))))
 
-(require 'deferred)
-(defun rename-tmux-window()
-  (deferred:$
-    (deferred:process "tmux" "display-message" "-p" "'#I'")
-    (deferred:nextc it
-      (lambda (x)
-        (setq x (replace-regexp-in-string "\'" ""
-                 (replace-regexp-in-string "\n\\'" "" x)))
-        (setq w
-              (replace-regexp-in-string "\\..*$" ""  ; remove filename extension
-                                        (replace-regexp-in-string "\*" ""
-                                                                  (car (mapcar
-                                                                        (function buffer-name)
-                                                                        (buffer-list))))))
-        (deferred:process "tmux" "rename-window" "-t" x w)))))
-
-;; Only enable tmux name changing under emacs server/client.
-(require 'server)
-(if server-process
-    (add-hook 'change-major-mode-hook 'rename-tmux-window))
+(add-hook 'window-configuration-change-hook 'update-tmux-title)
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Platform-dependent settings
