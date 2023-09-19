@@ -665,7 +665,7 @@
                                ;; Manual modify from -name '*' to, for example, '*.py' in minibuffer
                                ;; to narrow down file pattern.
                                ;; Ignore hidden files (ex: .git, .static .vscode .env)
-                               "find . -name '*' ! -path '*/.*/*' ! -path '*/out*/*'  "
+                               "find . -name '*' ! -path '*/.*/*' ! -path '*/models*/*' ! -path '*/build/*' "
                                ;; Ignore program artifacts
                                " ! -name '*.sqlite3' ! -name '*.pyc' ! -name '*.o' "
                                ;; Ignore editor output.
