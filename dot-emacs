@@ -155,6 +155,7 @@
                     ("\\.hpp\\'" (".cc" ".cxx" ".cpp"))
                     ))))
 
+;; Note: if this fails, it's usually caused by bad `emacs-goodies-path` as `load-path`
 (require 'google-c-style)
 (require 'google-pastebin)
 
