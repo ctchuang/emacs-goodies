@@ -20,6 +20,7 @@ $ ln -s ~/src/misc/emacs-goodies/dot-emacs ~/.emacs
 - Set Tmux window name to current buffer name
 - Use `S-+` and `S--` to increase/decrease font size on X11 and Mac window mode
 - Support Mac style keys (Command key combinations) on X11
+- Load machine-local settings from `~/.emacs.d/lisp/local-setting.el`
 
 # TODO
 
