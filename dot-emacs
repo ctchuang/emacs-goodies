@@ -902,10 +902,15 @@
 ;;;;                     rename tmux window name with buffer name
 ;;;; ---------------------------------------------------------------------------
 
+(defun inside-tmux-p ()
+  "Return non-nil if Emacs is running inside a tmux session."
+  (getenv "TMUX"))
+
 (defun update-tmux-title ()
   "Update tmux window name to the current Emacs buffer's name."
-  (let ((filename (or (buffer-file-name) (buffer-name))))
-    (call-process-shell-command (concat "tmux rename-window " "'e:" (file-name-nondirectory filename) "'"))))
+  (when (inside-tmux-p)
+    (let ((filename (or (buffer-file-name) (buffer-name))))
+      (call-process-shell-command (concat "tmux rename-window " "'e:" (file-name-nondirectory filename) "'")))))
 
 (add-hook 'window-configuration-change-hook 'update-tmux-title)
 
