@@ -830,8 +830,9 @@
 ;;;;                     Key binding for split window
 ;;;; ---------------------------------------------------------------------------
 
-(global-set-key "\C-x[" '(lambda () (interactive) (other-window -1)))
-(global-set-key  "\C-x]" '(lambda () (interactive) (other-window 1)))
+;; This is convenient. But hard to implement on VS Code. Disable it first.
+;; (global-set-key "\C-x[" '(lambda () (interactive) (other-window -1)))
+;; (global-set-key  "\C-x]" '(lambda () (interactive) (other-window 1)))
 
 ;; Use for indentation
 ;; (global-set-key (kbd "s-[") '(lambda () (interactive) (other-window -1)))
