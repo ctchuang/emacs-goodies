@@ -910,13 +910,13 @@
 (defun my-truncate-string (string max-length)
   (if (<= (length string) max-length)
       string
-    (concat (substring string 0 max-length) "...")))
+    (concat (substring string 0 max-length) "..")))
 
 (defun update-tmux-title ()
   "Update tmux window name to the current Emacs buffer's name."
   (when (inside-tmux-p)
     (let ((filename (or (buffer-file-name) (buffer-name))))
-      (call-process-shell-command (concat "tmux rename-window " "'e:" (my-truncate-string (file-name-nondirectory filename) 12) "'")))))
+      (call-process-shell-command (concat "tmux rename-window " "'e:" (my-truncate-string (file-name-nondirectory filename) 15) "'")))))
 
 (add-hook 'window-configuration-change-hook 'update-tmux-title)
 
