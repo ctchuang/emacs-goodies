@@ -984,8 +984,8 @@
       (global-set-key (kbd "C-s-f") 'my-maximize-frame)
 
       (defun my-set-font (height)
-        ;; $ brew install --cask font-ubuntu-nerd-font
-        (set-face-attribute 'default nil :family "UbuntuMono Nerd Font Mono" :height (* 10 height))
+        ;; `brew install font-ubuntu-mono`
+        (set-face-attribute 'default nil :font "Ubuntu Mono" :height (* 10 height))
         )
 
       ;; Use Option key as Meta key (consistent with Mac key bindings).
@@ -1085,8 +1085,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(warning-suppress-types
-   '((comp))))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
