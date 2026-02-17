@@ -983,12 +983,9 @@
         (toggle-frame-fullscreen)) ;; This method is only available after Emacs 24.4
       (global-set-key (kbd "C-s-f") 'my-maximize-frame)
 
-      ;; SF Mono fonts must be install manually on OS X
-      ;; $ cd /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts
-      ;; $ open .
-      ;; In finder, select all fonts and 'Open' => 'Install'.
       (defun my-set-font (height)
-        (set-face-attribute 'default nil :font (format "SF Mono-%d" height))
+        ;; $ brew install --cask font-ubuntu-nerd-font
+        (set-face-attribute 'default nil :family "UbuntuMono Nerd Font Mono" :height (* 10 height))
         )
 
       ;; Use Option key as Meta key (consistent with Mac key bindings).
