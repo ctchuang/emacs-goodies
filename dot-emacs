@@ -688,7 +688,8 @@
   (interactive)
   ;; exclude 'static' folder because we usually collect static files there.
   ;; exclude 'target' for Rust
-  (shell-command (concat "find . -type f -and ! -path '*/.*/*' -and ! -path '*/target/*' -and "
+  ;; exclude 'dist' for Rust Trunk
+  (shell-command (concat "find . -type f -and ! -path '*/.*/*' -and ! -path '*/target/*' -and ! -path '*/dist/*' -and "
                          " \\( -name '*.proto' "
                          " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
