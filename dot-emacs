@@ -36,6 +36,7 @@
 ;; (package-install 'protobuf-mode)
 ;; (package-install 'auto-complete)
 ;; (package-install 'git-gutter)
+;; (package-install 'rust-mode)
 ;;
 ;; Remarks:
 ;; 1. Delete ~/.emacs.d/elpa if the installed package is outdated.
