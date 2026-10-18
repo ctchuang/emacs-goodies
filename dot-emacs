@@ -686,8 +686,9 @@
 (defun my-count-lines ()
   "Count lines of C++ and Python code"
   (interactive)
-  ;;; exclude 'static' folder because we usually collect static files there.
-  (shell-command (concat "find . -type f -and ! -path '*/.*/*' -and ! -path '*/vendor/*' -and "
+  ;; exclude 'static' folder because we usually collect static files there.
+  ;; exclude 'target' for Rust
+  (shell-command (concat "find . -type f -and ! -path '*/.*/*' -and ! -path '*/target/*' -and "
                          " \\( -name '*.proto' "
                          " -or -name '*.cc' "
                          " -or -name '*.[ch]' -or -name '*.cpp' "
@@ -700,6 +701,7 @@
                          " -or -name '*.php' -or -name '*.rb' "
                          " -or -name '*.less' -or -name '*.html' "
                          " -or -name '*.js' -or -name '*.ts' "
+                         " -or -name '*.rs' -or -name '*.toml' "
                          " -or -name '*.vue' "
                          " -or -name '*.mm' -or -name '*.m' -or -name '*.swift' "
                          " -or -name '*.go' "
