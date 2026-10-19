@@ -914,22 +914,35 @@
 ;;;;                     rename tmux window name with buffer name
 ;;;; ---------------------------------------------------------------------------
 
+(defun my-tmux-getenv (variable)
+  "Return VARIABLE from the environment of the selected frame's terminal."
+  (getenv variable (selected-frame)))
+
 (defun inside-tmux-p ()
-  "Return non-nil if Emacs is running inside a tmux session."
-  (getenv "TMUX"))
+  "Return non-nil if the selected frame is displayed inside a tmux pane."
+  (and (my-tmux-getenv "TMUX") (my-tmux-getenv "TMUX_PANE")))
 
 (defun my-truncate-string (string max-length)
   (if (<= (length string) max-length)
       string
     (concat (substring string 0 max-length) "..")))
 
-(defun update-tmux-title ()
-  "Update tmux window name to the current Emacs buffer's name."
+(defun update-tmux-title (&rest _)
+  "Update the tmux window showing the selected frame to its buffer's name."
   (when (inside-tmux-p)
-    (let ((filename (or (buffer-file-name) (buffer-name))))
-      (call-process-shell-command (concat "tmux rename-window " "'e:" (my-truncate-string (file-name-nondirectory filename) 15) "'")))))
+    (let* ((buffer (window-buffer (selected-window)))
+           (name (file-name-nondirectory
+                  (or (buffer-file-name buffer) (buffer-name buffer))))
+           (title (concat "e:" (my-truncate-string name 15))))
+      (unless (equal title (frame-parameter nil 'my-tmux-title))
+        (set-frame-parameter nil 'my-tmux-title title)
+        (call-process "tmux" nil 0 nil
+                      "-S" (car (split-string (my-tmux-getenv "TMUX") ","))
+                      "rename-window" "-t" (my-tmux-getenv "TMUX_PANE")
+                      title)))))
 
-;; (add-hook 'window-configuration-change-hook 'update-tmux-title)
+(add-hook 'window-configuration-change-hook #'update-tmux-title)
+(add-hook 'window-selection-change-functions #'update-tmux-title)
 
 ;;;; ---------------------------------------------------------------------------
 ;;;;                     Platform-dependent settings
