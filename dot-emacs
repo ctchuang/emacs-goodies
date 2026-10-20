@@ -118,7 +118,8 @@
   (progn
     (xterm-mouse-mode 1)
     (setq mouse-drag-copy-region t)
-    (xclip-mode 1)
+    (xclip-mode 1)  ;; unfortunately this uses pbcopy and only works with local terminal.
+                    ;; Mac terminal does not support OSC 52.
     ))
 
 
