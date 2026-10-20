@@ -116,7 +116,11 @@
       (set-scroll-bar-mode nil)
       (tool-bar-mode -1))
   (progn
-    (xterm-mouse-mode 1)))
+    (xterm-mouse-mode 1)
+    (setq mouse-drag-copy-region t)
+    (xclip-mode 1)
+    ))
+
 
 ;; Don't indent with tab
 (setq default-tab-width 2)  ; Google C++ Style
@@ -1102,6 +1106,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(markdown-mode xclip))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
